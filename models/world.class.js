@@ -5,15 +5,17 @@ class World {
         new jellyFish(),
         new jellyFish(),
     ];
-    waves = [
-        new Wave(),
-    ];
-    floor = [
-        new Floor()
-    ];
     backgroundObjects = [
-        new BackgroundObject('../img/3.Background/Layers/3.Fondo 1/D.png', 0, 120)
+        new BackgroundObject('../img/3.Background/Layers/5. Water/D1.png', 0),
+        new BackgroundObject('../img/3.Background/Layers/4.Fondo 2/D1.png', 0),
+        new BackgroundObject('../img/3.Background/Layers/3.Fondo 1/D1.png', 0),
+        new BackgroundObject('../img/3.Background/Layers/1. Light/1.png', 0),
+        new BackgroundObject('../img/3.Background/Layers/2. Floor/D1.png', 0),
+
     ];
+    sunshine = [
+        new BackgroundObject('../img/3.Background/Layers/1. Light/COMPLETO.png', 0)
+    ]
     canvas;
     ctx;
     constructor(canvas) {
@@ -25,18 +27,12 @@ class World {
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-        this.addObjectsToMap(this.waves);
         this.addObjectsToMap(this.backgroundObjects);
-        this.addObjectsToMap(this.floor);
-
+        this.addObjectsToMap(this.enemies);
         this.addToMap(this.character);
 
-        this.addObjectsToMap(this.enemies);
-
-
-
         let self = this;
-        requestAnimationFrame(function() {
+        requestAnimationFrame(function () {
             self.draw();
         });
     }
@@ -48,7 +44,7 @@ class World {
     }
 
     addToMap(mo) {
-        this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width ,mo.height,)
+        this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height,)
     };
 
 }

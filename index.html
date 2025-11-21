@@ -1,14 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
-    <script src="./scripts/game.js" defer></script>
-    <title>Document</title>
+    <script src="./models/movable-object.class.js"></script>
+    <script src="./models/wave.class.js"></script>
+    <script src="./models/floor.class.js"></script>
+    <script src="./models/background-object.class.js"></script>
+    <script src="./models/character.class.js"></script>
+    <script src="./models/jellyFish.class.js"></script>
+    <script src="./models/world.class.js"></script>
+    <script src="./scripts/game.js"></script>
+    <title>Sharkie</title>
 </head>
+
 <body onload="init()">
-    
+
     <h1>Sharkie</h1>
 
     <canvas id="canvas" width="720px" height="480px">
@@ -16,4 +25,5 @@
     </canvas>
 
 </body>
+
 </html>

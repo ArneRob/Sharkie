@@ -7,14 +7,12 @@ class jellyFish extends MovableObject {
         '../img/2.Enemy/2 Jelly fish/Regular damage/Lila 4.png',
     ];
 
-    currentImage = 0;
-
     constructor() {
         super().loadImage('../img/2.Enemy/2 Jelly fish/Regular damage/Lila 1.png')
         this.loadImages(this.IMAGES_SWIMMING_Jelly);
         this.x = 400 + Math.random() * 400
         this.y = Math.random() * 400
-
+        this.speed = 0.15 + Math.random() * 0.25
         this.width = 80
         this.height = 80
 
@@ -22,6 +20,7 @@ class jellyFish extends MovableObject {
     }
 
     animate() {
+        this.moveLeft()
         setInterval(() => {
             let i = this.currentImage % this.IMAGES_SWIMMING_Jelly.length
             let path = this.IMAGES_SWIMMING_Jelly[i];

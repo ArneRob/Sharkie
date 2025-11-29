@@ -27,9 +27,7 @@ class Character extends MovableObject {
 
         setInterval(() => {
             let i = this.currentImage % this.IMAGES_SWIMMING.length
-            let path = this.IMAGES_SWIMMING[i];
-            this.img = this.imageCache[path]
-            this.currentImage++;
+           this.playAnimation(this.IMAGES_SWIMMING)
         }, 1000 / 5);
         setInterval(() => {
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {

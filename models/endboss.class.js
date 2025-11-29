@@ -19,7 +19,7 @@ class Endboss extends MovableObject {
         super().loadImage(this.IMAGES_SWIMMING[0])
         this.loadImages(this.IMAGES_SWIMMING);
         this.x = 400 + Math.random() * 400
-        this.x = 2000
+        this.x = 100
         this.y = 0
         this.width = 400
         this.height = 400

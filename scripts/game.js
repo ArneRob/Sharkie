@@ -14,20 +14,19 @@ function init() {
 
 window.addEventListener('keydown', (event) => {
     if (event.which == 87 || event.which == 38) {
-        console.log("up");
         keyboard.UP = true
     }
     if (event.which == 83 || event.which == 40) {
-        console.log("down");
         keyboard.DOWN = true
     }
     if (event.which == 65 || event.which == 37) {
-        console.log("left");
         keyboard.LEFT = true
     }
     if (event.which == 68 || event.which == 39) {
-        console.log("right");
         keyboard.RIGHT = true
+    }
+    if (event.which == 32) {
+        keyboard.SPACE = true
     }
 });
 
@@ -43,5 +42,8 @@ window.addEventListener('keyup', (event) => {
     }
     if (event.which == 68 || event.which == 39) {
         keyboard.RIGHT = false
+    }
+    if (event.which == 32) {
+        keyboard.SPACE = false
     }
 });

@@ -1,23 +1,13 @@
 class World {
     character = new Character();
-    enemies = [
-        new jellyFish(),
-        new jellyFish(),
-        new jellyFish(),
-    ];
-    backgroundObjects = [
-        new BackgroundObject('../img/3.Background/Layers/5. Water/D1.png', 0),
-        new BackgroundObject('../img/3.Background/Layers/4.Fondo 2/D1.png', 0),
-        new BackgroundObject('../img/3.Background/Layers/3.Fondo 1/D1.png', 0),
-        new BackgroundObject('../img/3.Background/Layers/2. Floor/D1.png', 0),
-
-    ];
-    light = [
-        new Light()
-    ]
+    level = level1;
+    enemies = level1.enemies;
+    backgroundObjects = level1.backgroundObjects;
+    light = level1.light;
     canvas;
     ctx;
     keyboard;
+    camera_x = 0;
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -33,11 +23,13 @@ class World {
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-        this.addObjectsToMap(this.backgroundObjects);
+        this.ctx.translate(this.camera_x, 0);
+        this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.light);
-        this.addObjectsToMap(this.enemies);
+        this.addObjectsToMap(this.level.enemies);
         this.addToMap(this.character);
 
+        this.ctx.translate(-this.camera_x, 0);
         let self = this;
         requestAnimationFrame(function () {
             self.draw();

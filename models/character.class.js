@@ -61,8 +61,9 @@ class Character extends MovableObject {
             if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                 this.playAnimation(this.IMAGES_SWIM)
                 console.log("swim");
-            } else if (this.world.keyboard.SPACE) {
-                this.playAnimation(this.IMAGES_SLAP)
+                if (this.world.keyboard.SPACE) {
+                    this.playAnimation(this.IMAGES_SLAP)
+                }
             } else {
                 this.playAnimation(this.IMAGES_SWIMMING)
             }

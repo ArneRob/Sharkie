@@ -37,7 +37,27 @@ class Character extends MovableObject {
         '../img/1.Sharkie/4.Attack/Fin slap/6.png',
         '../img/1.Sharkie/4.Attack/Fin slap/7.png',
         '../img/1.Sharkie/4.Attack/Fin slap/8.png',
-    ]
+    ];
+    IMAGES_DEAD = [
+        '../img/1.Sharkie/6.dead/1.Poisoned/1.png',
+        '../img/1.Sharkie/6.dead/1.Poisoned/2.png',
+        '../img/1.Sharkie/6.dead/1.Poisoned/3.png',
+        '../img/1.Sharkie/6.dead/1.Poisoned/4.png',
+        '../img/1.Sharkie/6.dead/1.Poisoned/5.png',
+        '../img/1.Sharkie/6.dead/1.Poisoned/6.png',
+        '../img/1.Sharkie/6.dead/1.Poisoned/7.png',
+        '../img/1.Sharkie/6.dead/1.Poisoned/8.png',
+        '../img/1.Sharkie/6.dead/1.Poisoned/9.png',
+        '../img/1.Sharkie/6.dead/1.Poisoned/10.png',
+        '../img/1.Sharkie/6.dead/1.Poisoned/11.png',
+        '../img/1.Sharkie/6.dead/1.Poisoned/12.png',
+    ];
+    IMAGES_HURT = [
+        '../img/1.Sharkie/5.Hurt/1.Poisoned/1.png',
+        '../img/1.Sharkie/5.Hurt/1.Poisoned/2.png',
+        '../img/1.Sharkie/5.Hurt/1.Poisoned/3.png',
+        '../img/1.Sharkie/5.Hurt/1.Poisoned/4.png',
+    ];
     world;
 
     constructor() {
@@ -45,6 +65,8 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_SWIMMING);
         this.loadImages(this.IMAGES_SLAP);
         this.loadImages(this.IMAGES_SWIM);
+        this.loadImages(this.IMAGES_DEAD);
+        this.loadImages(this.IMAGES_HURT);
         this.animate();
 
         this.width = 250
@@ -57,18 +79,25 @@ class Character extends MovableObject {
     animate() {
 
         setInterval(() => {
-
-            if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                this.playAnimation(this.IMAGES_SWIM)
-                console.log("swim");
-                if (this.world.keyboard.SPACE) {
+            if (this.isDead()) {
+                this.playAnimation(this.IMAGES_DEAD)
+            } else
+                if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+                    this.playAnimation(this.IMAGES_SWIM)
+                    console.log("swim");
+                    if (this.world.keyboard.SPACE) {
+                        this.playAnimation(this.IMAGES_SLAP)
+                    }
+                } else if (this.world.keyboard.SPACE) {
                     this.playAnimation(this.IMAGES_SLAP)
+                } else if (this.isHurt()) {
+                    this.playAnimation(this.IMAGES_HURT)
+                }  else {
+                    this.playAnimation(this.IMAGES_SWIMMING)
                 }
-            } else {
-                this.playAnimation(this.IMAGES_SWIMMING)
-            }
         }, 1000 / 6);
         setInterval(() => {
+
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.x += this.speed * 15;
                 this.otherDirection = false;

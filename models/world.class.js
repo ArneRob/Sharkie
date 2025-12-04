@@ -8,6 +8,8 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
+    statusBar = new StatusBar(); 
+
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -25,7 +27,6 @@ class World {
         setInterval(() => {
                 this.level.enemies.forEach(enemy => {
                     if (this.character.isColliding(enemy)) {
-                        console.log("collision with character", this.character.energy);
                         this.character.hit();
                     }
                 });
@@ -37,6 +38,7 @@ class World {
 
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.backgroundObjects);
+        this.addToMap(this.statusBar)
         this.addObjectsToMap(this.light);
         this.addObjectsToMap(this.level.enemies);
         this.addToMap(this.character);

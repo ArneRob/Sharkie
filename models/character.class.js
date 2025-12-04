@@ -92,7 +92,7 @@ class Character extends MovableObject {
                     this.playAnimation(this.IMAGES_SLAP)
                 } else if (this.isHurt()) {
                     this.playAnimation(this.IMAGES_HURT)
-                }  else {
+                } else {
                     this.playAnimation(this.IMAGES_SWIMMING)
                 }
         }, 1000 / 6);

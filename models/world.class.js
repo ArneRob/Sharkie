@@ -9,7 +9,7 @@ class World {
     keyboard;
     camera_x = 0;
     statusBar = new StatusBar();
-    throwableObjects = [new ThrowableObject()]
+    throwableObjects = []
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');

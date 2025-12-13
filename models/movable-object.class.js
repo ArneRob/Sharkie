@@ -1,7 +1,9 @@
-class MovableObject extends DrawableObject {  
+class MovableObject extends DrawableObject {
     speed = 0.15
     otherDirection = false;
     energy = 100;
+    speedY = 0;
+    acceleration = 2.5;
     lastHit = 0;
 
     moveRight() {
@@ -13,6 +15,15 @@ class MovableObject extends DrawableObject {
         }, 1000 / 60);
     }
 
+    applyGravity() {
+        setInterval(() => {
+            {
+                this.y -= this.speedY
+                this.speedY += this.acceleration;
+            }
+        }, 1000 / 30);
+    }
+
     playAnimation(images) {
         let i = this.currentImage % images.length;
         let path = images[i];
@@ -21,6 +32,7 @@ class MovableObject extends DrawableObject {
     }
 
     isColliding(mo) {
+
         return this.x + this.width > mo.x && this.y &&
             this.y + this.height > mo.y &&
             this.x < mo.x &&

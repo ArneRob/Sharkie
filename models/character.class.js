@@ -60,6 +60,13 @@ class Character extends MovableObject {
     ];
     world;
 
+    offset = {
+        top: -130,
+        left: -50,
+        right: 100,
+        bottom: 190,
+    };
+
     constructor() {
         super().loadImage('../img/1.Sharkie/3.Swim/1.png')
         this.loadImages(this.IMAGES_SWIMMING);

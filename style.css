@@ -19,6 +19,10 @@ body {
     overflow: hidden;
 }
 
+canvas {
+    display: block;
+}
+
 h1 {
      font-size: 85px;
      margin-bottom: 10px;
@@ -27,4 +31,15 @@ h1 {
 
 canvas {
     background-color: black;
+}
+
+@media only screen and (max-width: 720px) {
+    canvas {
+        width: 100%;
+    }
+}
+@media only screen and (max-height: 480px) {
+    canvas {
+        height: 100vh;
+    }
 }

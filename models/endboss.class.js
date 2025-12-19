@@ -14,6 +14,12 @@ class Endboss extends MovableObject {
         "../img/2.Enemy/3 Final Enemy/2.floating/12.png",
         "../img/2.Enemy/3 Final Enemy/2.floating/13.png",
     ];
+    offset = {
+        top: -180,
+        left: -20,
+        right: 40,
+        bottom: 250,
+    };
 
     constructor() {
         super().loadImage(this.IMAGES_SWIMMING[0])

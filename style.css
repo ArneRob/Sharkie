@@ -11,10 +11,18 @@ body {
     align-items: center;
     top: 100px;
     background-image: url('./img/backgroundWater.jpg');
+    background-repeat: no-repeat;
     background-size: cover;
-    height: 100vh;
+    background-position: center;
+    height: clamp(100vh, 1000px ,1270px);
     font-family: bigBlue, Arial, Helvetica, sans-serif;
-    font-size: 45px;
+    overflow: hidden;
+}
+
+h1 {
+     font-size: 85px;
+     margin-bottom: 10px;
+     text-shadow: -200px 1000px 8px rgba(0, 0, 0, 0.5);
 }
 
 canvas {

@@ -15,17 +15,16 @@ class Endboss extends MovableObject {
         "../img/2.Enemy/3 Final Enemy/2.floating/13.png",
     ];
     offset = {
-        top: -180,
-        left: -20,
-        right: 40,
-        bottom: 250,
+       top: 170,
+        left: 20,
+        right: 70,
+        bottom: 230,
     };
 
     constructor() {
         super().loadImage(this.IMAGES_SWIMMING[0])
         this.loadImages(this.IMAGES_SWIMMING);
-        this.x = 400 + Math.random() * 400
-        this.x = 400
+        this.x = 350
         this.y = 0
         this.width = 400
         this.height = 400

@@ -4,6 +4,7 @@ class World {
     enemies = level1.enemies;
     backgroundObjects = level1.backgroundObjects;
     light = level1.light;
+    coin = level1.coin;
     canvas;
     ctx;
     keyboard;
@@ -32,7 +33,7 @@ class World {
         }, 200);
     }
     checkThorwObjects() {
-        if(this.keyboard.D) {
+        if (this.keyboard.D) {
             let bubble = new ThrowableObject(this.character.x, this.character.y)
             this.throwableObjects.push(bubble);
         }
@@ -56,11 +57,12 @@ class World {
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar)
         this.ctx.translate(this.camera_x, 0);
-
         this.addObjectsToMap(this.light);
         this.addObjectsToMap(this.level.enemies);
+         this.addObjectsToMap(this.level.coin);
         this.addObjectsToMap(this.throwableObjects)
         this.addToMap(this.character);
+       
 
         this.ctx.translate(-this.camera_x, 0);
         let self = this;

@@ -11,7 +11,6 @@ class MovableObject extends DrawableObject {
         right: 0,
         bottom: 0,
     };
-
     moveRight() {
         console.log("Moving right")
     }
@@ -38,13 +37,25 @@ class MovableObject extends DrawableObject {
     }
 
     isColliding(mo) {
+        console.log(this.y + this.height - this.offset.bottom, 60);
 
-        return this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
-            this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
-            this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
-            this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom
+        //  return this.x + this.width > mo.x && // wenn hinter x anfang object img 
+        //     this.y + this.height > mo.y && // b->t
+        //     this.x < mo.x + mo.width && // l->r
+        //     this.y < mo.y + mo.height// t->b
+
+        return this.x + this.width - this.offset.right > mo.x + mo.offset.left && // wenn hinter x anfang object img 
+            this.y + this.height - this.offset.bottom > mo.y + mo.offset.top && // b->t
+            this.x + this.offset.left < mo.x + mo.width - mo.offset.right && // l->r
+            this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom // t->bs
+
+
+        // return this.x + this.width - this.offset.right < mo.x + mo.offset.left && // vor dem object true
+        //     this.y + this.height - this.offset.bottom < mo.y + mo.height - mo.offset.bottom && //über dem object true
+        //     this.x + this.offset.left >  mo.x - mo.width/2 && // hinter dem object
+        //     this.y < mo.y + this.offset.bottom; //unter der object true
     }
-
+    // 
     hit() {
         this.energy -= 20;
         if (this.energy < 0) {

@@ -1,8 +1,8 @@
 const level1 = new Level(
     [
-        new JellyFish(),
-        new JellyFish(),
-        new JellyFish(),
+        // new JellyFish(),
+        // new JellyFish(),
+        // new JellyFish(),
         new Endboss(),
     ],
     [
@@ -34,5 +34,19 @@ const level1 = new Level(
         new BackgroundObject('../img/3.Background/Layers/3.Fondo 1/D2.png', 719*3),
         new BackgroundObject('../img/3.Background/Layers/2. Floor/D2.png', 719*3),
 
+    ],
+    [
+        new Coin(),
+        new Coin(),
+        new Coin(),
+        new Coin(),
+        new Coin(),
+        new Coin(),
+        new Coin(),
+        new Coin(),
+        new Coin(),
+        new Coin(),
+        new Coin(),
+        new Coin(),
     ],
 );

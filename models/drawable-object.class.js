@@ -20,8 +20,15 @@ class DrawableObject {
             ctx.beginPath();
             ctx.lineWidth = '5';
             ctx.strokeStyle = 'blue';
-            ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.right, this.height - this.offset.bottom);
+            ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.right - this.offset.left, this.height - this.offset.bottom - this.offset.top);
             ctx.stroke();
+            if (this instanceof Endboss) {
+                ctx.beginPath();
+                ctx.lineWidth = '5';
+                ctx.strokeStyle = 'red';
+                ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.right - this.offset.left, this.height - this.offset.bottom - this.offset.top);
+                ctx.stroke();
+            }
         }
     }
 

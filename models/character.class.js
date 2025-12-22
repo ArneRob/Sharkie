@@ -63,8 +63,8 @@ class Character extends MovableObject {
     offset = {
         top: 120,
         left: 50,
-        right: 100,
-        bottom: 180,
+        right: 50,
+        bottom: 60,
     };
 
     constructor() {

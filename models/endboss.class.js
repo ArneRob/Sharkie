@@ -15,10 +15,10 @@ class Endboss extends MovableObject {
         "../img/2.Enemy/3 Final Enemy/2.floating/13.png",
     ];
     offset = {
-       top: 170,
+       top: 180,
         left: 20,
-        right: 70,
-        bottom: 230,
+        right: 40,
+        bottom: 70,
     };
 
     constructor() {

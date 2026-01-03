@@ -25,7 +25,6 @@ class World {
     setWorld() {
         this.character.world = this;
     }
-
     run() {
         setInterval(() => {
             this.checkCollisions()
@@ -59,10 +58,10 @@ class World {
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.light);
         this.addObjectsToMap(this.level.enemies);
-         this.addObjectsToMap(this.level.coin);
+        this.addObjectsToMap(this.level.coin);
         this.addObjectsToMap(this.throwableObjects)
         this.addToMap(this.character);
-       
+
 
         this.ctx.translate(-this.camera_x, 0);
         let self = this;

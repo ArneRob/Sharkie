@@ -105,18 +105,18 @@ class Character extends MovableObject {
         }, 1000 / 6);
         setInterval(() => {
 
-            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x && !this.isDead()) {
                 this.x += this.speed * 15;
                 this.otherDirection = false;
             }
-            if (this.world.keyboard.LEFT && this.x > 0) {
+            if (this.world.keyboard.LEFT && this.x > 0 && !this.isDead()) {
                 this.x -= this.speed * 15;
                 this.otherDirection = true;
             }
-            if (this.world.keyboard.UP) {
+            if (this.world.keyboard.UP && !this.isDead()) {
                 this.y -= this.speed * 10;
             }
-            if (this.world.keyboard.DOWN) {
+            if (this.world.keyboard.DOWN && !this.isDead()) {
                 this.y += this.speed * 10;
             }
             this.world.camera_x = -this.x + 50

@@ -1,4 +1,4 @@
-class Coin extends DrawableObject{
+class Coin extends DrawableObject {
 
     IMAGES_COINS = [
         '../img/4.Marcadores/1. Coins/1.png',
@@ -12,18 +12,22 @@ class Coin extends DrawableObject{
         right: 0,
         bottom: 0,
     };
+    xCoordinate
 
     constructor(x, y) {
         super().loadImage('../img/4.Marcadores/1. Coins/1.png')
         this.loadImages(this.IMAGES_COINS);
+        this.getXCoordinate(y)
         this.x = x
-        this.y = y
+        this.y = 200 + y
         this.width = 30
         this.height = 30
 
         this.animate()
     }
-    
+    getXCoordinate(y) {
+            this.world
+    }
     animate() {
         setInterval(() => {
             let i = this.currentImage % this.IMAGES_COINS.length

@@ -2,6 +2,7 @@ class MovableObject extends DrawableObject {
     speed = 0.15
     otherDirection = false;
     energy = 100;
+    collectedCoin = 0;
     speedY = 0;
     acceleration = 0.3;
     lastHit = 0;
@@ -48,6 +49,15 @@ class MovableObject extends DrawableObject {
             this.energy = 0;
         } else {
             this.lastHit = new Date().getTime();
+        }
+    }
+
+    collect() {
+        this.collectedCoin += 20;
+        console.log("working");
+        
+        if (this.collectedCoin > 100) {
+            this.collectedCoin = 100;
         }
     }
 

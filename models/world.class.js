@@ -20,6 +20,7 @@ class World {
         this.draw();
         this.setWorld();
         this.checkCollisions();
+        this.checkForItemCollisions();
         this.run()
     }
 
@@ -30,6 +31,7 @@ class World {
         setInterval(() => {
             this.checkCollisions()
             this.checkThorwObjects()
+            this.checkForItemCollisions()
         }, 200);
     }
     checkThorwObjects() {
@@ -43,6 +45,14 @@ class World {
             if (this.character.isColliding(enemy)) {
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
+            }
+        });
+    }
+     checkForItemCollisions() {
+        this.level.coin.forEach((coin) => {
+            if (this.character.isColliding(coin)) {
+                this.character.collect();
+                this.coinStatusBar.setPercentage(this.character.collectedCoin);
             }
         });
     }

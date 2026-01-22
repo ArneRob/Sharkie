@@ -48,15 +48,18 @@ class World {
             }
         });
     }
-     checkForItemCollisions() {
-        this.level.coin.forEach((coin) => {
-            if (this.character.isColliding(coin)) {
+    checkForItemCollisions() {
+        for (let index = 0; index < this.level.coin.length; index++) {
+            if (this.character.isColliding(this.coin[index])) {
                 this.character.collect();
+                this.coin.splice(index, 1)
                 this.coinStatusBar.setPercentage(this.character.collectedCoin);
             }
-        });
+        }
     }
+    // removeItem(coin) {
 
+    // }
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 

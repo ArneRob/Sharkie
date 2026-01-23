@@ -11,7 +11,10 @@ class World {
     camera_x = 0;
     statusBar = new StatusBar();
     coinStatusBar = new CoinStatusBar()
+    randomNumber
     throwableObjects = []
+    mySound = new Audio('../audio/coinSound.mp3')
+    volume = 0.5
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -29,7 +32,7 @@ class World {
         for (let index = 0; index < this.coin.length; index++) {
             this.coin[index].setWorld(this);
         };
-        
+
     }
     run() {
         setInterval(() => {
@@ -55,6 +58,7 @@ class World {
     checkForItemCollisions() {
         for (let index = 0; index < this.level.coin.length; index++) {
             if (this.character.isColliding(this.coin[index])) {
+                this.mySound.play()
                 this.character.collect();
                 this.coin.splice(index, 1)
                 this.coinStatusBar.setPercentage(this.character.collectedCoin);
@@ -66,13 +70,13 @@ class World {
 
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.backgroundObjects);
-
+        this.addObjectsToMap(this.light);
 
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar)
         this.addToMap(this.coinStatusBar)
         this.ctx.translate(this.camera_x, 0);
-        this.addObjectsToMap(this.light);
+
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.coin);
         this.addObjectsToMap(this.throwableObjects)

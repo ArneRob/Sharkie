@@ -1,5 +1,5 @@
 class MovableObject extends DrawableObject {
-    speed = 1.15
+    speed = 0.15
     otherDirection = false;
     energy = 100;
     collectedCoin = 0;

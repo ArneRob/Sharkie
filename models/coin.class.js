@@ -12,12 +12,10 @@ class Coin extends DrawableObject {
         right: 0,
         bottom: 0,
     };
-    xCoordinate
-
+    world;
     constructor(x, y) {
         super().loadImage('../img/4.Marcadores/1. Coins/1.png')
         this.loadImages(this.IMAGES_COINS);
-        this.getXCoordinate(y)
         this.x = x
         this.y = 200 + y
         this.width = 30
@@ -25,8 +23,13 @@ class Coin extends DrawableObject {
 
         this.animate()
     }
-    getXCoordinate(y) {
-            this.world
+
+    setWorld(world) {
+        this.world = world
+        this.getXCoordinate()
+    }
+    getXCoordinate() {
+            // world = this.world
     }
     animate() {
         setInterval(() => {

@@ -1,10 +1,10 @@
 class World {
     character = new Character();
+    coin = level1.coin;
     level = level1;
     enemies = level1.enemies;
     backgroundObjects = level1.backgroundObjects;
     light = level1.light;
-    coin = level1.coin;
     canvas;
     ctx;
     keyboard;
@@ -26,6 +26,10 @@ class World {
 
     setWorld() {
         this.character.world = this;
+        for (let index = 0; index < this.coin.length; index++) {
+            this.coin[index].setWorld(this);
+        };
+        
     }
     run() {
         setInterval(() => {
@@ -57,9 +61,6 @@ class World {
             }
         }
     }
-    // removeItem(coin) {
-
-    // }
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 

@@ -13,8 +13,7 @@ class World {
     coinStatusBar = new CoinStatusBar()
     randomNumber
     throwableObjects = []
-    mySound = new Audio('../audio/coinSound.mp3')
-    volume = 0.5
+    coinSound = new Audio('../audio/coinSound.mp3')
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -38,8 +37,10 @@ class World {
         setInterval(() => {
             this.checkCollisions()
             this.checkThorwObjects()
+        }, 300);
+         setInterval(() => {
             this.checkForItemCollisions()
-        }, 200);
+        }, 10);
     }
     checkThorwObjects() {
         if (this.keyboard.D) {
@@ -58,7 +59,7 @@ class World {
     checkForItemCollisions() {
         for (let index = 0; index < this.level.coin.length; index++) {
             if (this.character.isColliding(this.coin[index])) {
-                this.mySound.play()
+                this.coinSound.play()
                 this.character.collect();
                 this.coin.splice(index, 1)
                 this.coinStatusBar.setPercentage(this.character.collectedCoin);

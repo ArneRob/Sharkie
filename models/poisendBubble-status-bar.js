@@ -1,20 +1,20 @@
-class CoinStatusBar extends DrawableObject {
-    IMAGES_COINBAR = [
-        '../img/4.Marcadores/green/Coin/0_copia4.png',
-        '../img/4.Marcadores/green/Coin/20_copia2.png',
-        '../img/4.Marcadores/green/Coin/40_copia4.png',
-        '../img/4.Marcadores/green/Coin/60_copia4.png',
-        '../img/4.Marcadores/green/Coin/80_copia4.png',
-        '../img/4.Marcadores/green/Coin/100_copia4.png',
+class PoisenStatusBar extends DrawableObject {
+    IMAGES_POISENBAR = [
+        '../img/4.Marcadores/green/poisoned bubbles/0_ copia 2.png',
+        '../img/4.Marcadores/green/poisoned bubbles/20_ copia 3.png',
+        '../img/4.Marcadores/green/poisoned bubbles/40_ copia 2.png',
+        '../img/4.Marcadores/green/poisoned bubbles/60_ copia 2.png',
+        '../img/4.Marcadores/green/poisoned bubbles/80_ copia 2.png',
+        '../img/4.Marcadores/green/poisoned bubbles/100_ copia 3.png',
     ];
 
     percentage = 0;
 
     constructor() {
         super();
-        this.loadImages(this.IMAGES_COINBAR)
+        this.loadImages(this.IMAGES_POISENBAR)
         this.x = 20;
-        this.y = 70;
+        this.y = -10;
         this.width = 200
         this.height = 60;
         this.setPercentage(0)
@@ -24,7 +24,7 @@ class CoinStatusBar extends DrawableObject {
         this.percentage = percentage;
         console.log(this.resolveImageIndex());
         
-        let path = this.IMAGES_COINBAR[this.resolveImageIndex()];
+        let path = this.IMAGES_POISENBAR[this.resolveImageIndex()];
         this.img = this.imageCache[path];
     }
 

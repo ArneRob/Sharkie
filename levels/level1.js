@@ -52,6 +52,14 @@ const level1 = new Level(
 
         new Coin(2050, 40),
     ],
+    [
+        new PoisenBottle(10, 20),
+        new PoisenBottle(10, 20),
+        new PoisenBottle(10, 20),
+        new PoisenBottle(10, 20),
+        new PoisenBottle(10, 20),
+        new PoisenBottle(10, 20),
+    ],
 
 );
 

@@ -3,6 +3,7 @@ class MovableObject extends DrawableObject {
     otherDirection = false;
     energy = 100;
     collectedCoin = 0;
+    collectedPoisenBottle = 0;
     speedY = 0;
     acceleration = 0.3;
     lastHit = 0;
@@ -52,13 +53,20 @@ class MovableObject extends DrawableObject {
         }
     }
 
-    collect() {
-        this.collectedCoin += 20;
-        console.log("working");
-        
-        if (this.collectedCoin > 100) {
-            this.collectedCoin = 100;
+    collect(item) {
+        if (item == "collectedCoin") {
+            this.collectedCoin += 20
+            if (this.collectedCoin > 100) {
+                this.collectedCoin = 100;
+            }
+        } else {
+            this.collectedPoisenBottle += 20
+            if (this.collectedPoisenBottle > 100) {
+                this.collectedPoisenBottle = 100;
+            }
         }
+
+
     }
 
     isDead() {

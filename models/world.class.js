@@ -15,6 +15,7 @@ class World {
     PoisenStatusBar = new PoisenStatusBar()
     throwableObjects = []
     coinSound = new Audio('../audio/coinSound.mp3')
+    poisenBottleSound = new Audio('../audio/poisenBottleSound.mp3')
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -58,12 +59,26 @@ class World {
         });
     }
     checkForItemCollisions() {
+        this.ifCoinCollision();
+        this.ifPoisenBottleCollision();
+    }
+    ifCoinCollision() {
         for (let index = 0; index < this.level.coin.length; index++) {
             if (this.character.isColliding(this.coin[index])) {
                 this.coinSound.play()
-                this.character.collect();
+                this.character.collect("collectedCoin");
                 this.coin.splice(index, 1)
                 this.coinStatusBar.setPercentage(this.character.collectedCoin);
+            }
+        }
+    }
+    ifPoisenBottleCollision() {
+        for (let index = 0; index < this.level.poisenBottle.length; index++) {
+            if (this.character.isColliding(this.poisenBottle[index])) {
+                this.poisenBottleSound.play()
+                this.character.collect("collectedPoisenBottle");
+                this.poisenBottle.splice(index, 1)
+                this.PoisenStatusBar.setPercentage(this.character.collectedPoisenBottle);
             }
         }
     }

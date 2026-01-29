@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./startMenue.css">
     <script src="./models/drawable-object.class.js"></script>
     <script src="./models/movable-object.class.js"></script>
     <script src="./models/character.class.js"></script>
@@ -30,8 +31,18 @@
 <body onload="init()">
 
     <h1>Sharkie</h1>
+    <div class="splashScreen" id="splashScreen">
+        <div class="settingsImgDiv">
+            <img class="splashScreenSettingIcons gearIcon" src="./img/gear-1077563_640.png" alt="">
+            <img class="splashScreenSettingIcons soundIcon" src="./img/volume-on.png" alt="">
+        </div>
+        <div class="startButtonContainer">
+            <img class="splashScreenStartButton" src="./img/6.Botones/Start/3.png" alt="">
+            <img class="splashScreenSpaceBarIcon" src="./img/6.Botones/Key/Space Bar key.png" alt="">
+        </div>
 
-    <canvas id="canvas" width="720px" height="480px">
+    </div>
+    <canvas id="canvas" width="720px" height="480px" class="d_none">
 
     </canvas>
 </body>

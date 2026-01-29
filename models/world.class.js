@@ -27,11 +27,7 @@ class World {
         this.checkCollisions();
         this.checkForItemCollisions();
         this.run()
-        this.coinSound.volume = 0.5
-        this.poisenBottleSound.volume = 0.5
-        this.underwaterBubble.volume = 0.1
-        this.underwaterBubble.loop = true
-         this.underwaterBubble.play()
+        this.runSounds()
     }
 
     setWorld() {
@@ -41,16 +37,24 @@ class World {
         };
 
     }
+    runSounds() {
+       this.poisenBottle.preload = "auto"
+        this.coinSound.volume = 0.5
+        this.poisenBottleSound.volume = 0.5
+        this.underwaterBubble.volume = 0.1
+        this.underwaterBubble.loop = true
+        this.underwaterBubble.play()
+    }
     run() {
         setInterval(() => {
             this.checkCollisions()
-            this.checkThorwObjects()
+            this.checkThrowObjects()
         }, 300);
         setInterval(() => {
             this.checkForItemCollisions()
         }, 10);
     }
-    checkThorwObjects() {
+    checkThrowObjects() {
         if (this.keyboard.F && this.character.collectedPoisenBottle > 0) {
             let bubble = new ThrowableObject(this.character.x, this.character.y)
             this.throwableObjects.push(bubble);

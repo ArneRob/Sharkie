@@ -1,0 +1,70 @@
+.splashScreen {
+    position: absolute;
+    top: 300px;
+    width: 720px;
+    height: 480px;
+    background-image: url('./img/3.Background/Mesa de trabajo 1.png');
+    background-size: contain;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.splashScreenSettingIcons {
+    width: 80px;
+}
+
+.gearIcon {
+    transition: all 0.5s;
+}
+
+.gearIcon:hover {
+    transform: rotate(120deg);
+    cursor: pointer;
+}
+
+.soundIcon {
+    transition: all 0.2s;
+}
+
+.soundIcon:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.splashScreen .splashScreenBackgroundImg {
+    width: 100%;
+}
+
+.startButtonContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 100px;
+}
+
+.splashScreenStartButton {
+    display: flex;
+    justify-content: center;
+    width: 200px;
+    transition: all 0.2s;
+}
+
+.splashScreenStartButton:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.splashScreenSpaceBarIcon {
+    display: flex;
+    justify-content: center;
+    width: 200px;
+}
+
+.settingsImgDiv {
+    padding: 10px;
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    gap: 8px;
+}

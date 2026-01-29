@@ -4,7 +4,7 @@ let world;
 let keyboard = new Keyboard();
 
 function init() {
-    insertMainMenue()
+    showMainMenue()
     window.addEventListener("keydown", checkIfRIghtKey)
 }
 
@@ -83,7 +83,14 @@ function soundIconSwitch() {
     soundIcon.classList.toggle('d_none')
 }
 
-function insertMainMenue() {
+function showMainMenue() {
     let splashScreen = document.getElementById('splashScreen')
+    splashScreen.innerHTML = "";
     splashScreen.innerHTML += getMainMenueTemplate()
+}
+
+function showSettingMenue() {
+    let splashScreen = document.getElementById('splashScreen')
+    splashScreen.innerHTML = "";
+    splashScreen.innerHTML += getSettingMenueTemplate();
 }

@@ -5,6 +5,8 @@ let keyboard = new Keyboard();
 
 
 function init() {
+    canvasOn()
+    startMenueOff()
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
 
@@ -53,3 +55,13 @@ window.addEventListener('keyup', (event) => {
         keyboard.F = false;
     }
 });
+
+
+function canvasOn() {
+    let canvas = document.getElementById('canvas')
+    canvas.classList.remove('d_none')
+}
+function startMenueOff() {
+    let startMenue = document.getElementById('splashScreen')
+    startMenue.classList.add('d_none')
+}

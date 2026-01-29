@@ -11,7 +11,7 @@
 }
 
 .d_none {
-    display: none;
+    display: none !important;
 }
 
 body {
@@ -29,6 +29,7 @@ body {
 }
 
 canvas {
+    position: absolute;
     display: block;
     top: 300px;
 }

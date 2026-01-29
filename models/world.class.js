@@ -16,6 +16,7 @@ class World {
     throwableObjects = []
     coinSound = new Audio('../audio/coinSound.mp3')
     poisenBottleSound = new Audio('../audio/poisenBottleSound.mp3')
+    underwaterBubble = new Audio('../audio/underwaterBubble.mp3')
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -28,6 +29,9 @@ class World {
         this.run()
         this.coinSound.volume = 0.5
         this.poisenBottleSound.volume = 0.5
+        this.underwaterBubble.volume = 0.1
+        this.underwaterBubble.loop = true
+         this.underwaterBubble.play()
     }
 
     setWorld() {

@@ -26,6 +26,8 @@ class World {
         this.checkCollisions();
         this.checkForItemCollisions();
         this.run()
+        this.coinSound.volume = 0.5
+        this.poisenBottleSound.volume = 0.5
     }
 
     setWorld() {

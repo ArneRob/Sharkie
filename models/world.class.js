@@ -12,7 +12,7 @@ class World {
     camera_x = 0;
     statusBar = new StatusBar();
     coinStatusBar = new CoinStatusBar()
-    PoisenStatusBar = new PoisenStatusBar()
+    poisenStatusBar = new PoisenStatusBar()
     throwableObjects = []
     coinSound = new Audio('../audio/coinSound.mp3')
     poisenBottleSound = new Audio('../audio/poisenBottleSound.mp3')
@@ -47,9 +47,11 @@ class World {
         }, 10);
     }
     checkThorwObjects() {
-        if (this.keyboard.D) {
+        if (this.keyboard.F && this.character.collectedPoisenBottle > 0) {
             let bubble = new ThrowableObject(this.character.x, this.character.y)
             this.throwableObjects.push(bubble);
+            this.character.collectedPoisenBottle -= 20
+            this.poisenStatusBar.setPercentage(this.character.collectedPoisenBottle);
         }
     }
     checkCollisions() {
@@ -80,7 +82,7 @@ class World {
                 this.poisenBottleSound.play()
                 this.character.collect("collectedPoisenBottle");
                 this.poisenBottle.splice(index, 1)
-                this.PoisenStatusBar.setPercentage(this.character.collectedPoisenBottle);
+                this.poisenStatusBar.setPercentage(this.character.collectedPoisenBottle);
             }
         }
     }
@@ -94,7 +96,7 @@ class World {
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar)
         this.addToMap(this.coinStatusBar)
-        this.addToMap(this.PoisenStatusBar)
+        this.addToMap(this.poisenStatusBar)
         this.ctx.translate(this.camera_x, 0);
 
         this.addObjectsToMap(this.level.enemies);

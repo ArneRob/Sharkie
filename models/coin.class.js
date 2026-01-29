@@ -26,10 +26,6 @@ class Coin extends DrawableObject {
 
     setWorld(world) {
         this.world = world
-        this.getXCoordinate()
-    }
-    getXCoordinate() {
-            // world = this.world
     }
     animate() {
         setInterval(() => {

@@ -29,7 +29,7 @@ window.addEventListener('keydown', (event) => {
         keyboard.SPACE = true
     }
     if (event.which == 70) {
-        keyboard.D = true
+        keyboard.F = true
     }
 });
 
@@ -50,6 +50,6 @@ window.addEventListener('keyup', (event) => {
         keyboard.SPACE = false
     }
     if (event.which == 70) {
-        keyboard.D = false;
+        keyboard.F = false;
     }
 });

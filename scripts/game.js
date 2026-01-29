@@ -3,6 +3,7 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 
+window.addEventListener("keydown", checkIfRIghtKey)
 
 function init() {
     canvasOn()
@@ -56,6 +57,11 @@ window.addEventListener('keyup', (event) => {
     }
 });
 
+function checkIfRIghtKey(event) {
+    if (event.which == 32 && canvas == undefined) {
+        init()
+    }
+}
 
 function canvasOn() {
     let canvas = document.getElementById('canvas')

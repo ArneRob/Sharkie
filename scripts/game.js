@@ -3,9 +3,12 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 
-window.addEventListener("keydown", checkIfRIghtKey)
-
 function init() {
+    insertMainMenue()
+    window.addEventListener("keydown", checkIfRIghtKey)
+}
+
+function startGame() {
     canvasOn()
     startMenueOff()
     canvas = document.getElementById('canvas');
@@ -59,7 +62,7 @@ window.addEventListener('keyup', (event) => {
 
 function checkIfRIghtKey(event) {
     if (event.which == 32 && canvas == undefined) {
-        init()
+        startGame()
     }
 }
 
@@ -67,7 +70,20 @@ function canvasOn() {
     let canvas = document.getElementById('canvas')
     canvas.classList.remove('d_none')
 }
+
 function startMenueOff() {
     let startMenue = document.getElementById('splashScreen')
     startMenue.classList.add('d_none')
+}
+
+function soundIconSwitch() {
+    muteSoundIcon = document.getElementById('muteSoundIcon')
+    muteSoundIcon.classList.toggle('d_none')
+    soundIcon = document.getElementById('soundIcon')
+    soundIcon.classList.toggle('d_none')
+}
+
+function insertMainMenue() {
+    let splashScreen = document.getElementById('splashScreen')
+    splashScreen.innerHTML += getMainMenueTemplate()
 }

@@ -21,7 +21,7 @@ function getSettingMenueTemplate() {
         </div>
         <div class="instructionsContainer">
             <img class="instructionsImg selector " src="./img/6.Botones/Instructions 2.png">
-            <img class="fullScreenIcon selector " src="./img/6.Botones/Full Screen/Mesa de trabajo 7.png">
+            <img onclick="getFullScreen()" class="fullScreenIcon selector " src="./img/6.Botones/Full Screen/Mesa de trabajo 7.png">
         </div>
     `
 }

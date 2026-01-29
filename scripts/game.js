@@ -94,3 +94,11 @@ function showSettingMenue() {
     splashScreen.innerHTML = "";
     splashScreen.innerHTML += getSettingMenueTemplate();
 }
+
+function getFullScreen() {
+    console.log('full');
+    
+    let canvas = document.getElementById('canvas')
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}

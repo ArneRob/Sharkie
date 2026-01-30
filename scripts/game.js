@@ -157,7 +157,3 @@ function exitFullscreen() {
     let fullScreenIcon = document.getElementById('fullScreenIcon')
     fullScreenIcon.addEventListener("click", exitFullscreen)
 }
-
-function gitPulltest() {
-
-}

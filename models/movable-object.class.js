@@ -7,6 +7,7 @@ class MovableObject extends DrawableObject {
     speedY = 0;
     acceleration = 0.3;
     lastHit = 0;
+    characterHitsEndboss = false
     offset = {
         top: 0,
         left: 0,
@@ -40,6 +41,12 @@ class MovableObject extends DrawableObject {
             this.y + this.height - this.offset.bottom > mo.y + mo.offset.top && // b->t
             this.x + this.offset.left < mo.x + mo.width - mo.offset.right && // l->r
             this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom // t->bs
+    }
+    enemieIsNear(mo) {
+        return this.x + this.width - this.offset.right + 50 > mo.x + mo.offset.left && // wenn hinter x anfang object img 
+            this.y + this.height - this.offset.bottom + 50 > mo.y + mo.offset.top && // b->t
+            this.x + this.offset.left - 50 < mo.x + mo.width - mo.offset.right && // l->r
+            this.y + this.offset.top - 50 < mo.y + mo.height - mo.offset.bottom // t->bs
     }
     hit() {
         this.energy -= 20;

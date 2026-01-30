@@ -23,7 +23,6 @@ class Endboss extends MovableObject {
         "../img/2.Enemy/3 Final Enemy/Attack/5.png",
         "../img/2.Enemy/3 Final Enemy/Attack/6.png",
     ];
-    
     offset = {
         top: 200,
         left: 30,
@@ -34,6 +33,7 @@ class Endboss extends MovableObject {
     constructor() {
         super().loadImage(this.IMAGES_SWIMMING[0])
         this.loadImages(this.IMAGES_SWIMMING);
+        this.loadImages(this.IMAGES_FIGHT);
         this.x = 350
         this.y = 0
         this.width = 400
@@ -44,8 +44,13 @@ class Endboss extends MovableObject {
 
     animate() {
         setInterval(() => {
-            let i = this.currentImage % this.IMAGES_SWIMMING.length
-            this.playAnimation(this.IMAGES_SWIMMING)
-        }, 1000 / 5);
+                this.playAnimation(this.IMAGES_SWIMMING)
+        }, 1000 / 6);
     }
+    animateFight() {
+        setInterval(() => {
+            this.playAnimation(this.IMAGES_FIGHT)
+        }, 1000 / 2);
+    }
+
 }

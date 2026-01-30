@@ -60,6 +60,7 @@ class World {
         setInterval(() => {
             this.checkCollisions()
             this.checkThrowObjects()
+            this.checkIfEnemieIsNear()
         }, 400);
         setInterval(() => {
             this.checkForItemCollisions()
@@ -84,7 +85,13 @@ class World {
         if (this.character.isColliding(this.level.endboss[0])) {
             this.character.hit();
             this.sharkieHurtSound.play()
+
             this.statusBar.setPercentage(this.character.energy);
+        }
+    }
+    checkIfEnemieIsNear() {
+        if (this.character.enemieIsNear(this.level.endboss[0])) {
+            this.endboss[0].animateFight()
         }
     }
     checkForItemCollisions() {

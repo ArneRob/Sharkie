@@ -4,6 +4,7 @@ class World {
     poisenBottle = level1.poisenBottle
     level = level1;
     enemies = level1.enemies;
+    endboss = level1.endboss;
     backgroundObjects = level1.backgroundObjects;
     light = level1.light;
     canvas;
@@ -17,6 +18,7 @@ class World {
     coinSound = new Audio('../audio/coinSound.mp3')
     poisenBottleSound = new Audio('../audio/poisenBottleSound.mp3')
     underwaterBubble = new Audio('../audio/underwaterBubble.mp3')
+    sharkieHurtSound = new Audio('../audio/sharkieHurt.mp3')
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -42,9 +44,11 @@ class World {
             this.poisenBottleSound.volume = 0
             this.underwaterBubble.volume = 0
             this.coinSound.volume = 0
+            this.sharkieHurtSound.volume = 0
         } else {
             this.poisenBottle.preload = "auto"
             this.coinSound.volume = 0.5
+            this.sharkieHurtSound.volume = 0.5
             this.poisenBottleSound.volume = 0.5
             this.underwaterBubble.volume = 0.1
             this.underwaterBubble.loop = true
@@ -56,7 +60,7 @@ class World {
         setInterval(() => {
             this.checkCollisions()
             this.checkThrowObjects()
-        }, 300);
+        }, 400);
         setInterval(() => {
             this.checkForItemCollisions()
         }, 10);
@@ -73,9 +77,15 @@ class World {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
                 this.character.hit();
+                this.sharkieHurtSound.play()
                 this.statusBar.setPercentage(this.character.energy);
             }
         });
+        if (this.character.isColliding(this.level.endboss[0])) {
+            this.character.hit();
+            this.sharkieHurtSound.play()
+            this.statusBar.setPercentage(this.character.energy);
+        }
     }
     checkForItemCollisions() {
         this.ifCoinCollision();
@@ -115,6 +125,7 @@ class World {
         this.ctx.translate(this.camera_x, 0);
 
         this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.level.endboss);
         this.addObjectsToMap(this.level.coin);
         this.addObjectsToMap(this.level.poisenBottle);
         this.addObjectsToMap(this.throwableObjects)

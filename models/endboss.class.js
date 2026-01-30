@@ -14,11 +14,21 @@ class Endboss extends MovableObject {
         "../img/2.Enemy/3 Final Enemy/2.floating/12.png",
         "../img/2.Enemy/3 Final Enemy/2.floating/13.png",
     ];
+
+    IMAGES_FIGHT = [
+        "../img/2.Enemy/3 Final Enemy/Attack/1.png",
+        "../img/2.Enemy/3 Final Enemy/Attack/2.png",
+        "../img/2.Enemy/3 Final Enemy/Attack/3.png",
+        "../img/2.Enemy/3 Final Enemy/Attack/4.png",
+        "../img/2.Enemy/3 Final Enemy/Attack/5.png",
+        "../img/2.Enemy/3 Final Enemy/Attack/6.png",
+    ];
+    
     offset = {
-       top: 180,
-        left: 20,
-        right: 40,
-        bottom: 70,
+        top: 200,
+        left: 30,
+        right: 50,
+        bottom: 90,
     };
 
     constructor() {

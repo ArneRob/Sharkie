@@ -101,7 +101,7 @@ class Character extends MovableObject {
                 } else {
                     this.playAnimation(this.IMAGES_SWIMMING)
                 }
-        }, 1000 / 6);
+        }, 1000 / 8);
         setInterval(() => {
 
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x && !this.isDead()) {

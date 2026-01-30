@@ -96,17 +96,12 @@ function showMainMenue() {
 }
 
 function showSettingMenue() {
-
     let splashScreen = document.getElementById('splashScreen')
     splashScreen.innerHTML = "";
     splashScreen.innerHTML += getSettingMenueTemplate();
     checkLocalStorageSettings()
-}
-
-function getFullScreen() {
-    let canvas = document.getElementById('canvas')
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    let fullScreenIcon = document.getElementById('fullScreenIcon')
+    fullScreenIcon.addEventListener("click", getFullScreen)
 }
 
 function getLocalStorageItem(key) {
@@ -134,4 +129,31 @@ function toggleMuteValueLocalStorage() {
     } else {
         setItemToLocalStorage("mute",)
     }
+}
+
+function getFullScreen() {
+    let fullScreen = document.getElementById('fullScreen')
+    enterFullscreen(fullScreen)
+}
+
+function enterFullscreen(element) {
+    if (element.requestFullscreen) {
+        element.requestFullscreen();
+    } else if (element.msRequestFullscreen) {      // for IE11 (remove June 15, 2022)
+        element.msRequestFullscreen();
+    } else if (element.webkitRequestFullscreen) {  // iOS Safari
+        element.webkitRequestFullscreen();
+    }
+    let fullScreenIcon = document.getElementById('fullScreenIcon')
+    fullScreenIcon.addEventListener("click", exitFullscreen)
+}
+
+function exitFullscreen() {
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+    }
+    let fullScreenIcon = document.getElementById('fullScreenIcon')
+    fullScreenIcon.addEventListener("click", exitFullscreen)
 }

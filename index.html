@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./startMenue.css">
-     <link rel="icon" type="image/x-icon" href="img/sharkieFavicon.png">
+    <link rel="icon" type="image/x-icon" href="img/sharkieFavicon.png">
     <script src="./scripts/templates.js"></script>
     <script src="./models/drawable-object.class.js"></script>
     <script src="./models/movable-object.class.js"></script>
@@ -31,12 +31,13 @@
 </head>
 
 <body onload="init()">
-
-    <h1>Sharkie</h1>
-    <div class="splashScreen" id="splashScreen">
+    <div class="fullScreen" id="fullScreen">
+        <h1>Sharkie</h1>
+        <div class="splashScreen" id="splashScreen">
+        </div>
+        <canvas id="canvas" width="720px" height="480px" class="d_none">
+        </canvas>
     </div>
-    <canvas id="canvas" width="720px" height="480px" class="d_none">    
-    </canvas>
 </body>
 
 </html>

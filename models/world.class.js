@@ -92,6 +92,7 @@ class World {
     checkIfEnemieIsNear() {
         if (this.character.enemieIsNear(this.level.endboss[0])) {
             this.endboss[0].animateFight()
+        } else {
         }
     }
     checkForItemCollisions() {

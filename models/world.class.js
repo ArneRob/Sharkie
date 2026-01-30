@@ -38,12 +38,19 @@ class World {
 
     }
     runSounds() {
-       this.poisenBottle.preload = "auto"
-        this.coinSound.volume = 0.5
-        this.poisenBottleSound.volume = 0.5
-        this.underwaterBubble.volume = 0.1
-        this.underwaterBubble.loop = true
-        this.underwaterBubble.play()
+        if (getLocalStorageItem("mute")) {
+            this.poisenBottleSound.volume = 0
+            this.underwaterBubble.volume = 0
+            this.coinSound.volume = 0
+        } else {
+            this.poisenBottle.preload = "auto"
+            this.coinSound.volume = 0.5
+            this.poisenBottleSound.volume = 0.5
+            this.underwaterBubble.volume = 0.1
+            this.underwaterBubble.loop = true
+            this.underwaterBubble.play()
+        }
+
     }
     run() {
         setInterval(() => {

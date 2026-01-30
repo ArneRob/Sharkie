@@ -5,7 +5,6 @@ let keyboard = new Keyboard();
 
 function init() {
     showMainMenue()
-    checkLocalStorageSettings()
     window.addEventListener("keydown", checkIfRIghtKey)
 }
 

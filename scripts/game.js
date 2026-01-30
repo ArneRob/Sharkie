@@ -5,6 +5,7 @@ let keyboard = new Keyboard();
 
 function init() {
     showMainMenue()
+    checkLocalStorageSettings()
     window.addEventListener("keydown", checkIfRIghtKey)
 }
 
@@ -77,6 +78,11 @@ function startMenueOff() {
 }
 
 function soundIconSwitch() {
+    toggleSoundIcons()
+    toggleMuteValueLocalStorage()
+}
+
+function toggleSoundIcons() {
     muteSoundIcon = document.getElementById('muteSoundIcon')
     muteSoundIcon.classList.toggle('d_none')
     soundIcon = document.getElementById('soundIcon')
@@ -87,18 +93,46 @@ function showMainMenue() {
     let splashScreen = document.getElementById('splashScreen')
     splashScreen.innerHTML = "";
     splashScreen.innerHTML += getMainMenueTemplate()
+    checkLocalStorageSettings()
 }
 
 function showSettingMenue() {
+
     let splashScreen = document.getElementById('splashScreen')
     splashScreen.innerHTML = "";
     splashScreen.innerHTML += getSettingMenueTemplate();
+    checkLocalStorageSettings()
 }
 
 function getFullScreen() {
-    console.log('full');
-    
     let canvas = document.getElementById('canvas')
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+}
+
+function getLocalStorageItem(key) {
+    let x = localStorage.getItem(`${key}`);
+    return x
+}
+
+function setItemToLocalStorage(key, value) {
+    localStorage.setItem(`${key}`, `${value}`);
+}
+
+function removeItemFromLocalStorage(key) {
+    localStorage.removeItem(`${key}`);
+}
+
+function checkLocalStorageSettings() {
+    if (getLocalStorageItem("mute")) {
+        toggleSoundIcons()
+    }
+}
+
+function toggleMuteValueLocalStorage() {
+    if (getLocalStorageItem("mute")) {
+        removeItemFromLocalStorage("mute")
+    } else {
+        setItemToLocalStorage("mute",)
+    }
 }

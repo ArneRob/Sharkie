@@ -11,7 +11,7 @@ function init() {
 function startGame() {
     canvasOn()
     startMenueOff()
-    getSettingIconsInGame() 
+    getSettingIconsInGame()
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
 
@@ -73,6 +73,7 @@ function getSettingIconsInGame() {
     let settingsDiv = document.getElementById('settingsDiv')
     settingsDiv.remove()
     fullScreen.innerHTML += getSettingIconsTemplate()
+    checkLocalStorageSettings()
 }
 
 function canvasOn() {

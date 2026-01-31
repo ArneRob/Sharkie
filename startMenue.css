@@ -83,6 +83,13 @@
     gap: 8px;
 }
 
+.settingsImgDivInGame {
+    position: absolute;
+    right: 50px;
+    top: 310px;
+
+}
+
 .selector {
     -webkit-user-drag: none;
     user-select: none;

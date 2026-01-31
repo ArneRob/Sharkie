@@ -28,8 +28,8 @@ function getSettingMenueTemplate() {
 
 function getSettingIconsTemplate() {
     return `
-     <div class="settingsImgDiv">
-            <img class="splashScreenSettingIcons gearIcon selector" id="gearIcon" src="./img/gear-1077563_640.png" alt="" onclick="showMainMenue()">
+     <div class="settingsImgDivInGame">
+            <img class="splashScreenSettingIcons gearIcon selector" id="gearIcon" src="./img/gear-1077563_640.png" alt="" onclick="showSettingMenue()">
             <img class="splashScreenSettingIcons soundIcon selector " id="soundIcon" src="./img/volume-on.png" alt="" onclick="soundIconSwitch()">
             <img class="splashScreenSettingIcons soundIcon d_none selector " id="muteSoundIcon" src="./img/volume-off.png" alt="" onclick="soundIconSwitch()">
         </div>

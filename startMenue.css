@@ -84,8 +84,8 @@
 }
 
 .settingsImgDivInGame {
-    position: absolute;
-    right: 50px;
+    position: relative;
+    left: 270px;
     top: 310px;
 
 }

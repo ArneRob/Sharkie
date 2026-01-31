@@ -20,6 +20,7 @@ class World {
     underwaterBubble = new Audio('../audio/underwaterBubble.mp3')
     sharkieHurtSound = new Audio('../audio/sharkieHurt.mp3')
     endbossFightSound = new Audio('../audio/endbossFight.mp3')
+    bubble
 
 
     constructor(canvas, keyboard) {
@@ -58,9 +59,9 @@ class World {
                 this.underwaterBubble.volume = 0.1
                 this.underwaterBubble.loop = true
             }
-           this.underwaterBubble.play()
+            this.underwaterBubble.play()
         }, 500);
-       
+
     }
     run() {
         setInterval(() => {
@@ -74,10 +75,13 @@ class World {
     }
     checkThrowObjects() {
         if (this.keyboard.F && this.character.collectedPoisenBottle > 0) {
-            let bubble = new ThrowableObject(this.character.x, this.character.y)
-            this.throwableObjects.push(bubble);
+            this.bubble = new ThrowableObject(this.character.x, this.character.y)
+            this.throwableObjects.push(this.bubble);
             this.character.collectedPoisenBottle -= 20
             this.poisenStatusBar.setPercentage(this.character.collectedPoisenBottle);
+            if (this.bubble.isColliding(this.level.endboss[0])) {
+                console.log("orcaSchaden");
+            }
         }
     }
     checkCollisions() {
@@ -144,7 +148,6 @@ class World {
         this.addObjectsToMap(this.level.poisenBottle);
         this.addObjectsToMap(this.throwableObjects)
         this.addToMap(this.character);
-
 
         this.ctx.translate(-this.camera_x, 0);
         let self = this;

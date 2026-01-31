@@ -14,10 +14,6 @@ function startGame() {
     getSettingIconsInGame()
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
-
-
-    console.log(`My Character is`, world.character)
-    console.log(`My Enemie is`, world.enemies)
 }
 
 window.addEventListener('keydown', (event) => {

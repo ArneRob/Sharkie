@@ -21,6 +21,8 @@ class World {
     poisenBottleSound = new Audio('../audio/poisenBottleSound.mp3')
     underwaterBubble = new Audio('../audio/underwaterBubble.mp3')
     sharkieHurtSound = new Audio('../audio/sharkieHurt.mp3')
+    endbossFightSound = new Audio('../audio/endbossFight.mp3')
+
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -42,21 +44,25 @@ class World {
 
     }
     runSounds() {
-        if (getLocalStorageItem("mute")) {
-            this.poisenBottleSound.volume = 0
-            this.underwaterBubble.volume = 0
-            this.coinSound.volume = 0
-            this.sharkieHurtSound.volume = 0
-        } else {
-            this.poisenBottle.preload = "auto"
-            this.coinSound.volume = 0.5
-            this.sharkieHurtSound.volume = 0.5
-            this.poisenBottleSound.volume = 0.5
-            this.underwaterBubble.volume = 0.1
-            this.underwaterBubble.loop = true
-            this.underwaterBubble.play()
-        }
-
+        setInterval(() => {
+            if (getLocalStorageItem("mute")) {
+                this.poisenBottleSound.volume = 0
+                this.underwaterBubble.volume = 0
+                this.coinSound.volume = 0
+                this.sharkieHurtSound.volume = 0
+                this.endbossFightSound.volume = 0
+            } else {
+                this.poisenBottle.preload = "auto"
+                this.coinSound.volume = 0.5
+                this.endbossFightSound.volume = 0.5
+                this.sharkieHurtSound.volume = 0.5
+                this.poisenBottleSound.volume = 0.5
+                this.underwaterBubble.volume = 0.1
+                this.underwaterBubble.loop = true
+            }
+           this.underwaterBubble.play()
+        }, 500);
+       
     }
     run() {
         setInterval(() => {
@@ -94,8 +100,7 @@ class World {
     checkIfEnemieIsNear() {
         if (this.character.enemieIsNear(this.level.endboss[0])) {
             this.endboss[0].endbossNearCharacter()
-        } else {
-
+            this.endbossFightSound.play()
         }
     }
     checkForItemCollisions() {

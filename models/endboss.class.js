@@ -29,7 +29,6 @@ class Endboss extends MovableObject {
         right: 50,
         bottom: 90,
     };
-    endbossFightSound = new Audio('../audio/endbossFight.mp3')
 
     constructor() {
         super().loadImage(this.IMAGES_SWIMMING[0])
@@ -43,7 +42,7 @@ class Endboss extends MovableObject {
         this.animate();
     }
 
-    animate(variabel) {
+    animate() {
         setInterval(() => {
             if (this.checkLastNearEndbossTime()) {
                 this.animateFight()
@@ -54,8 +53,6 @@ class Endboss extends MovableObject {
     }
     animateFight() {
         this.playAnimation(this.IMAGES_FIGHT)
-        this.endbossFightSound.volume = 0.5
-        this.endbossFightSound.play()
     }
     animateSwim() {
         this.playAnimation(this.IMAGES_SWIMMING)

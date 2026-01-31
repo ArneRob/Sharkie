@@ -11,8 +11,10 @@ function init() {
 function startGame() {
     canvasOn()
     startMenueOff()
+    getSettingIconsInGame() 
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
+
 
     console.log(`My Character is`, world.character)
     console.log(`My Enemie is`, world.enemies)
@@ -64,6 +66,13 @@ function checkIfRIghtKey(event) {
     if (event.which == 32 && canvas == undefined) {
         startGame()
     }
+}
+
+function getSettingIconsInGame() {
+    let fullScreen = document.getElementById('fullScreen')
+    let settingsDiv = document.getElementById('settingsDiv')
+    settingsDiv.remove()
+    fullScreen.innerHTML += getSettingIconsTemplate()
 }
 
 function canvasOn() {

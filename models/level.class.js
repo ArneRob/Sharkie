@@ -6,6 +6,7 @@ class Level {
     poisenBottle;
     backgroundObjects;
     level_end_x = 2000;
+    level_end_y = 280;
 
     constructor(enemies, endboss, light, backgroundObjects, coin, poisenBottle) {
         this.enemies = enemies;

@@ -111,11 +111,11 @@ class Character extends MovableObject {
             if (this.world.keyboard.LEFT && this.x > 0 && !this.isDead()) {
                 this.x -= this.speed * 15;
                 this.otherDirection = true;
-            }
-            if (this.world.keyboard.UP && !this.isDead()) {
+            } // minus 100 is the offset of the character
+            if (this.world.keyboard.UP && !this.isDead() && this.y > 0 - 100) {
                 this.y -= this.speed * 10;
             }
-            if (this.world.keyboard.DOWN && !this.isDead()) {
+            if (this.world.keyboard.DOWN && !this.isDead() && this.y < this.world.level.level_end_y) {
                 this.y += this.speed * 10;
             }
             this.world.camera_x = -this.x + 50

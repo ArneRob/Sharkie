@@ -43,20 +43,22 @@ class Endboss extends MovableObject {
         this.animate();
     }
 
-    animate() {
+    animate(variabel) {
         setInterval(() => {
-                this.playAnimation(this.IMAGES_SWIMMING)
-        }, 1000 / 6);
+            if (this.checkLastNearEndbossTime()) {
+                this.animateFight()
+            } else {
+                this.animateSwim()
+            }
+        }, 1000 / 10);
     }
-    
     animateFight() {
-        setInterval(() => {
-            this.playAnimation(this.IMAGES_FIGHT)
-        }, 1000 / 4);
-        setInterval(() => {
-            this.endbossFightSound.volume = 0.5
-            this.endbossFightSound.play()
-        }, 1000);
+        this.playAnimation(this.IMAGES_FIGHT)
+        this.endbossFightSound.volume = 0.5
+        this.endbossFightSound.play()
+    }
+    animateSwim() {
+        this.playAnimation(this.IMAGES_SWIMMING)
     }
 
 }

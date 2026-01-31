@@ -5,6 +5,8 @@ class World {
     level = level1;
     enemies = level1.enemies;
     endboss = level1.endboss;
+    endbossSwimmingisRunning = true;
+    endbossFightIsRunning = false;
     backgroundObjects = level1.backgroundObjects;
     light = level1.light;
     canvas;
@@ -91,8 +93,9 @@ class World {
     }
     checkIfEnemieIsNear() {
         if (this.character.enemieIsNear(this.level.endboss[0])) {
-            this.endboss[0].animateFight()
+            this.endboss[0].endbossNearCharacter()
         } else {
+
         }
     }
     checkForItemCollisions() {

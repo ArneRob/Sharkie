@@ -7,6 +7,7 @@ class MovableObject extends DrawableObject {
     speedY = 0;
     acceleration = 0.3;
     lastHit = 0;
+    lastNear = 0;
     characterHitsEndboss = false
     offset = {
         top: 0,
@@ -55,6 +56,15 @@ class MovableObject extends DrawableObject {
         } else {
             this.lastHit = new Date().getTime();
         }
+    }
+
+    endbossNearCharacter() {
+        this.lastNear = new Date().getTime();
+    }
+    checkLastNearEndbossTime() {
+        let timePassed = new Date().getTime() - this.lastNear;
+        timePassed = timePassed / 1000;
+        return timePassed < 1;
     }
 
     collect(item) {

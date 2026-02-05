@@ -38,16 +38,19 @@ class MovableObject extends DrawableObject {
     }
 
     isColliding(mo) {
-        return this.x + this.width - this.offset.right > mo.x + mo.offset.left && // wenn hinter x anfang object img 
-            this.y + this.height - this.offset.bottom > mo.y + mo.offset.top && // b->t
-            this.x + this.offset.left < mo.x + mo.width - mo.offset.right && // l->r
-            this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom // t->bs
+        return this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
+            this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
+            this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
+            this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom 
     }
     enemieIsNear(mo) {
-        return this.x + this.width - this.offset.right + 50 > mo.x + mo.offset.left && // wenn hinter x anfang object img 
-            this.y + this.height - this.offset.bottom + 50 > mo.y + mo.offset.top && // b->t
-            this.x + this.offset.left - 50 < mo.x + mo.width - mo.offset.right && // l->r
-            this.y + this.offset.top - 50 < mo.y + mo.height - mo.offset.bottom // t->bs
+        return this.x + this.width - this.offset.right + 50 > mo.x + mo.offset.left && 
+            this.y + this.height - this.offset.bottom + 50 > mo.y + mo.offset.top &&
+            this.x + this.offset.left - 50 < mo.x + mo.width - mo.offset.right &&
+            this.y + this.offset.top - 50 < mo.y + mo.height - mo.offset.bottom 
+    }
+    endbossXIntroStart(mo) {
+        return this.x + this.width + 180 > mo.x
     }
     hit() {
         this.energy -= 20;

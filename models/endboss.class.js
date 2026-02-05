@@ -23,6 +23,19 @@ class Endboss extends MovableObject {
         "../img/2.Enemy/3 Final Enemy/Attack/5.png",
         "../img/2.Enemy/3 Final Enemy/Attack/6.png",
     ];
+    IMAGES_INTRO_ANIMATION = [
+        "../img/2.Enemy/3 Final Enemy/1.Introduce/1.png",
+        "../img/2.Enemy/3 Final Enemy/1.Introduce/2.png",
+        "../img/2.Enemy/3 Final Enemy/1.Introduce/3.png",
+        "../img/2.Enemy/3 Final Enemy/1.Introduce/4.png",
+        "../img/2.Enemy/3 Final Enemy/1.Introduce/5.png",
+        "../img/2.Enemy/3 Final Enemy/1.Introduce/6.png",
+        "../img/2.Enemy/3 Final Enemy/1.Introduce/7.png",
+        "../img/2.Enemy/3 Final Enemy/1.Introduce/8.png",
+        "../img/2.Enemy/3 Final Enemy/1.Introduce/9.png",
+        "../img/2.Enemy/3 Final Enemy/1.Introduce/10.png",
+    ]
+
     offset = {
         top: 200,
         left: 30,
@@ -34,7 +47,7 @@ class Endboss extends MovableObject {
         super().loadImage(this.IMAGES_SWIMMING[0])
         this.loadImages(this.IMAGES_SWIMMING);
         this.loadImages(this.IMAGES_FIGHT);
-        this.x = 350
+        this.x = 850
         this.y = 0
         this.width = 400
         this.height = 400

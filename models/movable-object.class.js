@@ -31,23 +31,33 @@ class MovableObject extends DrawableObject {
     }
 
     playAnimation(images) {
-        let i = this.currentImage % images.length;
-        let path = images[i];
-        this.img = this.imageCache[path];
-        this.currentImage++;
+        if (images[1] == "../img/2.Enemy/3 Final Enemy/1.Introduce/2.png") {
+            console.log(this.currentImage % images.length);
+            let i = this.currentImage % images.length;
+            let path = images[i];
+            this.img = this.imageCache[path];
+            this.currentImage++;
+        } else {
+            let i = this.currentImage % images.length;
+            let path = images[i];
+            this.img = this.imageCache[path];
+            this.currentImage++;
+        }
+
+
     }
 
     isColliding(mo) {
         return this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
             this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
             this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
-            this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom 
+            this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom
     }
     enemieIsNear(mo) {
-        return this.x + this.width - this.offset.right + 50 > mo.x + mo.offset.left && 
+        return this.x + this.width - this.offset.right + 50 > mo.x + mo.offset.left &&
             this.y + this.height - this.offset.bottom + 50 > mo.y + mo.offset.top &&
             this.x + this.offset.left - 50 < mo.x + mo.width - mo.offset.right &&
-            this.y + this.offset.top - 50 < mo.y + mo.height - mo.offset.bottom 
+            this.y + this.offset.top - 50 < mo.y + mo.height - mo.offset.bottom
     }
     endbossXIntroStart(mo) {
         return this.x + this.width + 180 > mo.x

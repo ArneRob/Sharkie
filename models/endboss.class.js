@@ -50,11 +50,11 @@ class Endboss extends MovableObject {
     introWasPlayed = false;
 
     constructor() {
-        super().loadImage(this.IMAGES_SWIMMING[0])
+        super().loadImage(this.IMAGES_HIDDEN_ENDBOSS[0])
         this.loadImages(this.IMAGES_SWIMMING);
         this.loadImages(this.IMAGES_FIGHT);
         this.loadImages(this.IMAGES_INTRO_ANIMATION)
-        this.loadImages(this.IMAGES_HIDDEN_ENDBOSS)
+        
         this.x = 850
         this.y = 0
         this.width = 400
@@ -69,17 +69,18 @@ class Endboss extends MovableObject {
             if (this.endbossIntro && !this.introWasPlayed) {
                 i = 0
                 this.introWasPlayed = true;
+                this.currentImage = 0;
             }
             if (this.endbossIntro == true && i < 10) {
                 this.playAnimation(this.IMAGES_INTRO_ANIMATION)
             } else if (this.checkLastNearEndbossTime()) {
                 this.playAnimation(this.IMAGES_FIGHT)
-            } else if (this.introWasPlayed) {
+            } else if (this.introWasPlayed && i > 10) {
                 this.playAnimation(this.IMAGES_SWIMMING)
             } else {
                 this.playAnimation(this.IMAGES_HIDDEN_ENDBOSS)
             }
             i++
-        }, 1000 / 8);
+        }, 1000 / 10);
     }
 }

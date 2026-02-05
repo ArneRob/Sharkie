@@ -50,15 +50,15 @@ class World {
                 this.endbossFightSound.volume = 0
             } else {
                 this.poisenBottle.preload = "auto"
-                this.coinSound.volume = 0.5
-                this.endbossFightSound.volume = 0.5
-                this.sharkieHurtSound.volume = 0.5
-                this.poisenBottleSound.volume = 0.5
-                this.underwaterBubble.volume = 0.1
+                this.coinSound.volume = 0.05
+                this.endbossFightSound.volume = 0.05
+                this.sharkieHurtSound.volume = 0.05
+                this.poisenBottleSound.volume = 0.05
+                this.underwaterBubble.volume = 0.05
                 this.underwaterBubble.loop = true
             }
             this.underwaterBubble.play()
-        }, 500);
+        }, 10);
 
     }
     run() {

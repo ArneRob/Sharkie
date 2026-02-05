@@ -71,23 +71,15 @@ class Endboss extends MovableObject {
                 this.introWasPlayed = true;
             }
             if (this.endbossIntro == true && i < 10) {
-                this.animateIntro()
+                this.playAnimation(this.IMAGES_INTRO_ANIMATION)
             } else if (this.checkLastNearEndbossTime()) {
-                this.animateFight()
+                this.playAnimation(this.IMAGES_FIGHT)
+            } else if (this.introWasPlayed) {
+                this.playAnimation(this.IMAGES_SWIMMING)
             } else {
-                this.animateSwim()
+                this.playAnimation(this.IMAGES_HIDDEN_ENDBOSS)
             }
             i++
         }, 1000 / 8);
     }
-    animateFight() {
-        this.playAnimation(this.IMAGES_FIGHT)
-    }
-    animateSwim() {
-        this.playAnimation(this.IMAGES_SWIMMING)
-    }
-    animateIntro() {
-        this.playAnimation(this.IMAGES_INTRO_ANIMATION)
-    }
-
 }

@@ -20,8 +20,6 @@ class World {
     underwaterBubble = new Audio('../audio/underwaterBubble.mp3')
     sharkieHurtSound = new Audio('../audio/sharkieHurt.mp3')
     endbossFightSound = new Audio('../audio/endbossFight.mp3')
-    bubble
-
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -101,9 +99,7 @@ class World {
     }
     checkIfEnemieIsNear() {
         if (this.character.endbossXIntroStart(this.endboss[0])) {
-            console.log("intro");
-            
-            // this.endboss[0].endbossIntro = true
+           this.endboss[0].endbossIntro = true;
         }
         if (this.character.enemieIsNear(this.level.endboss[0])) {
             this.endboss[0].endbossNearCharacter()

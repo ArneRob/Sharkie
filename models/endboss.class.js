@@ -34,7 +34,7 @@ class Endboss extends MovableObject {
         "../img/2.Enemy/3 Final Enemy/1.Introduce/8.png",
         "../img/2.Enemy/3 Final Enemy/1.Introduce/9.png",
         "../img/2.Enemy/3 Final Enemy/1.Introduce/10.png",
-    ]
+    ];
 
     offset = {
         top: 200,
@@ -42,11 +42,14 @@ class Endboss extends MovableObject {
         right: 50,
         bottom: 90,
     };
+    endbossIntro = false;
+    introOnce = false;
 
     constructor() {
         super().loadImage(this.IMAGES_SWIMMING[0])
         this.loadImages(this.IMAGES_SWIMMING);
         this.loadImages(this.IMAGES_FIGHT);
+        this.loadImages(this.IMAGES_INTRO_ANIMATION)
         this.x = 850
         this.y = 0
         this.width = 400
@@ -56,19 +59,30 @@ class Endboss extends MovableObject {
     }
 
     animate() {
+        let i = 0
         setInterval(() => {
-            if (this.checkLastNearEndbossTime()) {
+            if (this.endbossIntro == true && i < 10) {
+                this.animateIntro()
+            } else if (this.checkLastNearEndbossTime()) {
                 this.animateFight()
             } else {
                 this.animateSwim()
             }
-        }, 1000 / 10);
+            i++ 
+            if (this.endbossIntro && !this.introOnce) {
+                i = 0
+                this.introOnce = true;
+            }
+        }, 1000 / 8);
     }
     animateFight() {
         this.playAnimation(this.IMAGES_FIGHT)
     }
     animateSwim() {
         this.playAnimation(this.IMAGES_SWIMMING)
+    }
+    animateIntro() {
+        this.playAnimation(this.IMAGES_INTRO_ANIMATION)
     }
 
 }

@@ -103,7 +103,7 @@ class World {
         if (this.character.endbossXIntroStart(this.endboss[0])) {
             console.log("intro");
             
-            // this.endboss[0].
+            // this.endboss[0].endbossIntro = true
         }
         if (this.character.enemieIsNear(this.level.endboss[0])) {
             this.endboss[0].endbossNearCharacter()

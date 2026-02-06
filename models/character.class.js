@@ -59,6 +59,7 @@ class Character extends MovableObject {
         '../img/1.Sharkie/5.Hurt/1.Poisoned/4.png',
     ];
     world;
+    lastSlap = 0;
 
     offset = {
         top: 120,
@@ -88,19 +89,20 @@ class Character extends MovableObject {
         setInterval(() => {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD)
-            } else
-                if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                    this.playAnimation(this.IMAGES_SWIM)
-                    if (this.world.keyboard.SPACE) {
-                        this.playAnimation(this.IMAGES_SLAP)
-                    }
-                } else if (this.world.keyboard.SPACE) {
-                    this.playAnimation(this.IMAGES_SLAP)
-                } else if (this.isHurt()) {
-                    this.playAnimation(this.IMAGES_HURT)
-                } else {
-                    this.playAnimation(this.IMAGES_SWIMMING)
-                }
+            } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+                this.playAnimation(this.IMAGES_SWIM)
+            } else if (this.spaceAndSlapTimePassed() || this.spaceAndSlapTimeIsNull()) {
+                this.animateAndSaveSlapTime()
+                this.subtractLivePointEndboss()
+            } else if (this.spaceAndSlapTimePassed() || this.spaceAndSlapTimeIsNull()) {
+                this.animateAndSaveSlapTime()
+                this.subtractLivePointEndboss()
+            } else if (this.isHurt()) {
+                this.playAnimation(this.IMAGES_HURT)
+            } else {
+                this.playAnimation(this.IMAGES_SWIMMING)
+            }
+
         }, 1000 / 9);
         setInterval(() => {
 
@@ -120,5 +122,33 @@ class Character extends MovableObject {
             }
             this.world.camera_x = -this.x + 50
         }, 1000 / 60);
+    }
+    setEnergyOfEndboss() {
+        this.world.endboss[0].endbossEnergy -= 20
+        this.world.endbossStatusBar.setPercentage(this.world.endboss[0].endbossEnergy)
+    }
+    slapTimePassed() {
+        let nowTime = new Date().getTime()
+        return this.lastSlap + 700 < nowTime
+    }
+    setSlapTime() {
+        this.lastSlap = new Date().getTime()
+    }
+    spaceAndSlapTimePassed() {
+        return this.world.keyboard.SPACE && this.slapTimePassed()
+    }
+    spaceAndSlapTimeIsNull() {
+        return this.world.keyboard.SPACE && this.lastSlap == 0
+    }
+    animateAndSaveSlapTime() {
+        this.playAnimation(this.IMAGES_SLAP)
+        setTimeout(() => {
+            this.setSlapTime()
+        }, 700);
+    }
+    subtractLivePointEndboss() {
+        if (this.isColliding(this.world.endboss[0]) || this.lastSlap == 0 && this.isColliding(this.world.endboss[0])) {
+            this.setEnergyOfEndboss()
+        }
     }
 }

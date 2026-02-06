@@ -2,6 +2,7 @@ class MovableObject extends DrawableObject {
     speed = 0.15
     otherDirection = false;
     energy = 100;
+    endbossEnergy = 100;
     collectedCoin = 0;
     collectedPoisenBottle = 0;
     speedY = 0;
@@ -9,7 +10,6 @@ class MovableObject extends DrawableObject {
     lastHit = 0;
     lastNear = 0;
     lastHitDate = 0;
-    characterHitsEndboss = false
     offset = {
         top: 0,
         left: 0,
@@ -110,7 +110,7 @@ class MovableObject extends DrawableObject {
     isDead() {
         return this.energy == 0
     }
-
+    
     isHurt() {
         let timePassed = new Date().getTime() - this.lastHit;
         timePassed = timePassed / 1000;

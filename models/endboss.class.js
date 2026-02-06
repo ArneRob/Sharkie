@@ -88,16 +88,16 @@ class Endboss extends MovableObject {
     followCharacter() {
         setInterval(() => {
             if (this.characterX() < this.x) {
-                this.x -= 2
+                this.x -= this.speed * 2
             } else if (this.characterX() > this.x) {
-                this.x += 2
+                this.x += this.speed * 2
             }
             if (this.characterY() > this.y) {
-                this.y += 2
+                this.y += this.speed * 2
             } else if (this.characterY() < this.y) {
-                this.y -= 2
+                this.y -= this.speed * 2
             }
-        }, 2000);
+        }, 1000 / 10);
     }
 
     characterX() {

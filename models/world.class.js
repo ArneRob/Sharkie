@@ -12,6 +12,7 @@ class World {
     keyboard;
     camera_x = 0;
     statusBar = new StatusBar();
+    endbossStatusBar = new EndbossStatusBar()
     coinStatusBar = new CoinStatusBar()
     poisenStatusBar = new PoisenStatusBar()
     throwableObjects = []
@@ -39,7 +40,7 @@ class World {
             this.coin[index].setWorld(this);
         };
         this.endboss[0].world = this;
-
+        this.endbossStatusBar.world = this;
     }
     runSounds() {
         setInterval(() => {
@@ -62,7 +63,7 @@ class World {
             this.checkCollisions()
             this.checkThrowObjects()
             this.checkIfEnemieIsNear()
-        }, 400);
+        }, 40);
         setInterval(() => {
             this.checkForItemCollisions()
         }, 10);
@@ -135,6 +136,7 @@ class World {
 
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar)
+        this.addToMap(this.endbossStatusBar)
         this.addToMap(this.coinStatusBar)
         this.addToMap(this.poisenStatusBar)
         this.ctx.translate(this.camera_x, 0);

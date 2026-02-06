@@ -101,15 +101,15 @@ class Character extends MovableObject {
                 } else {
                     this.playAnimation(this.IMAGES_SWIMMING)
                 }
-        }, 1000 / 8);
+        }, 1000 / 9);
         setInterval(() => {
 
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x && !this.isDead()) {
-                this.x += this.speed * 15;
+                this.x += this.speed * 20;
                 this.otherDirection = false;
             }
             if (this.world.keyboard.LEFT && this.x > 0 && !this.isDead()) {
-                this.x -= this.speed * 15;
+                this.x -= this.speed * 20;
                 this.otherDirection = true;
             } // minus 100 is the offset of the character
             if (this.world.keyboard.UP && !this.isDead() && this.y > 0 - 100) {

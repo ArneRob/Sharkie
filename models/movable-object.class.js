@@ -32,7 +32,6 @@ class MovableObject extends DrawableObject {
 
     playAnimation(images) {
         if (images[0] == "../img/2.Enemy/3 Final Enemy/2.floating/1.png") {
-            console.log(this.currentImage % images.length);
             let i = this.currentImage % images.length;
             let path = images[i];
             this.img = this.imageCache[path];

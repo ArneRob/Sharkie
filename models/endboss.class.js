@@ -78,16 +78,34 @@ class Endboss extends MovableObject {
                 this.playAnimation(this.IMAGES_FIGHT)
             } else if (this.introWasPlayed && i >= 10) {
                 this.playAnimation(this.IMAGES_SWIMMING)
-                this.findCharacterX()
+                this.followCharacter()
             } else {
                 this.playAnimation(this.IMAGES_HIDDEN_ENDBOSS)
             }
             i++
         }, 1000 / 10);
     }
+    followCharacter() {
+        setInterval(() => {
+            if (this.characterX() < this.x) {
+                this.x -= 2
+            } else if (this.characterX() > this.x) {
+                this.x += 2
+            }
+            if (this.characterY() > this.y) {
+                this.y += 2
+            } else if (this.characterY() < this.y) {
+                this.y -= 2
+            }
+        }, 2000);
+    }
 
-    findCharacterX() {
-        this.world.character.x
+    characterX() {
+        return this.world.character.x
+    }
+    characterY() {
+        let offset = this.world.character.y - 100
+        return offset
     }
 }
 

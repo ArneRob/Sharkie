@@ -8,6 +8,7 @@ class MovableObject extends DrawableObject {
     acceleration = 0.3;
     lastHit = 0;
     lastNear = 0;
+    lastHitDate = 0;
     characterHitsEndboss = false
     offset = {
         top: 0,
@@ -61,12 +62,18 @@ class MovableObject extends DrawableObject {
     endbossXIntroStart(mo) {
         return this.x + this.width + 180 > mo.x
     }
+    // time passed represents time to to pass every X milliseconds for dmg 
     hit() {
-        this.energy -= 20;
-        if (this.energy < 0) {
-            this.energy = 0;
+        let timePassed = this.lastHitDate + 700
+        if (this.lastHit > timePassed || this.lastHit == 0) {
+            this.energy -= 20;
+            this.lastHit = new Date().getTime();
+            this.lastHitDate = this.lastHit
         } else {
             this.lastHit = new Date().getTime();
+        }
+        if (this.energy < 0) {
+            this.energy = 0;
         }
     }
 

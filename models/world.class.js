@@ -15,12 +15,12 @@ class World {
     coinStatusBar = new CoinStatusBar()
     poisenStatusBar = new PoisenStatusBar()
     throwableObjects = []
-    coinSound = new Audio('../audio/coinSound.mp3')
-    poisenBottleSound = new Audio('../audio/poisenBottleSound.mp3')
+    coinSound = '../audio/coinSound.mp3'
+    poisenBottleSound = '../audio/poisenBottleSound.mp3'
     underwaterBubble = new Audio('../audio/underwaterBubble.mp3')
     sharkieHurtSound = new Audio('../audio/sharkieHurt.mp3')
     endbossFightSound = new Audio('../audio/endbossFight.mp3')
-
+    bubble
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -43,22 +43,17 @@ class World {
     runSounds() {
         setInterval(() => {
             if (getLocalStorageItem("mute")) {
-                this.poisenBottleSound.volume = 0
                 this.underwaterBubble.volume = 0
-                this.coinSound.volume = 0
                 this.sharkieHurtSound.volume = 0
                 this.endbossFightSound.volume = 0
             } else {
-                this.poisenBottle.preload = "auto"
-                this.coinSound.volume = 0.05
                 this.endbossFightSound.volume = 0.05
                 this.sharkieHurtSound.volume = 0.05
-                this.poisenBottleSound.volume = 0.05
                 this.underwaterBubble.volume = 0.05
                 this.underwaterBubble.loop = true
             }
-            this.underwaterBubble.play()
-        }, 10);
+              this.underwaterBubble.play()
+        }, 100);
 
     }
     run() {
@@ -99,7 +94,7 @@ class World {
     }
     checkIfEnemieIsNear() {
         if (this.character.endbossXIntroStart(this.endboss[0])) {
-           this.endboss[0].endbossIntro = true;
+            this.endboss[0].endbossIntro = true;
         }
         if (this.character.enemieIsNear(this.level.endboss[0])) {
             this.endboss[0].endbossNearCharacter()
@@ -113,7 +108,7 @@ class World {
     ifCoinCollision() {
         for (let index = 0; index < this.level.coin.length; index++) {
             if (this.character.isColliding(this.coin[index])) {
-                this.coinSound.play()
+                this.playSound(this.coinSound)
                 this.character.collect("collectedCoin");
                 this.coin.splice(index, 1)
                 this.coinStatusBar.setPercentage(this.character.collectedCoin);
@@ -123,7 +118,7 @@ class World {
     ifPoisenBottleCollision() {
         for (let index = 0; index < this.level.poisenBottle.length; index++) {
             if (this.character.isColliding(this.poisenBottle[index])) {
-                this.poisenBottleSound.play()
+                this.playSound(this.poisenBottleSound)
                 this.character.collect("collectedPoisenBottle");
                 this.poisenBottle.splice(index, 1)
                 this.poisenStatusBar.setPercentage(this.character.collectedPoisenBottle);
@@ -184,4 +179,18 @@ class World {
         mo.x = mo.x * -1
         this.ctx.restore();
     }
+
+    playSound(soundSrc) {
+        let sound = new Audio(soundSrc);
+        if (getLocalStorageItem("mute")) {
+            sound.volume = 0
+        } else {
+            sound.volume = 0.2
+        }
+        sound.play();
+        sound.onended = () => {
+            sound.remove();
+        };
+    }
 }
+

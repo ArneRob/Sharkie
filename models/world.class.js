@@ -102,14 +102,14 @@ class World {
         }
     }
     checkForItemCollisions() {
-        this.ifCoinCollision();
+        this.ifCoinCollision(this.coin);
         this.ifPoisenBottleCollision();
     }
-    ifCoinCollision() {
+    ifCoinCollision(collectItem) {
         for (let index = 0; index < this.level.coin.length; index++) {
             if (this.character.isColliding(this.coin[index])) {
                 this.playSound(this.coinSound)
-                this.character.collect("collectedCoin");
+                this.character.collect(collectItem[0]);
                 this.coin.splice(index, 1)
                 this.coinStatusBar.setPercentage(this.character.collectedCoin);
             }

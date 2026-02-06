@@ -75,7 +75,7 @@ class Endboss extends MovableObject {
                 this.playAnimation(this.IMAGES_INTRO_ANIMATION)
             } else if (this.checkLastNearEndbossTime()) {
                 this.playAnimation(this.IMAGES_FIGHT)
-            } else if (this.introWasPlayed && i > 10) {
+            } else if (this.introWasPlayed && i >= 10) {
                 this.playAnimation(this.IMAGES_SWIMMING)
             } else {
                 this.playAnimation(this.IMAGES_HIDDEN_ENDBOSS)

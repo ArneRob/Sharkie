@@ -81,7 +81,8 @@ class MovableObject extends DrawableObject {
     }
 
     collect(item) {
-        if (item == "collectedCoin") {
+        let key = this.returnObjectEntrieKey(item, 7)
+        if (key == "IMAGES_COINS") {
             this.collectedCoin += 20
             if (this.collectedCoin > 100) {
                 this.collectedCoin = 100;
@@ -92,8 +93,12 @@ class MovableObject extends DrawableObject {
                 this.collectedPoisenBottle = 100;
             }
         }
+    }
 
-
+    returnObjectEntrieKey(item, position) {
+        let itemKeyObj = Object.entries(item)
+        let key = itemKeyObj[position][0]
+        return key
     }
 
     isDead() {

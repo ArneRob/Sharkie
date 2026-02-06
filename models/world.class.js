@@ -38,6 +38,7 @@ class World {
         for (let index = 0; index < this.coin.length; index++) {
             this.coin[index].setWorld(this);
         };
+        this.endboss[0].world = this;
 
     }
     runSounds() {

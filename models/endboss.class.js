@@ -46,6 +46,7 @@ class Endboss extends MovableObject {
         right: 50,
         bottom: 90,
     };
+    world;
     endbossIntro = false;
     introWasPlayed = false;
 
@@ -77,10 +78,16 @@ class Endboss extends MovableObject {
                 this.playAnimation(this.IMAGES_FIGHT)
             } else if (this.introWasPlayed && i >= 10) {
                 this.playAnimation(this.IMAGES_SWIMMING)
+                this.findCharacterX()
             } else {
                 this.playAnimation(this.IMAGES_HIDDEN_ENDBOSS)
             }
             i++
         }, 1000 / 10);
     }
+
+    findCharacterX() {
+        this.world.character.x
+    }
 }
+

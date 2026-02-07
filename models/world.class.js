@@ -20,7 +20,6 @@ class World {
     poisenBottleSound = '../audio/poisenBottleSound.mp3'
     underwaterBubble = new Audio('../audio/underwaterBubble.mp3')
     sharkieHurtSound = new Audio('../audio/sharkieHurt.mp3')
-    endbossFightSound = new Audio('../audio/endbossFight.mp3')
     bubble
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -47,9 +46,9 @@ class World {
             if (getLocalStorageItem("mute")) {
                 this.underwaterBubble.volume = 0
                 this.sharkieHurtSound.volume = 0
-                this.endbossFightSound.volume = 0
+                this.endboss[0].endbossFightSound.volume = 0
             } else {
-                this.endbossFightSound.volume = 0.05
+                this.endboss[0].endbossFightSound.volume = 0.05
                 this.sharkieHurtSound.volume = 0.05
                 this.underwaterBubble.volume = 0.05
                 this.underwaterBubble.loop = true
@@ -100,7 +99,6 @@ class World {
         }
         if (this.character.enemieIsNear(this.level.endboss[0])) {
             this.endboss[0].endbossNearCharacter()
-            this.endbossFightSound.play()
         }
     }
     checkForItemCollisions() {

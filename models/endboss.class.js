@@ -46,7 +46,7 @@ class Endboss extends MovableObject {
     IMAGES_HIDDEN_ENDBOSS = [
         "../img/2.Enemy/3 Final Enemy/1.Introduce/1.png"
     ]
-
+    endbossFightSound = new Audio('../audio/endbossFight.mp3')
     offset = {
         top: 200,
         left: 30,
@@ -56,6 +56,8 @@ class Endboss extends MovableObject {
     world;
     endbossIntro = false;
     introWasPlayed = false;
+    lastBiteDate = 0;
+    endbossFollowInterVal = false;
 
     constructor() {
         super().loadImage(this.IMAGES_HIDDEN_ENDBOSS[0])
@@ -85,8 +87,10 @@ class Endboss extends MovableObject {
                 }
                 if (this.endbossIntro == true && i < 10) {
                     this.playAnimation(this.IMAGES_INTRO_ANIMATION)
-                } else if (this.checkLastNearEndbossTime()) {
+                } else if (this.checkLastNearEndbossTime() && this.lastBitePast()) {
                     this.playAnimation(this.IMAGES_FIGHT)
+                    this.endbossFightSound.play()
+                    this.setLastBite()
                 } else if (this.introWasPlayed && i >= 10) {
                     this.playAnimation(this.IMAGES_SWIMMING)
                     this.followCharacter()
@@ -98,18 +102,21 @@ class Endboss extends MovableObject {
         }, 1000 / 10);
     }
     followCharacter() {
-        setInterval(() => {
-            if (this.characterX() < this.x) {
-                this.x -= this.speed * 2
-            } else if (this.characterX() > this.x) {
-                this.x += this.speed * 2
-            }
-            if (this.characterY() > this.y) {
-                this.y += this.speed * 2
-            } else if (this.characterY() < this.y) {
-                this.y -= this.speed * 2
-            }
-        }, 1000 / 10);
+        if (!this.endbossFollowInterVal) {
+            this.endbossFollowInterVal = true;
+            setInterval(() => {
+                if (this.characterX() < this.x) {
+                    this.x -= this.speed * 13
+                } else if (this.characterX() > this.x) {
+                    this.x += this.speed * 13
+                }
+                if (this.characterY() > this.y) {
+                    this.y += this.speed * 13
+                } else if (this.characterY() < this.y) {
+                    this.y -= this.speed * 13
+                }
+            }, 1000 / 10);
+        }
     }
 
     characterX() {
@@ -118,6 +125,18 @@ class Endboss extends MovableObject {
     characterY() {
         let offset = this.world.character.y - 100
         return offset
+    }
+    lastBitePast() {
+        let nowTime = new Date().getTime();
+        let timePassed = this.lastBiteDate + 1000
+        return nowTime > timePassed || this.lastBiteDate == 0
+    }
+    setLastBite() {
+        let timePassed = this.lastBiteDate + 1000
+        let nowTime = new Date().getTime();
+        if (nowTime > timePassed || this.lastBiteDate == 0) {
+            this.lastBiteDate = new Date().getTime();
+        }
     }
 }
 

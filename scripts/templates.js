@@ -26,10 +26,19 @@ function getSettingMenueTemplate() {
     `
 }
 
+function getIngameSettingMenueTemplate() {
+    return `
+        <div id="instructionsContainer" class="instructionsContainer">
+            <img class="instructionsImg selector " src="./img/6.Botones/Instructions 2.png">
+            <img id="fullScreenIcon" class="fullScreenIcon selector " src="./img/6.Botones/Full Screen/Mesa de trabajo 7.png">
+        </div>
+    `
+}
+
 function getSettingIconsTemplate() {
     return `
      <div class="settingsImgDivInGame">
-            <img class="splashScreenSettingIcons gearIcon selector" id="gearIcon" src="./img/gear-1077563_640.png" alt="" onclick="showSettingMenue()">
+            <img class="splashScreenSettingIcons gearIcon selector" id="gearIcon" src="./img/gear-1077563_640.png" alt="" onclick="showIngameSettingMenue()">
             <img class="splashScreenSettingIcons soundIcon selector " id="soundIcon" src="./img/volume-on.png" alt="" onclick="soundIconSwitch()">
             <img class="splashScreenSettingIcons soundIcon d_none selector " id="muteSoundIcon" src="./img/volume-off.png" alt="" onclick="soundIconSwitch()">
         </div>

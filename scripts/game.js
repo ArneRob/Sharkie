@@ -83,15 +83,27 @@ function startMenueOff() {
 }
 
 function soundIconSwitch() {
-    toggleSoundIcons()
-    toggleMuteValueLocalStorage()
+    if (!getLocalStorageItem("mute")) {
+        muteSoundIcons()
+        setItemToLocalStorage("mute")
+    } else {
+        unMuteSoundIcons()
+        removeItemFromLocalStorage("mute")
+    }
 }
 
-function toggleSoundIcons() {
-    muteSoundIcon = document.getElementById('muteSoundIcon')
-    muteSoundIcon.classList.toggle('d_none')
-    soundIcon = document.getElementById('soundIcon')
-    soundIcon.classList.toggle('d_none')
+function unMuteSoundIcons() {
+    let muteSoundIcon = document.getElementById('muteSoundIcon')
+    muteSoundIcon.classList.add('d_none')
+    let soundIcon = document.getElementById('soundIcon')
+    soundIcon.classList.remove('d_none')
+}
+
+function muteSoundIcons() {
+    let muteSoundIcon = document.getElementById('muteSoundIcon')
+    muteSoundIcon.classList.remove('d_none')
+    let soundIcon = document.getElementById('soundIcon')
+    soundIcon.classList.add('d_none')
 }
 
 function showMainMenue() {
@@ -110,6 +122,25 @@ function showSettingMenue() {
     fullScreenIcon.addEventListener("click", getFullScreen)
 }
 
+function showIngameSettingMenue() {
+    let splashScreen = document.getElementById('splashScreen')
+    openCloseGameMenue()
+    splashScreen.innerHTML = "";
+    splashScreen.innerHTML += getIngameSettingMenueTemplate();
+    let instructionsContainer = document.getElementById('instructionsContainer')
+    instructionsContainer.classList.toggle('mb-top-50')
+    checkLocalStorageSettings()
+    let fullScreenIcon = document.getElementById('fullScreenIcon')
+    fullScreenIcon.addEventListener("click", getFullScreen)
+}
+
+function openCloseGameMenue() {
+    let splashScreen = document.getElementById('splashScreen')
+    splashScreen.classList.toggle('d_none')
+    let canvas = document.getElementById('canvas')
+    canvas.classList.toggle('d_none')
+}
+
 function getLocalStorageItem(key) {
     let x = localStorage.getItem(`${key}`);
     return x
@@ -125,15 +156,7 @@ function removeItemFromLocalStorage(key) {
 
 function checkLocalStorageSettings() {
     if (getLocalStorageItem("mute")) {
-        toggleSoundIcons()
-    }
-}
-
-function toggleMuteValueLocalStorage() {
-    if (getLocalStorageItem("mute")) {
-        removeItemFromLocalStorage("mute")
-    } else {
-        setItemToLocalStorage("mute",)
+        muteSoundIcons()
     }
 }
 

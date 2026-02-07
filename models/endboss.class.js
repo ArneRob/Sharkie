@@ -53,6 +53,7 @@ class Endboss extends MovableObject {
         right: 50,
         bottom: 90,
     };
+    endbossOtherDirection = false;
     world;
     endbossIntro = false;
     introWasPlayed = false;
@@ -72,6 +73,7 @@ class Endboss extends MovableObject {
         this.height = 400
 
         this.animate();
+        this.check()
     }
 
     animate() {
@@ -124,6 +126,17 @@ class Endboss extends MovableObject {
             }, 1000 / 10);
         }
     }
+    check() {
+        setInterval(() => {
+            if (this.world) {
+                if (this.characterBehindMo(this.world.character)) {
+                    this.otherDirection = true;
+                } else {
+                    this.otherDirection = false;
+                }
+            }
+        }, 100);
+    }
 
     characterX() {
         return this.world.character.x
@@ -131,18 +144,6 @@ class Endboss extends MovableObject {
     characterY() {
         let offset = this.world.character.y - 100
         return offset
-    }
-    lastBitePast() {
-        let nowTime = new Date().getTime();
-        let timePassed = this.lastBiteDate + 1000
-        return nowTime > timePassed || this.lastBiteDate == 0
-    }
-    setLastBite() {
-        let timePassed = this.lastBiteDate + 1000
-        let nowTime = new Date().getTime();
-        if (nowTime > timePassed || this.lastBiteDate == 0) {
-            this.lastBiteDate = new Date().getTime();
-        }
     }
 }
 

@@ -30,8 +30,6 @@ class Character extends MovableObject {
 
     IMAGES_SLAP = [
         '../img/1.Sharkie/4.Attack/Fin slap/1.png',
-        '../img/1.Sharkie/4.Attack/Fin slap/2.png',
-        '../img/1.Sharkie/4.Attack/Fin slap/3.png',
         '../img/1.Sharkie/4.Attack/Fin slap/4.png',
         '../img/1.Sharkie/4.Attack/Fin slap/5.png',
         '../img/1.Sharkie/4.Attack/Fin slap/6.png',
@@ -85,6 +83,9 @@ class Character extends MovableObject {
     idleTimer = 0;
     IdleCounter = 0;
     idleSleep;
+    slapCounter = 0;
+    stayAndSlap = false;
+    swimAndSlap = false;
     offset = {
         top: 120,
         left: 50,
@@ -112,18 +113,30 @@ class Character extends MovableObject {
 
     animate() {
         setInterval(() => {
+            if(this.space()) {this.spacePressed()}
             let passedTime = this.idleTimer + 10000;
             let nowTime = new Date().getTime();
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD)
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                 this.playAnimation(this.IMAGES_SWIM)
-            } else if (this.spaceAndSlapTimePassed() || this.spaceAndSlapTimeIsNull()) {
-                this.animateAndSaveSlapTime()
+            } else if (this.space() && !this.stayAndSlap) {
+                this.stayAndSlap = true;
+                this.playAnimation(this.IMAGES_SLAP)
+                this.setTimer()
                 this.subtractLivePointEndboss()
-            } else if (this.spaceAndSlapTimePassed() || this.spaceAndSlapTimeIsNull()) {
-                this.animateAndSaveSlapTime()
-                this.subtractLivePointEndboss()
+            } else if (this.checkIfSpaceWasPressedInRange() && !this.swimAndSlap) {
+                this.currentImage = this.slapCounter
+                this.playAnimation(this.IMAGES_SLAP)
+                this.stayAndSlap = true;
+                this.setTimer()
+                this.slapCounter++
+                if (this.slapCounter == 3 || this.slapCounter == 6) {
+                    this.subtractLivePointEndboss()
+                }
+                if (this.slapCounter >= 6) {
+                    this.stayAndSlap = false
+                }
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT)
             } else if (nowTime > passedTime) {
@@ -135,7 +148,7 @@ class Character extends MovableObject {
                 }
                 this.IdleCounter++
                 if (this.IdleCounter >= 13) { this.IdleCounter == 0 }
-            } else {
+            } else if (!this.stayAndSlap && !this.swimAndSlap) {
                 this.playAnimation(this.IMAGES_SWIMMING)
             }
 
@@ -163,6 +176,13 @@ class Character extends MovableObject {
             this.world.camera_x = -this.x + 50
         }, 1000 / 60);
     }
+    spacePressed() {
+        this.spaceWasPressed = new Date().getTime()
+    }
+    checkIfSpaceWasPressedInRange() {
+        let nowTime = new Date().getTime()
+        return this.spaceWasPressed + 1000 > nowTime
+    }
     setEnergyOfEndboss() {
         this.world.endboss[0].endbossEnergy -= 20
         this.world.endbossStatusBar.setPercentage(this.world.endboss[0].endbossEnergy)
@@ -174,17 +194,8 @@ class Character extends MovableObject {
     setSlapTime() {
         this.lastSlap = new Date().getTime()
     }
-    spaceAndSlapTimePassed() {
-        return this.world.keyboard.SPACE && this.slapTimePassed()
-    }
-    spaceAndSlapTimeIsNull() {
-        return this.world.keyboard.SPACE && this.lastSlap == 0
-    }
-    animateAndSaveSlapTime() {
-        this.playAnimation(this.IMAGES_SLAP)
-        setTimeout(() => {
-            this.setSlapTime()
-        }, 700);
+    space() {
+        return this.world.keyboard.SPACE
     }
     subtractLivePointEndboss() {
         if (this.isColliding(this.world.endboss[0]) || this.lastSlap == 0 && this.isColliding(this.world.endboss[0])) {

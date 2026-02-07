@@ -62,8 +62,6 @@ class MovableObject extends DrawableObject {
         return this.x + this.width + 180 > mo.x
     }
     characterBehindMo(mo){
-        console.log(this.x + this.width , mo.x + mo.width);
-        
         return this.x + this.width < mo.x + mo.width
     }
     // time passed represents time to to pass every X milliseconds for dmg 

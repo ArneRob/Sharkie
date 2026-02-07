@@ -74,9 +74,17 @@ class Character extends MovableObject {
         '../img/1.Sharkie/2.Long_IDLE/i13.png',
         '../img/1.Sharkie/2.Long_IDLE/I14.png',
     ];
+    IMAGES_IDLE_SLEEP = [
+        '../img/1.Sharkie/2.Long_IDLE/i11.png',
+        '../img/1.Sharkie/2.Long_IDLE/i12.png',
+        '../img/1.Sharkie/2.Long_IDLE/i13.png',
+        '../img/1.Sharkie/2.Long_IDLE/I14.png',
+    ];
     world;
     lastSlap = 0;
     idleTimer = 0;
+    IdleCounter = 0;
+    idleSleep;
     offset = {
         top: 120,
         left: 50,
@@ -92,6 +100,7 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_IDLE_LONG)
+        this.loadImages(this.IMAGES_IDLE_SLEEP)
         this.animate();
         this.setTimer()
         this.width = 250
@@ -119,7 +128,14 @@ class Character extends MovableObject {
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT)
             } else if (nowTime > passedTime) {
-                this.playAnimation(this.IMAGES_IDLE_LONG)
+                if (this.IdleCounter <= 7 && !this.idleSleep) {
+                    this.playAnimation(this.IMAGES_IDLE_LONG)
+                } else {
+                    this.idleSleep = true
+                    this.playAnimation(this.IMAGES_IDLE_SLEEP)
+                }
+                this.IdleCounter++
+                if (this.IdleCounter >= 13) { this.IdleCounter == 0 }
             } else {
                 this.playAnimation(this.IMAGES_SWIMMING)
             }
@@ -178,5 +194,7 @@ class Character extends MovableObject {
     }
     setTimer() {
         this.idleTimer = new Date().getTime();
+        this.idleSleep = false
+        this.IdleCounter = 0;
     }
 }

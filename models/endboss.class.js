@@ -75,19 +75,19 @@ class Endboss extends MovableObject {
     }
 
     animate() {
-        let i = 0
+        let intervalIndex = 0
         setInterval(() => {
             if (this.endbossEnergy <= 0) {
                 this.playAnimation(this.IMAGES_DEAD)
             } else {
                 if (this.endbossIntro && !this.introWasPlayed) {
-                    i = 0
+                    intervalIndex = 0
                     this.introWasPlayed = true;
                     this.currentImage = 0;
                 }
-                if (this.endbossIntro && i < 10) {
+                if (this.endbossIntro && intervalIndex < 10) {
                     this.playAnimation(this.IMAGES_INTRO_ANIMATION)
-                    if (i == 10) { this.endbossIntro = false; }
+                    if (intervalIndex == 10) { this.endbossIntro = false; }
                 } else if (this.checkLastNearEndbossTime()) {
                     this.currentImage = this.endbossFightImageCounter
                     this.playAnimation(this.IMAGES_FIGHT)
@@ -104,7 +104,7 @@ class Endboss extends MovableObject {
                     this.playAnimation(this.IMAGES_HIDDEN_ENDBOSS)
                 }
             }
-            i++
+            intervalIndex++
         }, 1000 / 10);
     }
     followCharacter() {

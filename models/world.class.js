@@ -53,7 +53,7 @@ class World {
                 this.underwaterBubble.volume = 0.05
                 this.underwaterBubble.loop = true
             }
-              this.underwaterBubble.play()
+            this.underwaterBubble.play()
         }, 100);
 
     }

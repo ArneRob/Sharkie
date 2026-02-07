@@ -58,9 +58,25 @@ class Character extends MovableObject {
         '../img/1.Sharkie/5.Hurt/1.Poisoned/3.png',
         '../img/1.Sharkie/5.Hurt/1.Poisoned/4.png',
     ];
+    IMAGES_IDLE_LONG = [
+        '../img/1.Sharkie/2.Long_IDLE/i1.png',
+        '../img/1.Sharkie/2.Long_IDLE/i2.png',
+        '../img/1.Sharkie/2.Long_IDLE/i3.png',
+        '../img/1.Sharkie/2.Long_IDLE/i4.png',
+        '../img/1.Sharkie/2.Long_IDLE/i5.png',
+        '../img/1.Sharkie/2.Long_IDLE/i6.png',
+        '../img/1.Sharkie/2.Long_IDLE/i7.png',
+        '../img/1.Sharkie/2.Long_IDLE/i8.png',
+        '../img/1.Sharkie/2.Long_IDLE/i9.png',
+        '../img/1.Sharkie/2.Long_IDLE/i10.png',
+        '../img/1.Sharkie/2.Long_IDLE/i11.png',
+        '../img/1.Sharkie/2.Long_IDLE/i12.png',
+        '../img/1.Sharkie/2.Long_IDLE/i13.png',
+        '../img/1.Sharkie/2.Long_IDLE/I14.png',
+    ];
     world;
     lastSlap = 0;
-
+    idleTimer = 0;
     offset = {
         top: 120,
         left: 50,
@@ -75,8 +91,9 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_SWIM);
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_HURT);
+        this.loadImages(this.IMAGES_IDLE_LONG)
         this.animate();
-
+        this.setTimer()
         this.width = 250
         this.height = 250
 
@@ -86,6 +103,9 @@ class Character extends MovableObject {
 
     animate() {
         setInterval(() => {
+            console.log(this.idleTimer);
+            let passedTime = this.idleTimer + 10000;
+            let nowTime = new Date().getTime();
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD)
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
@@ -98,6 +118,8 @@ class Character extends MovableObject {
                 this.subtractLivePointEndboss()
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT)
+            } else if (nowTime > passedTime) {
+                this.playAnimation(this.IMAGES_IDLE_LONG)
             } else {
                 this.playAnimation(this.IMAGES_SWIMMING)
             }
@@ -108,16 +130,20 @@ class Character extends MovableObject {
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x && !this.isDead()) {
                 this.x += this.speed * 20;
                 this.otherDirection = false;
+                this.setTimer()
             }
             if (this.world.keyboard.LEFT && this.x > 0 && !this.isDead()) {
                 this.x -= this.speed * 20;
                 this.otherDirection = true;
+                this.setTimer()
             } // minus 100 is the offset of the character
             if (this.world.keyboard.UP && !this.isDead() && this.y > 0 - 100) {
                 this.y -= this.speed * 10;
+                this.setTimer()
             }
             if (this.world.keyboard.DOWN && !this.isDead() && this.y < this.world.level.level_end_y) {
                 this.y += this.speed * 10;
+                this.setTimer()
             }
             this.world.camera_x = -this.x + 50
         }, 1000 / 60);
@@ -149,5 +175,8 @@ class Character extends MovableObject {
         if (this.isColliding(this.world.endboss[0]) || this.lastSlap == 0 && this.isColliding(this.world.endboss[0])) {
             this.setEnergyOfEndboss()
         }
+    }
+    setTimer() {
+        this.idleTimer = new Date().getTime();
     }
 }

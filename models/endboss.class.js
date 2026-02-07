@@ -56,8 +56,8 @@ class Endboss extends MovableObject {
     world;
     endbossIntro = false;
     introWasPlayed = false;
-    lastBiteDate = 0;
     endbossFollowInterVal = false;
+    endbossFightImageCounter = 0;
 
     constructor() {
         super().loadImage(this.IMAGES_HIDDEN_ENDBOSS[0])
@@ -85,13 +85,19 @@ class Endboss extends MovableObject {
                     this.introWasPlayed = true;
                     this.currentImage = 0;
                 }
-                if (this.endbossIntro == true && i < 10) {
+                if (this.endbossIntro && i < 10) {
                     this.playAnimation(this.IMAGES_INTRO_ANIMATION)
-                } else if (this.checkLastNearEndbossTime() && this.lastBitePast()) {
+                    if (i == 10) { this.endbossIntro = false; }
+                } else if (this.checkLastNearEndbossTime()) {
+                    this.currentImage = this.endbossFightImageCounter
                     this.playAnimation(this.IMAGES_FIGHT)
                     this.endbossFightSound.play()
-                    this.setLastBite()
-                } else if (this.introWasPlayed && i >= 10) {
+                    this.endbossFightImageCounter++
+
+                    if (this.endbossFightImageCounter >= 6) {
+                        this.endbossFightImageCounter = 0;
+                    }
+                } else if (this.introWasPlayed && i >= 10 && !this.checkLastNearEndbossTime()) {
                     this.playAnimation(this.IMAGES_SWIMMING)
                     this.followCharacter()
                 } else {

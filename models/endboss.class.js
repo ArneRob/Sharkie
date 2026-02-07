@@ -97,7 +97,7 @@ class Endboss extends MovableObject {
                     if (this.endbossFightImageCounter >= 6) {
                         this.endbossFightImageCounter = 0;
                     }
-                } else if (this.introWasPlayed && i >= 10 && !this.checkLastNearEndbossTime()) {
+                } else if (this.introWasPlayed && intervalIndex >= 10 && !this.checkLastNearEndbossTime()) {
                     this.playAnimation(this.IMAGES_SWIMMING)
                     this.followCharacter()
                 } else {

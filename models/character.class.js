@@ -112,7 +112,6 @@ class Character extends MovableObject {
 
     animate() {
         setInterval(() => {
-            console.log(this.idleTimer);
             let passedTime = this.idleTimer + 10000;
             let nowTime = new Date().getTime();
             if (this.isDead()) {

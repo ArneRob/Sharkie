@@ -1,7 +1,7 @@
 class EndbossStatusBar extends DrawableObject {
     IMAGES_LIVE = [
         '../img/4.Marcadores/Purple/0_ .png',
-        '../img/4.Marcadores/Purple/20_ .png',
+        '../img/4.Marcadores/Purple/20__1.png',
         '../img/4.Marcadores/Purple/40_ .png',
         '../img/4.Marcadores/Purple/60_ .png',
         '../img/4.Marcadores/Purple/80_ .png',

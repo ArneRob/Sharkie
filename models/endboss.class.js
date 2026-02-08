@@ -59,6 +59,7 @@ class Endboss extends MovableObject {
     introWasPlayed = false;
     endbossFollowInterVal = false;
     endbossFightImageCounter = 0;
+    interval;
 
     constructor() {
         super().loadImage(this.IMAGES_HIDDEN_ENDBOSS[0])
@@ -81,6 +82,7 @@ class Endboss extends MovableObject {
         setInterval(() => {
             if (this.endbossEnergy <= 0) {
                 this.playAnimation(this.IMAGES_DEAD)
+                clearInterval(this.interval)
             } else {
                 if (this.endbossIntro && !this.introWasPlayed) {
                     intervalIndex = 0
@@ -112,7 +114,8 @@ class Endboss extends MovableObject {
     followCharacter() {
         if (!this.endbossFollowInterVal) {
             this.endbossFollowInterVal = true;
-            setInterval(() => {
+         
+         this.interval = setInterval(() => {
                 if (this.characterX() < this.x) {
                     this.x -= this.speed * 13
                 } else if (this.characterX() > this.x) {
@@ -125,6 +128,7 @@ class Endboss extends MovableObject {
                 }
             }, 1000 / 10);
         }
+        
     }
     check() {
         setInterval(() => {

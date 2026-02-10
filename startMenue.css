@@ -23,6 +23,19 @@
     justify-content: space-between;
 }
 
+.endScreen {
+    position: absolute;
+    top: 300px;
+    width: 720px;
+    height: 480px;
+    background-image: url('./img/6.Botones/Try again/Mesa de trabajo 1.png');
+    background-size: contain;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .splashScreenSettingIcons {
     width: 80px;
 }
@@ -75,6 +88,15 @@
     justify-content: center;
     width: 200px;
     animation: pulse-animation 1.5s infinite ease-in-out;
+}
+
+.endScreenButtonContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    position: absolute;
+    bottom: 100px;
 }
 
 .settingsImgDiv {

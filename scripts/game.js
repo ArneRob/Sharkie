@@ -186,3 +186,13 @@ function exitFullscreen() {
     let fullScreenIcon = document.getElementById('fullScreenIcon')
     fullScreenIcon.addEventListener("click", exitFullscreen)
 }
+
+function getGameOverScreen() {
+
+}
+
+function getGameWonScreen() {
+    let endScreen = document.getElementById('endScreen')
+    endScreen.classList.remove('d_none')
+    endScreen.innerHTML += getRestartIconsTemplate()
+}

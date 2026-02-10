@@ -62,6 +62,7 @@ class World {
             this.checkCollisions()
             this.checkThrowObjects()
             this.checkIfEnemieIsNear()
+            this.checkGameOverCondition()
         }, 40);
         setInterval(() => {
             this.checkForItemCollisions()
@@ -192,6 +193,13 @@ class World {
         sound.onended = () => {
             sound.remove();
         };
+    }
+    checkGameOverCondition() {
+        if (this.level.endboss[0].endbossEnergy == 0) {
+             getGameWonScreen() 
+        } else if (this.character.energy == 0) {
+            getGameOverScreen()
+        }
     }
 }
 

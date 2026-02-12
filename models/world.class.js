@@ -23,6 +23,7 @@ class World {
     bubble
     intervalIds = []
     gameOver = false;
+    currentSound = new Audio('');
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -56,6 +57,7 @@ class World {
                 this.underwaterBubble.volume = 0
                 this.sharkieHurtSound.volume = 0
                 this.endboss[0].endbossFightSound.volume = 0
+                this.currentSound.volume = 0
             } else {
                 this.endboss[0].endbossFightSound.volume = 0.05
                 this.sharkieHurtSound.volume = 0.05
@@ -64,7 +66,7 @@ class World {
             }
             this.underwaterBubble.play()
         }, 100);
-        this.intervalIds.push(soundCheckInterval)
+        // this.intervalIds.push(soundCheckInterval)
     }
     run() {
         let run1Interval = setInterval(() => {
@@ -200,6 +202,7 @@ class World {
         } else {
             sound.volume = 0.2
         }
+        this.currentSound = sound
         sound.play();
         sound.onended = () => {
             sound.remove();

@@ -27,13 +27,18 @@ class JellyFishFlashing extends MovableObject {
     }
 
     animate() {
-        this.moveLeft()
+
         let interval = setInterval(() => {
+            if (this.y >= 500) {
+                this.moveUp()
+            } else if (this.y <= 0) {
+                this.moveDown()
+            }
             let i = this.currentImage % this.IMAGES_SWIMMING.length
             let path = this.IMAGES_SWIMMING[i];
             this.img = this.imageCache[path]
             this.currentImage++;
             this.pushIntervalids(interval, "jellyFishAnimationInterval", this.world)
-        }, 1000 / 5);
+        }, 1000 / 8);
     }
 }

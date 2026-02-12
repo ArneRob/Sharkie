@@ -65,7 +65,7 @@ class MovableObject extends DrawableObject {
     endbossXIntroStart(mo) {
         return this.x + this.width + 180 > mo.x
     }
-    characterBehindMo(mo){
+    characterBehindMo(mo) {
         return this.x + this.width < mo.x + mo.width
     }
     // time passed represents time to to pass every X milliseconds for dmg 
@@ -121,5 +121,11 @@ class MovableObject extends DrawableObject {
         let timePassed = new Date().getTime() - this.lastHit;
         timePassed = timePassed / 1000;
         return timePassed < 1;
+    }
+    moveUp() {
+    this.y -= this.speed * 20;
+    }
+    moveDown() {
+    this.y += this.speed * 20
     }
 }

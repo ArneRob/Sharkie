@@ -21,6 +21,7 @@ class World {
     underwaterBubble = new Audio('../audio/underwaterBubble.mp3')
     sharkieHurtSound = new Audio('../audio/sharkieHurt.mp3')
     bubble
+    intervalIds = []
     gameOver = false;
 
     constructor(canvas, keyboard) {
@@ -44,7 +45,7 @@ class World {
         this.endbossStatusBar.world = this;
     }
     runSounds() {
-        setInterval(() => {
+        let soundCheckInterval = setInterval(() => {
             if (getLocalStorageItem("mute")) {
                 this.underwaterBubble.volume = 0
                 this.sharkieHurtSound.volume = 0
@@ -57,7 +58,7 @@ class World {
             }
             this.underwaterBubble.play()
         }, 100);
-
+        this.intervalIds.push(soundCheckInterval)
     }
     run() {
         setInterval(() => {
@@ -201,10 +202,12 @@ class World {
             this.gameOver = true;
             getGameWonScreen()
             this.playSound('audio/winning_game.mp3')
+            this.intervalIds.forEach(clearInterval)
         } else if (this.character.energy == 0 && this.gameOver == false) {
             this.gameOver = true;
             getGameOverScreen()
             this.playSound('audio/lose_game.mp3')
+            this.intervalIds.forEach(clearInterval)
         }
     }
 }

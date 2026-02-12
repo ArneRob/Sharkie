@@ -54,12 +54,14 @@ class Endboss extends MovableObject {
         bottom: 90,
     };
     endbossOtherDirection = false;
+    endbossAnimationIntervalIsPushed = false;
+    endbossFollowIntervalIsPushed = false;
+    endbossTurnArroundInterval = false;
     world;
     endbossIntro = false;
     introWasPlayed = false;
     endbossFollowInterVal = false;
     endbossFightImageCounter = 0;
-    interval;
 
     constructor() {
         super().loadImage(this.IMAGES_HIDDEN_ENDBOSS[0])
@@ -79,10 +81,9 @@ class Endboss extends MovableObject {
 
     animate() {
         let intervalIndex = 0
-        setInterval(() => {
+        let endbossAnimationInterval = setInterval(() => {
             if (this.endbossEnergy <= 0) {
                 this.playAnimation(this.IMAGES_DEAD)
-                clearInterval(this.interval)
             } else {
                 if (this.endbossIntro && !this.introWasPlayed) {
                     intervalIndex = 0
@@ -107,15 +108,15 @@ class Endboss extends MovableObject {
                 } else {
                     this.playAnimation(this.IMAGES_HIDDEN_ENDBOSS)
                 }
-            }
+            } this.pushIntervalids(endbossAnimationInterval, "endbossAnimationIntervalIsPushed", this.world)
             intervalIndex++
         }, 1000 / 10);
     }
     followCharacter() {
         if (!this.endbossFollowInterVal) {
             this.endbossFollowInterVal = true;
-         
-         this.interval = setInterval(() => {
+
+            let interval = setInterval(() => {
                 if (this.characterX() < this.x) {
                     this.x -= this.speed * 13
                 } else if (this.characterX() > this.x) {
@@ -126,12 +127,13 @@ class Endboss extends MovableObject {
                 } else if (this.characterY() < this.y) {
                     this.y -= this.speed * 13
                 }
+                this.pushIntervalids(interval, "endbossFollowIntervalIsPushed", this.world)
             }, 1000 / 10);
         }
-        
+
     }
     check() {
-        setInterval(() => {
+        let interval = setInterval(() => {
             if (this.world) {
                 if (this.characterBehindMo(this.world.character)) {
                     this.otherDirection = true;
@@ -139,6 +141,7 @@ class Endboss extends MovableObject {
                     this.otherDirection = false;
                 }
             }
+            this.pushIntervalids(interval, "endbossTurnArroundInterval", this.world)
         }, 100);
     }
 

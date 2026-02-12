@@ -40,4 +40,11 @@ class DrawableObject {
         });
     }
 
+    pushIntervalids(interval, flagName, world) {
+        if (world && !this[flagName]) {
+            this[flagName] = true;
+            world.intervalIds.push(interval)
+        }
+    }
+
 }

@@ -200,18 +200,12 @@ class World {
         if (this.level.endboss[0].endbossEnergy == 0 && this.gameOver == false) {
             this.gameOver = true;
             getGameWonScreen()
-            this.playGameWonSound()
-        } else if (this.character.energy == 0) {
+            this.playSound('audio/winning_game.mp3')
+        } else if (this.character.energy == 0 && this.gameOver == false) {
+            this.gameOver = true;
             getGameOverScreen()
+            this.playSound('audio/lose_game.mp3')
         }
-    }
-    playGameWonSound() {
-        let wonAudio = new Audio('audio/winning_game.mp3')
-        wonAudio.volume = 0.05
-        if (getLocalStorageItem("mute")) {
-            wonAudio.volume = 0;
-        }
-        wonAudio.play()
     }
 }
 

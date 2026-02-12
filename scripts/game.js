@@ -188,7 +188,10 @@ function exitFullscreen() {
 }
 
 function getGameOverScreen() {
-
+    let endScreen = document.getElementById('endScreen')
+    endScreen.classList.remove('d_none')
+    endScreen.style.backgroundImage = "url('img/6.Botones/Tittles/Game Over/Recurso 10.png')";
+    endScreen.innerHTML += getRestartIconsTemplate()
 }
 
 function getGameWonScreen() {

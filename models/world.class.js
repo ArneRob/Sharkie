@@ -24,6 +24,8 @@ class World {
     intervalIds = []
     gameOver = false;
     currentSound = new Audio('');
+    endScreenShownTwoSeconds = false;
+    resetGameIsSet = false;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -42,6 +44,7 @@ class World {
         this.setWorldForObjects(this.coin)
         this.setWorldForObjects(this.poisenBottle)
         this.endboss[0].world = this;
+        this.endbossStatusBar.world = this;
         this.endbossStatusBar.world = this;
     }
 
@@ -66,7 +69,6 @@ class World {
             }
             this.underwaterBubble.play()
         }, 100);
-        // this.intervalIds.push(soundCheckInterval)
     }
     run() {
         let run1Interval = setInterval(() => {
@@ -74,10 +76,10 @@ class World {
             this.checkThrowObjects()
             this.checkIfEnemieIsNear()
             this.checkGameOverCondition()
-        }, 40);
+        }, 200);
         let run2Interval = setInterval(() => {
             this.checkForItemCollisions()
-        }, 10);
+        }, 200);
         this.intervalIds.push(run1Interval)
         this.intervalIds.push(run2Interval)
     }
@@ -209,17 +211,39 @@ class World {
         };
     }
     checkGameOverCondition() {
-        if (this.level.endboss[0].endbossEnergy == 0 && this.gameOver == false) {
+        if (this.level.endboss[0].endbossEnergy == 0 && !this.gameOver && !this.resetGameIsSet) {
             this.gameOver = true;
             getGameWonScreen()
             this.playSound('audio/winning_game.mp3')
             this.intervalIds.forEach(clearInterval)
-        } else if (this.character.energy == 0 && this.gameOver == false) {
+            this.delayedEndScreenShowBooleanOnTrue()
+        } else if (this.character.energy == 0 && !this.gameOver) {
             this.gameOver = true;
             getGameOverScreen()
             this.playSound('audio/lose_game.mp3')
             this.intervalIds.forEach(clearInterval)
+            this.delayedEndScreenShowBooleanOnTrue()
         }
+        this.resetGame()
+    }
+    resetGame() {
+        let interval = setInterval(() => {
+            if (this.gameOver && this.keyboard.SPACE && this.endScreenShownTwoSeconds && !this.resetGameIsSet) {
+                this.resetGameIsSet = true;
+                this.underwaterBubble.remove();
+                this.currentSound.remove();
+                restartGame()
+                console.log("reset");
+                
+                clearInterval(interval)
+            }
+        }, 200);
+    }
+
+    delayedEndScreenShowBooleanOnTrue() {
+        setTimeout(() => {
+            this.endScreenShownTwoSeconds = true;
+        }, 2000);
     }
 }
 

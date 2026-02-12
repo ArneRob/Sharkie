@@ -48,7 +48,7 @@ function getSettingIconsTemplate() {
 function getRestartIconsTemplate() {
     return `
             <div class="endScreenButtonContainer">
-                <img class="splashScreenStartButton selector " src="./img/6.Botones/Try again/Recurso 15.png" alt="" onclick="startGame()">
+                <img class="splashScreenStartButton selector " src="./img/6.Botones/Try again/Recurso 15.png" alt="" onclick="restartGame()">
                 <img class="splashScreenSpaceBarIcon selector " src="./img/6.Botones/Key/Space Bar key.png" alt="">
             </div>
          `

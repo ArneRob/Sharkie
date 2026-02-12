@@ -9,6 +9,7 @@ class EndbossStatusBar extends DrawableObject {
     ];
     world;
     percentage = 100;
+    checkIntroEndbossInterval = false;
 
     constructor() {
         super();
@@ -28,10 +29,11 @@ class EndbossStatusBar extends DrawableObject {
         this.img = this.imageCache[path];
     }
     checkIntroOver() {
-        setInterval(() => {
+        let interval = setInterval(() => {
             if (this.world.endboss[0].introWasPlayed) {
                 this.showEndbossStatusBar()
             }
+            this.pushIntervalids(interval, "checkIntroEndbossInterval", this.world)
         }, 200);
 
     }

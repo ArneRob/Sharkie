@@ -21,6 +21,8 @@ class World {
     underwaterBubble = new Audio('../audio/underwaterBubble.mp3')
     sharkieHurtSound = new Audio('../audio/sharkieHurt.mp3')
     bubble
+    gameOver = false;
+
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -195,11 +197,21 @@ class World {
         };
     }
     checkGameOverCondition() {
-        if (this.level.endboss[0].endbossEnergy == 0) {
-             getGameWonScreen() 
+        if (this.level.endboss[0].endbossEnergy == 0 && this.gameOver == false) {
+            this.gameOver = true;
+            getGameWonScreen()
+            this.playGameWonSound()
         } else if (this.character.energy == 0) {
             getGameOverScreen()
         }
+    }
+    playGameWonSound() {
+        let wonAudio = new Audio('audio/winning_game.mp3')
+        wonAudio.volume = 0.05
+        if (getLocalStorageItem("mute")) {
+            wonAudio.volume = 0;
+        }
+        wonAudio.play()
     }
 }
 

@@ -12,6 +12,7 @@ class JellyFish extends MovableObject {
         right: 30,
         bottom: 20,
     };
+    jellyFishAnimationInterval = false;
 
     constructor() {
         super().loadImage('../img/2.Enemy/2 Jelly fish/Regular damage/Lila 1.png')
@@ -27,11 +28,12 @@ class JellyFish extends MovableObject {
 
     animate() {
         this.moveLeft()
-        setInterval(() => {
+        let interval = setInterval(() => {
             let i = this.currentImage % this.IMAGES_SWIMMING.length
             let path = this.IMAGES_SWIMMING[i];
             this.img = this.imageCache[path]
             this.currentImage++;
+            this.pushIntervalids(interval, "jellyFishAnimationInterval", this.world)
         }, 1000 / 5);
     }
 }

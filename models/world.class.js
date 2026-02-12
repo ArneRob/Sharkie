@@ -38,12 +38,18 @@ class World {
 
     setWorld() {
         this.character.world = this;
-        for (let index = 0; index < this.coin.length; index++) {
-            this.coin[index].setWorld(this);
-        };
+        this.setWorldForObjects(this.coin)
+        this.setWorldForObjects(this.poisenBottle)
         this.endboss[0].world = this;
         this.endbossStatusBar.world = this;
     }
+
+    setWorldForObjects(item) {
+        for (let index = 0; index < item.length; index++) {
+            item[index].setWorld(this);
+        };
+    }
+    
     runSounds() {
         let soundCheckInterval = setInterval(() => {
             if (getLocalStorageItem("mute")) {

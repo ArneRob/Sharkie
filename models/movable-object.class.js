@@ -10,6 +10,8 @@ class MovableObject extends DrawableObject {
     lastHit = 0;
     lastNear = 0;
     lastHitDate = 0;
+    applyGravityInterval = false;
+    moveLeftInterval = false;
     offset = {
         top: 0,
         left: 0,
@@ -17,16 +19,18 @@ class MovableObject extends DrawableObject {
         bottom: 0,
     };
     moveLeft() {
-        setInterval(() => {
+        let interval = setInterval(() => {
             this.x -= this.speed;
+            this.pushIntervalids(interval, "moveLeftInterval", this.world)
         }, 1000 / 60);
     }
 
     applyGravity() {
-        setInterval(() => {
+        let interval = setInterval(() => {
             {
                 this.y -= this.speedY
                 this.speedY += this.acceleration;
+                this.pushIntervalids(interval, "applyGravityInterval", this.world)
             }
         }, 1000 / 30);
     }

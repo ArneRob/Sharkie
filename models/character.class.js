@@ -86,6 +86,8 @@ class Character extends MovableObject {
     slapCounter = 0;
     stayAndSlap = false;
     swimAndSlap = false;
+    characterAnimationInterval = false;
+    keyListenerInterval = false;
     offset = {
         top: 120,
         left: 50,
@@ -112,7 +114,7 @@ class Character extends MovableObject {
     }
 
     animate() {
-        setInterval(() => {
+        let interval = setInterval(() => {
             if(this.space()) {this.spacePressed()}
             let passedTime = this.idleTimer + 10000;
             let nowTime = new Date().getTime();
@@ -151,9 +153,9 @@ class Character extends MovableObject {
             } else if (!this.stayAndSlap && !this.swimAndSlap) {
                 this.playAnimation(this.IMAGES_SWIMMING)
             }
-
+            this.pushIntervalids(interval, "characterAnimationInterval", this.world)
         }, 1000 / 9);
-        setInterval(() => {
+        let keyListenerInterval = setInterval(() => {
 
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x && !this.isDead()) {
                 this.x += this.speed * 20;
@@ -174,6 +176,7 @@ class Character extends MovableObject {
                 this.setTimer()
             }
             this.world.camera_x = -this.x + 50
+            this.pushIntervalids(keyListenerInterval, "keyListenerInterval", this.world)
         }, 1000 / 60);
     }
     spacePressed() {

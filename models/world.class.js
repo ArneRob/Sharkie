@@ -49,7 +49,7 @@ class World {
             item[index].setWorld(this);
         };
     }
-    
+
     runSounds() {
         let soundCheckInterval = setInterval(() => {
             if (getLocalStorageItem("mute")) {
@@ -67,15 +67,17 @@ class World {
         this.intervalIds.push(soundCheckInterval)
     }
     run() {
-        setInterval(() => {
+        let run1Interval = setInterval(() => {
             this.checkCollisions()
             this.checkThrowObjects()
             this.checkIfEnemieIsNear()
             this.checkGameOverCondition()
         }, 40);
-        setInterval(() => {
+        let run2Interval = setInterval(() => {
             this.checkForItemCollisions()
         }, 10);
+        this.intervalIds.push(run1Interval)
+        this.intervalIds.push(run2Interval)
     }
     checkThrowObjects() {
         if (this.keyboard.F && this.character.collectedPoisenBottle > 0) {

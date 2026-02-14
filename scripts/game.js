@@ -213,52 +213,8 @@ function restartGame() {
 }
 
 function resetGame() {
-    resetMovableVar()
-    // resetCharacterVar()
-    // resetWorldVar()
     world = "";
     canvas = ""
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
-}
-
-function resetMovableVar() {
-     world.character.energy = 100;
-     world.character.endbossEnergy = 100;
-     world.endboss[0].endbossEnergy = 100
-}
-
-function resetWorldVar() {
-    world.coin = level1.coin;
-    world.poisenBottle = level1.poisenBottle
-    world.level = level1;
-    world.enemies = level1.enemies;
-    world.endboss = level1.endboss;
-    world.backgroundObjects = level1.backgroundObjects;
-    world.light = level1.light;
-    world.canvas;
-    world.ctx;
-    world.keyboard;
-    world.camera_x = 0;
-    world.throwableObjects = []
-    world.coinSound = '../audio/coinSound.mp3'
-    world.poisenBottleSound = '../audio/poisenBottleSound.mp3'
-    world.bubble
-    world.intervalIds = []
-    world.gameOver = false;
-    world.endScreenShownTwoSeconds = false;
-    world.resetGameIsSet = false;
-}
-
-function resetCharacterVar() {
-    world.character.world;
-    world.character.lastSlap = 0;
-    world.character.idleTimer = 0;
-    world.character.IdleCounter = 0;
-    world.character.idleSleep;
-    world.character.slapCounter = 0;
-    world.character.stayAndSlap = false;
-    world.character.swimAndSlap = false;
-    world.character.characterAnimationInterval = false;
-    world.character.keyListenerInterval = false;
 }

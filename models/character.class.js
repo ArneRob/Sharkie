@@ -78,7 +78,6 @@ class Character extends MovableObject {
         '../img/1.Sharkie/2.Long_IDLE/i13.png',
         '../img/1.Sharkie/2.Long_IDLE/I14.png',
     ];
-    world;
     lastSlap = 0;
     idleTimer = 0;
     IdleCounter = 0;
@@ -120,7 +119,7 @@ class Character extends MovableObject {
             let nowTime = new Date().getTime();
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD)
-            } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+            } else if (world.keyboard.RIGHT || world.keyboard.LEFT) {
                 this.playAnimation(this.IMAGES_SWIM)
             } else if (this.space() && !this.stayAndSlap) {
                 this.stayAndSlap = true;
@@ -153,30 +152,30 @@ class Character extends MovableObject {
             } else if (!this.stayAndSlap && !this.swimAndSlap) {
                 this.playAnimation(this.IMAGES_SWIMMING)
             }
-            this.pushIntervalids(interval, "characterAnimationInterval", this.world)
+            this.pushIntervalids(interval, "characterAnimationInterval", world)
         }, 1000 / 9);
         let keyListenerInterval = setInterval(() => {
 
-            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x && !this.isDead()) {
+            if (world.keyboard.RIGHT && this.x < world.level.level_end_x && !this.isDead()) {
                 this.x += this.speed * 20;
                 this.otherDirection = false;
                 this.setTimer()
-            }
-            if (this.world.keyboard.LEFT && this.x > 0 && !this.isDead()) {
+             }
+            if (world.keyboard.LEFT && this.x > 0 && !this.isDead()) {
                 this.x -= this.speed * 20;
                 this.otherDirection = true;
                 this.setTimer()
             } // minus 100 is the offset of the character
-            if (this.world.keyboard.UP && !this.isDead() && this.y > 0 - 100) {
+            if (world.keyboard.UP && !this.isDead() && this.y > 0 - 100) {
                 this.y -= this.speed * 10;
                 this.setTimer()
             }
-            if (this.world.keyboard.DOWN && !this.isDead() && this.y < this.world.level.level_end_y) {
+            if (world.keyboard.DOWN && !this.isDead() && this.y < world.level.level_end_y) {
                 this.y += this.speed * 10;
                 this.setTimer()
             }
-            this.world.camera_x = -this.x + 50
-            this.pushIntervalids(keyListenerInterval, "keyListenerInterval", this.world)
+            world.camera_x = -this.x + 50
+            this.pushIntervalids(keyListenerInterval, "keyListenerInterval", world)
         }, 1000 / 60);
     }
     spacePressed() {
@@ -187,8 +186,8 @@ class Character extends MovableObject {
         return this.spaceWasPressed + 1000 > nowTime
     }
     setEnergyOfEndboss() {
-        this.world.endboss[0].endbossEnergy -= 20
-        this.world.endbossStatusBar.setPercentage(this.world.endboss[0].endbossEnergy)
+        world.endboss[0].endbossEnergy -= 20
+        world.endbossStatusBar.setPercentage(world.endboss[0].endbossEnergy)
     }
     slapTimePassed() {
         let nowTime = new Date().getTime()
@@ -198,10 +197,10 @@ class Character extends MovableObject {
         this.lastSlap = new Date().getTime()
     }
     space() {
-        return this.world.keyboard.SPACE
+        return world.keyboard.SPACE
     }
     subtractLivePointEndboss() {
-        if (this.isColliding(this.world.endboss[0]) || this.lastSlap == 0 && this.isColliding(this.world.endboss[0])) {
+        if (this.isColliding(world.endboss[0]) || this.lastSlap == 0 && this.isColliding(world.endboss[0])) {
             this.setEnergyOfEndboss()
         }
     }

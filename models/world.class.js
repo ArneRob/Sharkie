@@ -40,7 +40,6 @@ class World {
     }
 
     setWorld() {
-        this.character.world = this;
         this.setWorldForObjects(this.coin)
         this.setWorldForObjects(this.poisenBottle)
         this.endboss[0].world = this;

@@ -32,25 +32,10 @@ class World {
         this.canvas = canvas;
         this.keyboard = keyboard;
         this.draw();
-        this.setWorld();
         this.checkCollisions();
         this.checkForItemCollisions();
         this.run()
         this.runSounds()
-    }
-
-    setWorld() {
-        this.setWorldForObjects(this.coin)
-        this.setWorldForObjects(this.poisenBottle)
-        this.endboss[0].world = this;
-        this.endbossStatusBar.world = this;
-        this.endbossStatusBar.world = this;
-    }
-
-    setWorldForObjects(item) {
-        for (let index = 0; index < item.length; index++) {
-            item[index].setWorld(this);
-        };
     }
 
     runSounds() {

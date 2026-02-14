@@ -21,7 +21,7 @@ class MovableObject extends DrawableObject {
     moveLeft() {
         let interval = setInterval(() => {
             this.x -= this.speed;
-            this.pushIntervalids(interval, "moveLeftInterval", this.world)
+            this.pushIntervalids(interval, "moveLeftInterval", world)
         }, 1000 / 60);
     }
 
@@ -30,7 +30,7 @@ class MovableObject extends DrawableObject {
             {
                 this.y -= this.speedY
                 this.speedY += this.acceleration;
-                this.pushIntervalids(interval, "applyGravityInterval", this.world)
+                this.pushIntervalids(interval, "applyGravityInterval", world)
             }
         }, 1000 / 30);
     }

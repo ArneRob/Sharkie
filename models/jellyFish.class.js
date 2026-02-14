@@ -33,7 +33,7 @@ class JellyFish extends MovableObject {
             let path = this.IMAGES_SWIMMING[i];
             this.img = this.imageCache[path]
             this.currentImage++;
-            this.pushIntervalids(interval, "jellyFishAnimationInterval", this.world)
+            this.pushIntervalids(interval, "jellyFishAnimationInterval", world)
         }, 1000 / 5);
     }
 }

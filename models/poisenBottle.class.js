@@ -12,7 +12,6 @@ class PoisenBottle extends DrawableObject {
         right: 0,
         bottom: 0,
     };
-    world;
     poisenBottleAnimateInterval = false;
     constructor(x, y) {
         super().loadImage('../img/4.Marcadores/Posión/Animada/1.png')
@@ -25,20 +24,13 @@ class PoisenBottle extends DrawableObject {
         this.animate()
     }
 
-    setWorld(world) {
-        this.world = world
-        this.getXCoordinate()
-    }
-    getXCoordinate() {
-        // world = this.world
-    }
     animate() {
        let interval = setInterval(() => {
             let i = this.currentImage % this.IMAGES_POISEN.length
             let path = this.IMAGES_POISEN[i];
             this.img = this.imageCache[path]
             this.currentImage++;
-            this.pushIntervalids(interval, "poisenBottleAnimateInterval", this.world)
+            this.pushIntervalids(interval, "poisenBottleAnimateInterval", world)
         }, 1000 / 6);
     }
 }

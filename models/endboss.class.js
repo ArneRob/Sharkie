@@ -57,7 +57,6 @@ class Endboss extends MovableObject {
     endbossAnimationIntervalIsPushed = false;
     endbossFollowIntervalIsPushed = false;
     endbossTurnArroundInterval = false;
-    world;
     endbossIntro = false;
     introWasPlayed = false;
     endbossFollowInterVal = false;
@@ -108,7 +107,7 @@ class Endboss extends MovableObject {
                 } else {
                     this.playAnimation(this.IMAGES_HIDDEN_ENDBOSS)
                 }
-            } this.pushIntervalids(endbossAnimationInterval, "endbossAnimationIntervalIsPushed", this.world)
+            } this.pushIntervalids(endbossAnimationInterval, "endbossAnimationIntervalIsPushed", world)
             intervalIndex++
         }, 1000 / 10);
     }
@@ -127,29 +126,29 @@ class Endboss extends MovableObject {
                 } else if (this.characterY() < this.y) {
                     this.y -= this.speed * 13
                 }
-                this.pushIntervalids(interval, "endbossFollowIntervalIsPushed", this.world)
+                this.pushIntervalids(interval, "endbossFollowIntervalIsPushed", world)
             }, 1000 / 10);
         }
 
     }
     check() {
         let interval = setInterval(() => {
-            if (this.world) {
-                if (this.characterBehindMo(this.world.character)) {
+            if (world) {
+                if (this.characterBehindMo(world.character)) {
                     this.otherDirection = true;
                 } else {
                     this.otherDirection = false;
                 }
             }
-            this.pushIntervalids(interval, "endbossTurnArroundInterval", this.world)
+            this.pushIntervalids(interval, "endbossTurnArroundInterval", world)
         }, 100);
     }
 
     characterX() {
-        return this.world.character.x
+        return world.character.x
     }
     characterY() {
-        let offset = this.world.character.y - 100
+        let offset = world.character.y - 100
         return offset
     }
 }

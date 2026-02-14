@@ -12,7 +12,6 @@ class Coin extends DrawableObject {
         right: 0,
         bottom: 0,
     };
-    world;
     coinAnimationInterval = false;
     constructor(x, y) {
         super().loadImage('../img/4.Marcadores/1. Coins/1.png')
@@ -25,16 +24,13 @@ class Coin extends DrawableObject {
         this.animate()
     }
 
-    setWorld(world) {
-        this.world = world
-    }
     animate() {
         let interval = setInterval(() => {
             let i = this.currentImage % this.IMAGES_COINS.length
             let path = this.IMAGES_COINS[i];
             this.img = this.imageCache[path]
             this.currentImage++;
-            this.pushIntervalids(interval, "coinAnimationInterval", this.world)
+            this.pushIntervalids(interval, "coinAnimationInterval", world)
         }, 1000 / 6);
     }
 }

@@ -216,10 +216,9 @@ class World {
                 this.resetGameIsSet = true;
                 this.underwaterBubble.remove();
                 this.currentSound.remove();
-                restartGame()
-                console.log("reset");
-                
+
                 clearInterval(interval)
+                restartGame()
             }
         }, 200);
     }

@@ -210,6 +210,7 @@ function restartGame() {
     resetGame()
     gameOverScreenOff()
     canvasOn()
+    console.log("reset");
 }
 
 function resetGame() {

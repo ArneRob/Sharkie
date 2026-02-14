@@ -206,12 +206,14 @@ class World {
             this.playSound('audio/winning_game.mp3')
             this.intervalIds.forEach(clearInterval)
             this.delayedEndScreenShowBooleanOnTrue()
+            this.restartTheGameEventlistener()
         } else if (this.character.energy == 0 && !this.gameOver) {
             this.gameOver = true;
             getGameOverScreen()
             this.playSound('audio/lose_game.mp3')
             this.intervalIds.forEach(clearInterval)
             this.delayedEndScreenShowBooleanOnTrue()
+            restartTheGameEventlistener()
         }
         if (!this.resetGameInterval) {
             this.resetGameInterval = true;
@@ -221,10 +223,7 @@ class World {
     checkResetGame() {
         let interval = setInterval(() => {
             if (this.gameOver && this.keyboard.SPACE && this.endScreenShownTwoSeconds && !this.resetGameIsSet) {
-                this.resetGameIsSet = true;
-                this.underwaterBubble.remove();
-                this.currentSound.remove();
-                this.stopRequestAnimationFrame = true;
+                this.initRestartGame()
                 clearInterval(interval)
                 restartGame()
             }
@@ -236,5 +235,20 @@ class World {
             this.endScreenShownTwoSeconds = true;
         }, 2000);
     }
+    restartWithMouseClick() {
+        this.initRestartGame()
+        restartGame()
+    }
+    initRestartGame() {
+        this.resetGameIsSet = true;
+        this.underwaterBubble.remove();
+        this.currentSound.remove();
+        this.stopRequestAnimationFrame = true;
+    }
+    restartTheGameEventlistener() {
+        let splashScreenStartButton = document.getElementById('splashScreenStartButton')
+        splashScreenStartButton.addEventListener('click', this.restartWithMouseClick);
+    }
+
 }
 

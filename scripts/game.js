@@ -13,6 +13,7 @@ function startGame() {
     startMenueOff()
     getSettingIconsInGame()
     canvas = document.getElementById('canvas');
+    initLevel1()
     world = new World(canvas, keyboard);
 }
 
@@ -214,11 +215,6 @@ function restartGame() {
 }
 
 function resetGameVar() {
-    // world.level = level1
-    // world.endboss[0] = new Endboss()
-    // canvas = ""
-    // world = ""
-    // canvas = document.getElementById('canvas');
-    // world = new World(canvas, keyboard);
-    location.reload()
+    initLevel1()
+    world = new World(canvas, keyboard)
 }

@@ -122,10 +122,4 @@ class MovableObject extends DrawableObject {
         timePassed = timePassed / 1000;
         return timePassed < 1;
     }
-    moveUp() {
-    this.y -= this.speed * 20;
-    }
-    moveDown() {
-    this.y += this.speed * 20
-    }
 }

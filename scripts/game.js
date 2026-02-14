@@ -207,15 +207,18 @@ function gameOverScreenOff() {
 }
 
 function restartGame() {
-    resetGame()
+    resetGameVar()
     gameOverScreenOff()
     canvasOn()
     console.log("reset");
 }
 
-function resetGame() {
-    world = "";
-    canvas = ""
-    canvas = document.getElementById('canvas');
-    world = new World(canvas, keyboard);
+function resetGameVar() {
+    // world.level = level1
+    // world.endboss[0] = new Endboss()
+    // canvas = ""
+    // world = ""
+    // canvas = document.getElementById('canvas');
+    // world = new World(canvas, keyboard);
+    location.reload()
 }

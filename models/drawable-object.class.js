@@ -16,7 +16,7 @@ class DrawableObject {
     }
 
     drawFrame(ctx) {
-        if (this instanceof Character || this instanceof JellyFish || this instanceof Endboss) {
+        if (this instanceof Character || this instanceof JellyFish || this instanceof Endboss || this instanceof JellyFishFlashing) {
             ctx.beginPath();
             ctx.lineWidth = '5';
             ctx.strokeStyle = 'blue';

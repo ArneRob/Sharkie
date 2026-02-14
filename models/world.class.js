@@ -26,6 +26,8 @@ class World {
     currentSound = new Audio('');
     endScreenShownTwoSeconds = false;
     resetGameIsSet = false;
+    resetGameInterval = false;
+    stopRequestAnimationFrame = false;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -147,10 +149,13 @@ class World {
         this.addToMap(this.character);
 
         this.ctx.translate(-this.camera_x, 0);
+
         let self = this;
-        requestAnimationFrame(function () {
-            self.draw();
-        });
+        if (!this.stopRequestAnimationFrame) {
+            requestAnimationFrame(function () {
+                self.draw();
+            });
+        }
     }
 
     addObjectsToMap(objects) {
@@ -208,15 +213,18 @@ class World {
             this.intervalIds.forEach(clearInterval)
             this.delayedEndScreenShowBooleanOnTrue()
         }
-        this.resetGame()
+        if (!this.resetGameInterval) {
+            this.resetGameInterval = true;
+            this.checkResetGame()
+        }
     }
-    resetGame() {
+    checkResetGame() {
         let interval = setInterval(() => {
             if (this.gameOver && this.keyboard.SPACE && this.endScreenShownTwoSeconds && !this.resetGameIsSet) {
                 this.resetGameIsSet = true;
                 this.underwaterBubble.remove();
                 this.currentSound.remove();
-
+                this.stopRequestAnimationFrame = true;
                 clearInterval(interval)
                 restartGame()
             }

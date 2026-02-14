@@ -7,9 +7,9 @@ class JellyFishFlashing extends MovableObject {
         'img/2.Enemy/2 Jelly fish/Súper dangerous/Green 4.png',
     ];
     offset = {
-        top: -10,
-        left: -15,
-        right: 30,
+        top: 10,
+        left: 15,
+        right: 15,
         bottom: 20,
     };
     jellyFishAnimationInterval = false;
@@ -29,11 +29,6 @@ class JellyFishFlashing extends MovableObject {
     animate() {
 
         let interval = setInterval(() => {
-            if (this.y >= 500) {
-                this.moveUp()
-            } else if (this.y <= 0) {
-                this.moveDown()
-            }
             let i = this.currentImage % this.IMAGES_SWIMMING.length
             let path = this.IMAGES_SWIMMING[i];
             this.img = this.imageCache[path]

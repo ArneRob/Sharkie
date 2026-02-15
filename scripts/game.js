@@ -218,3 +218,8 @@ function resetGameVar() {
     initLevel1()
     world = new World(canvas, keyboard)
 }
+
+function restartTheGameEventlistener() {
+        let splashScreenStartButton = document.getElementById('splashScreenStartButton')
+        splashScreenStartButton.addEventListener('click', world.restartWithMouseClick);
+    }

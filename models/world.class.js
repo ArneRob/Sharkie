@@ -206,7 +206,7 @@ class World {
             this.playSound('audio/winning_game.mp3')
             this.intervalIds.forEach(clearInterval)
             this.delayedEndScreenShowBooleanOnTrue()
-            this.restartTheGameEventlistener()
+            restartTheGameEventlistener()
         } else if (this.character.energy == 0 && !this.gameOver) {
             this.gameOver = true;
             getGameOverScreen()
@@ -236,18 +236,16 @@ class World {
         }, 2000);
     }
     restartWithMouseClick() {
-        this.initRestartGame()
-        restartGame()
+        if (this.gameOver) {
+            this.initRestartGame()
+            restartGame()
+        }
     }
     initRestartGame() {
         this.resetGameIsSet = true;
-        this.underwaterBubble.remove();
-        this.currentSound.remove();
+        underwaterBubble = new Audio('../audio/underwaterBubble.mp3')
+        this.currentSound = "";
         this.stopRequestAnimationFrame = true;
-    }
-    restartTheGameEventlistener() {
-        let splashScreenStartButton = document.getElementById('splashScreenStartButton')
-        splashScreenStartButton.addEventListener('click', this.restartWithMouseClick);
     }
 
 }

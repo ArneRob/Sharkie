@@ -43,10 +43,15 @@ class World {
     }
 
     runSounds() {
-        this.createAudio(this.underwaterBubble)
+        if (!getLocalStorageItem("backgroundBubble")) {
+            this.createAudio(this.underwaterBubble)
+            setItemToLocalStorage("backgroundBubble")
+        }
         let soundCheckInterval = setInterval(() => {
             if (getLocalStorageItem("mute")) {
-                this.backgroundAudio.volume = 0
+                if (this.backgroundAudio) {
+                    this.backgroundAudio.volume = 0
+                }
                 this.sharkieHurtSound.volume = 0
                 this.endboss[0].endbossFightSound.volume = 0
                 this.currentSound.volume = 0
@@ -54,7 +59,9 @@ class World {
             } else {
                 this.endboss[0].endbossFightSound.volume = 0.05
                 this.sharkieHurtSound.volume = 0.05
-                this.backgroundAudio.volume = 0.05
+                if (this.backgroundAudio) {
+                    this.backgroundAudio.volume = 0.05
+                }
                 this.volume = 0.05
             }
         }, 100);
@@ -246,14 +253,12 @@ class World {
     }
     initRestartGame() {
         this.resetGameIsSet = true;
-        this.backgroundAudio.remove()
-        this.backgroundAudio.loop = false
         this.currentSound.volume = 0
         this.stopRequestAnimationFrame = true;
     }
 
     createAudio(audioSrc) {
-        this.backgroundAudio = document.createElement("audio")
+        this.backgroundAudio = document.createElement("AUDIO")
         this.backgroundAudio.id = "audio"
         this.backgroundAudio.src = audioSrc
         this.backgroundAudio.play()

@@ -216,7 +216,7 @@ function restartGame() {
 }
 
 function resetGameVar() {
-    initLevel1()
+    initLevel1();
     world = new World(canvas, keyboard)
 }
 

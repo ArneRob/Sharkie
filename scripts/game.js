@@ -2,11 +2,6 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
-let jFishObj = {
-    jellyFlashCounter: 0,
-    savedXForFlashingJelly: 0,
-    jFishMultiplikator: 1,
-}
 
 function init() {
     showMainMenue()

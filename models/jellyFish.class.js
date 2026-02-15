@@ -7,22 +7,22 @@ class JellyFish extends MovableObject {
         '../img/2.Enemy/2 Jelly fish/Regular damage/Lila 4.png',
     ];
     offset = {
-        top: -10,
-        left: -15,
-        right: 30,
-        bottom: 20,
+        top: 12,
+        left: 15,
+        right: 15,
+        bottom: 15,
     };
     jellyFishAnimationInterval = false;
 
     constructor() {
         super().loadImage('../img/2.Enemy/2 Jelly fish/Regular damage/Lila 1.png')
         this.loadImages(this.IMAGES_SWIMMING);
-        this.x = 400 + Math.random() * 400
+        this.x = 400
         this.y = Math.random() * 400
         this.speed = 0.15 + Math.random() * 0.25
         this.width = 80
         this.height = 80
-
+        this.getNewXCoordinate(jFishObj, 1)
         this.animate()
     }
 

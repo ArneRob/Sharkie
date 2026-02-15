@@ -124,22 +124,22 @@ class MovableObject extends DrawableObject {
         return timePassed < 1;
     }
 
-    getNewXCoordinate() {
-        if (jFishObj.jellyFlashCounter == 0) {
-            this.x = this.makeNewNumber()
-            jFishObj.savedXForFlashingJelly = this.x
-            jFishObj.jellyFlashCounter++
+    getNewXCoordinate(obj, counter) {
+        if (obj.jellyFlashCounter == 0) {
+            this.x = this.makeNewNumber(obj)
+            obj.savedXForFlashingJelly = this.x
+            obj.jellyFlashCounter++
         } else {
-            this.x = jFishObj.savedXForFlashingJelly
-            jFishObj.jellyFlashCounter++
+            this.x = obj.savedXForFlashingJelly
+            obj.jellyFlashCounter++
         }
-        if (jFishObj.jellyFlashCounter >= 3) {
-            jFishObj.jellyFlashCounter = 0
-            jFishObj.jFishMultiplikator++
+        if (obj.jellyFlashCounter >= counter) {
+            obj.jellyFlashCounter = 0
+            obj.jFishMultiplikator++
         }
     }
 
-    makeNewNumber() {
-        return (this.x * jFishObj.jFishMultiplikator) + (Math.random() * 20)
+    makeNewNumber(obj) {
+        return (this.x * obj.jFishMultiplikator) + (Math.random() * 20)
     }
 }

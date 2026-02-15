@@ -142,4 +142,9 @@ class MovableObject extends DrawableObject {
     makeNewNumber(obj, axis) {
         return (this[`${axis}`] * obj.jFishMultiplikator) + (Math.random() * 20)
     }
+
+    getNewYCoordinate(obj, axis) {
+        let y = (obj.jellyFlashCounter * this[`${axis}`]) + (Math.random() * 100)
+        this[`${axis}`] = y
+    }
 }

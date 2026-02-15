@@ -18,13 +18,14 @@ class JellyFishFlashing extends MovableObject {
         super().loadImage('../img/2.Enemy/2 Jelly fish/Dead/Pink/P1.png')
         this.loadImages(this.IMAGES_SWIMMING);
         this.x = 400
-        this.y = Math.random() * 400
+        this.y = 150
         this.speed = 0.15
         this.width = 80
         this.height = 80
 
         this.animate()
         this.getNewAxisCoordinate(jFishFlashObj, 3, "x")
+        this.getNewYCoordinate(jFishFlashObj, "y")
     }
 
     animate() {

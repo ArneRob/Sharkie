@@ -18,7 +18,8 @@ class World {
     throwableObjects = []
     coinSound = '../audio/coinSound.mp3'
     poisenBottleSound = '../audio/poisenBottleSound.mp3'
-    underwaterBubble = new Audio('../audio/underwaterBubble.mp3')
+    backgroundAudio;
+    underwaterBubble = ('../audio/underwaterBubble.mp3')
     sharkieHurtSound = new Audio('../audio/sharkieHurt.mp3')
     bubble
     intervalIds = []
@@ -28,6 +29,7 @@ class World {
     resetGameIsSet = false;
     resetGameInterval = false;
     stopRequestAnimationFrame = false;
+    volume = 0;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -41,19 +43,20 @@ class World {
     }
 
     runSounds() {
+        this.createAudio(this.underwaterBubble)
         let soundCheckInterval = setInterval(() => {
             if (getLocalStorageItem("mute")) {
-                this.underwaterBubble.volume = 0
+                this.backgroundAudio.volume = 0
                 this.sharkieHurtSound.volume = 0
                 this.endboss[0].endbossFightSound.volume = 0
                 this.currentSound.volume = 0
+                this.volume = 0;
             } else {
                 this.endboss[0].endbossFightSound.volume = 0.05
                 this.sharkieHurtSound.volume = 0.05
-                this.underwaterBubble.volume = 0.05
-                this.underwaterBubble.loop = true
+                this.backgroundAudio.volume = 0.05
+                this.volume = 0.05
             }
-            this.underwaterBubble.play()
         }, 100);
     }
     run() {
@@ -243,9 +246,19 @@ class World {
     }
     initRestartGame() {
         this.resetGameIsSet = true;
-        underwaterBubble = new Audio('../audio/underwaterBubble.mp3')
-        this.currentSound = "";
+        this.backgroundAudio.remove()
+        this.backgroundAudio.loop = false
+        this.currentSound.volume = 0
         this.stopRequestAnimationFrame = true;
+    }
+
+    createAudio(audioSrc) {
+        this.backgroundAudio = document.createElement("audio")
+        this.backgroundAudio.id = "audio"
+        this.backgroundAudio.src = audioSrc
+        this.backgroundAudio.play()
+        this.backgroundAudio.loop = true
+        this.backgroundAudio.volume = this.volume
     }
 
 }

@@ -220,6 +220,6 @@ function resetGameVar() {
 }
 
 function restartTheGameEventlistener() {
-        let splashScreenStartButton = document.getElementById('splashScreenStartButton')
-        splashScreenStartButton.addEventListener('click', world.restartWithMouseClick);
-    }
+    let splashScreenStartButton = document.getElementById('splashScreenStartButton')
+    splashScreenStartButton.addEventListener('click', world.restartWithMouseClick);
+}

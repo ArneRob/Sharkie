@@ -114,7 +114,7 @@ class Character extends MovableObject {
 
     animate() {
         let interval = setInterval(() => {
-            if(this.space()) {this.spacePressed()}
+            if (this.space()) { this.spacePressed() }
             let passedTime = this.idleTimer + 10000;
             let nowTime = new Date().getTime();
             if (this.isDead()) {
@@ -146,6 +146,7 @@ class Character extends MovableObject {
                 } else {
                     this.idleSleep = true
                     this.playAnimation(this.IMAGES_IDLE_SLEEP)
+                    this.dropYCoordinate()
                 }
                 this.IdleCounter++
                 if (this.IdleCounter >= 13) { this.IdleCounter == 0 }
@@ -160,7 +161,7 @@ class Character extends MovableObject {
                 this.x += this.speed * 20;
                 this.otherDirection = false;
                 this.setTimer()
-             }
+            }
             if (world.keyboard.LEFT && this.x > 0 && !this.isDead()) {
                 this.x -= this.speed * 20;
                 this.otherDirection = true;
@@ -177,6 +178,11 @@ class Character extends MovableObject {
             world.camera_x = -this.x + 50
             this.pushIntervalids(keyListenerInterval, "keyListenerInterval", world)
         }, 1000 / 60);
+    }
+    dropYCoordinate() {
+        if (this.y < world.level.level_end_y - 50) {
+            this.y += 10
+        }
     }
     spacePressed() {
         this.spaceWasPressed = new Date().getTime()

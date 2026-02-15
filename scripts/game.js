@@ -198,6 +198,7 @@ function getGameOverScreen() {
 function getGameWonScreen() {
     let endScreen = document.getElementById('endScreen')
     endScreen.classList.remove('d_none')
+    endScreen.style.backgroundImage = "url('./img/6.Botones/Try again/Mesa de trabajo 1.png')";
     endScreen.innerHTML += getRestartIconsTemplate()
 }
 

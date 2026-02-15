@@ -88,10 +88,10 @@ class Character extends MovableObject {
     characterAnimationInterval = false;
     keyListenerInterval = false;
     offset = {
-        top: 120,
+        top: 130,
         left: 50,
-        right: 50,
-        bottom: 60,
+        right: 60,
+        bottom: 70,
     };
 
     constructor() {

@@ -124,13 +124,13 @@ class MovableObject extends DrawableObject {
         return timePassed < 1;
     }
 
-    getNewXCoordinate(obj, counter) {
+    getNewAxisCoordinate(obj, counter, axis) {
         if (obj.jellyFlashCounter == 0) {
-            this.x = this.makeNewNumber(obj)
-            obj.savedXForFlashingJelly = this.x
+            this[`${axis}`] = this.makeNewNumber(obj, axis)
+            obj.savedXForFlashingJelly = this[`${axis}`]
             obj.jellyFlashCounter++
         } else {
-            this.x = obj.savedXForFlashingJelly
+            this[`${axis}`] = obj.savedXForFlashingJelly
             obj.jellyFlashCounter++
         }
         if (obj.jellyFlashCounter >= counter) {
@@ -139,7 +139,7 @@ class MovableObject extends DrawableObject {
         }
     }
 
-    makeNewNumber(obj) {
-        return (this.x * obj.jFishMultiplikator) + (Math.random() * 20)
+    makeNewNumber(obj, axis) {
+        return (this[`${axis}`] * obj.jFishMultiplikator) + (Math.random() * 20)
     }
 }

@@ -22,7 +22,7 @@ class JellyFish extends MovableObject {
         this.speed = 0.15 + Math.random() * 0.25
         this.width = 80
         this.height = 80
-        this.getNewXCoordinate(jFishObj, 1)
+        this.getNewAxisCoordinate(jFishObj, 1, "x")
         this.animate()
     }
 

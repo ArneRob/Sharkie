@@ -8,6 +8,9 @@ function initLevel1() {
             new JellyFishFlashing(),
             new JellyFishFlashing(),
             new JellyFishFlashing(),
+            new JellyFishFlashing(),
+            new JellyFishFlashing(),
+            new JellyFishFlashing(),
         ],
         [
             new Endboss(),

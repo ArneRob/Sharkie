@@ -2,6 +2,11 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let jFishObj = {
+    jellyFlashCounter: 0,
+    savedXForFlashingJelly: 0,
+    jFishMultiplikator: 1,
+}
 
 function init() {
     showMainMenue()
@@ -216,7 +221,7 @@ function restartGame() {
 }
 
 function resetGameVar() {
-    initLevel1();
+    initLevel1()
     world = new World(canvas, keyboard)
 }
 

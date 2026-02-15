@@ -12,6 +12,7 @@ class MovableObject extends DrawableObject {
     lastHitDate = 0;
     applyGravityInterval = false;
     moveLeftInterval = false;
+
     offset = {
         top: 0,
         left: 0,
@@ -121,5 +122,24 @@ class MovableObject extends DrawableObject {
         let timePassed = new Date().getTime() - this.lastHit;
         timePassed = timePassed / 1000;
         return timePassed < 1;
+    }
+
+    getNewXCoordinate() {
+        if (jFishObj.jellyFlashCounter == 0) {
+            this.x = this.makeNewNumber()
+            jFishObj.savedXForFlashingJelly = this.x
+            jFishObj.jellyFlashCounter++
+        } else {
+            this.x = jFishObj.savedXForFlashingJelly
+            jFishObj.jellyFlashCounter++
+        }
+        if (jFishObj.jellyFlashCounter >= 3) {
+            jFishObj.jellyFlashCounter = 0
+            jFishObj.jFishMultiplikator++
+        }
+    }
+
+    makeNewNumber() {
+        return (this.x * jFishObj.jFishMultiplikator) + (Math.random() * 20)
     }
 }

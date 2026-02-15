@@ -24,6 +24,7 @@ class JellyFishFlashing extends MovableObject {
         this.height = 80
 
         this.animate()
+        this.getNewXCoordinate()
     }
 
     animate() {

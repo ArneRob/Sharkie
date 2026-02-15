@@ -1,12 +1,5 @@
 class World {
     character = new Character();
-    coin = level1.coin;
-    poisenBottle = level1.poisenBottle
-    level = level1;
-    enemies = level1.enemies;
-    endboss = level1.endboss;
-    backgroundObjects = level1.backgroundObjects;
-    light = level1.light;
     canvas;
     ctx;
     keyboard;
@@ -30,6 +23,13 @@ class World {
     resetGameInterval = false;
     stopRequestAnimationFrame = false;
     volume = 0;
+    coin = level1.coin;
+    poisenBottle = level1.poisenBottle
+    level = level1;
+    enemies = level1.enemies;
+    endboss = level1.endboss;
+    backgroundObjects = level1.backgroundObjects;
+    light = level1.light;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');

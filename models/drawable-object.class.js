@@ -47,4 +47,28 @@ class DrawableObject {
         }
     }
 
+    getNewAxisCoordinate(obj, counter, axis) {
+        if (obj.jellyFlashCounter == 0) {
+            this[`${axis}`] = this.makeNewNumber(obj, axis)
+            obj.savedXForFlashingJelly = this[`${axis}`]
+            obj.jellyFlashCounter++
+        } else {
+            this[`${axis}`] = obj.savedXForFlashingJelly
+            obj.jellyFlashCounter++
+        }
+        if (obj.jellyFlashCounter >= counter) {
+            obj.jellyFlashCounter = 0
+            obj.jFishMultiplikator++
+        }
+    }
+
+    makeNewNumber(obj, axis) {
+        return (this[`${axis}`] * obj.jFishMultiplikator) + (Math.random() * 20)
+    }
+
+    getNewYCoordinate(obj, axis) {
+        let y = (obj.jellyFlashCounter * this[`${axis}`]) + (Math.random() * 100)
+        this[`${axis}`] = y
+    }
+
 }

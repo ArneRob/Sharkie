@@ -14,6 +14,7 @@ class World {
     backgroundAudio;
     underwaterBubble = ('../audio/underwaterBubble.mp3')
     sharkieHurtSound = new Audio('../audio/sharkieHurt.mp3')
+    electricZapShort = ('../audio/electricZapShort.mp3')
     bubble
     intervalIds = []
     gameOver = false;
@@ -112,6 +113,14 @@ class World {
         if (this.character.enemieIsNear(this.level.endboss[0])) {
             this.endboss[0].endbossNearCharacter()
         }
+        if (this.checkEnemiesNear) {
+            this.playSound(this.electricZapShort)
+        }
+    }
+    checkEnemiesNear() {
+        this.level.enemies.forEach(enemie => {
+            this.character.enemieIsNear(enemie)
+        });
     }
     checkForItemCollisions() {
         this.ifCoinCollision(this.coin);

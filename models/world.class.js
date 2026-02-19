@@ -118,11 +118,11 @@ class World {
         this.checkEnemiesNear(this.level.enemies)
     }
     checkEnemiesNear(enemies) {
-        enemies.forEach(enemie => {
-            if (this.character.enemieIsNear(enemie, 50)) {
+        for (let index = 3; index < enemies.length; index++) {
+           if (this.character.enemieIsNear(enemies[index], 50)) {
                 this.electricZapShort.play()
             }
-        });
+        }
     }
     checkForItemCollisions() {
         this.ifCoinCollision(this.coin);

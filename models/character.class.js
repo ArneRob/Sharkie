@@ -87,6 +87,7 @@ class Character extends MovableObject {
     swimAndSlap = false;
     characterAnimationInterval = false;
     keyListenerInterval = false;
+    slapAnimationIsOver = true;
     offset = {
         top: 130,
         left: 50,
@@ -113,31 +114,29 @@ class Character extends MovableObject {
     }
 
     animate() {
+        let intervalIndex = 0;
         let interval = setInterval(() => {
+            if (this.space() && this.slapAnimationIsOver) {
+                intervalIndex = 0
+                this.slapAnimationIsOver = false;
+                this.swimAndSlap = true;
+                this.currentImage = 0;
+            }
             if (this.space()) { this.spacePressed() }
             let passedTime = this.idleTimer + 10000;
             let nowTime = new Date().getTime();
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD)
-            } else if (world.keyboard.RIGHT || world.keyboard.LEFT) {
-                this.playAnimation(this.IMAGES_SWIM)
-            } else if (this.space() && !this.stayAndSlap) {
-                this.stayAndSlap = true;
+            } else if (this.swimAndSlap && intervalIndex <= 5) {
                 this.playAnimation(this.IMAGES_SLAP)
                 this.setTimer()
                 this.subtractLivePointEndboss()
-            } else if (this.checkIfSpaceWasPressedInRange() && !this.swimAndSlap) {
-                this.currentImage = this.slapCounter
-                this.playAnimation(this.IMAGES_SLAP)
-                this.stayAndSlap = true;
-                this.setTimer()
-                this.slapCounter++
-                if (this.slapCounter == 3 || this.slapCounter == 6) {
-                    this.subtractLivePointEndboss()
+                if (intervalIndex == 5) {
+                    this.slapAnimationIsOver = true;
+                    this.swimAndSlap = false
                 }
-                if (this.slapCounter >= 6) {
-                    this.stayAndSlap = false
-                }
+            } else if (world.keyboard.RIGHT || world.keyboard.LEFT) {
+                this.playAnimation(this.IMAGES_SWIM)
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT)
             } else if (nowTime > passedTime) {
@@ -154,6 +153,7 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_SWIMMING)
             }
             this.pushIntervalids(interval, "characterAnimationInterval", world)
+            intervalIndex++
         }, 1000 / 9);
         let keyListenerInterval = setInterval(() => {
 
@@ -189,7 +189,7 @@ class Character extends MovableObject {
     }
     checkIfSpaceWasPressedInRange() {
         let nowTime = new Date().getTime()
-        return this.spaceWasPressed + 1000 > nowTime
+        return this.spaceWasPressed + 500 > nowTime
     }
     setEnergyOfEndboss() {
         world.endboss[0].endbossEnergy -= 20

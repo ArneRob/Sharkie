@@ -53,12 +53,14 @@ class World {
                 if (this.backgroundAudio) {
                     this.backgroundAudio.volume = 0
                 }
+                this.character.finSlapSound.volume = 0;
                 this.electricZapShort.volume = 0
                 this.sharkieHurtSound.volume = 0
                 this.endboss[0].endbossFightSound.volume = 0
                 this.currentSound.volume = 0
                 this.volume = 0;
             } else {
+                this.character.finSlapSound.volume = 0.1;
                 this.electricZapShort.volume = 0.05
                 this.endboss[0].endbossFightSound.volume = 0.05
                 this.sharkieHurtSound.volume = 0.05

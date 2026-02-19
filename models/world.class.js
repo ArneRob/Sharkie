@@ -95,13 +95,13 @@ class World {
     }
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
+            if (this.character.isColliding(enemy) && this.endboss[0].endbossEnergy > 0) {
                 this.character.hit();
                 this.sharkieHurtSound.play()
                 this.statusBar.setPercentage(this.character.energy);
             }
         });
-        if (this.character.isColliding(this.level.endboss[0])) {
+        if (this.character.isColliding(this.level.endboss[0]) && this.endboss[0].endbossEnergy > 0) {
             this.character.hit();
             this.sharkieHurtSound.play()
 

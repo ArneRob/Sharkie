@@ -98,7 +98,6 @@ class Endboss extends MovableObject {
                     if (intervalIndex >= 3) {
                         this.endbossDeadAnimation = false;
                         this.endbossDeadAnimationIsOver = true;
-                        console.log("stop is true", this.endbossEnergy)
                         world.stopRequestAnimationFrame = true;
                     }
                 } else {

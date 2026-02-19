@@ -206,8 +206,9 @@ class Character extends MovableObject {
         return world.keyboard.SPACE
     }
     subtractLivePointEndboss() {
-        if (this.isColliding(world.endboss[0]) || this.lastSlap == 0 && this.isColliding(world.endboss[0])) {
+        if (this.lastSlap == 0 && this.isColliding(world.endboss[0]) || this.slapTimePassed() && this.isColliding(world.endboss[0])) {
             this.setEnergyOfEndboss()
+            this.setSlapTime()
         }
     }
     setTimer() {

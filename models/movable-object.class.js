@@ -57,11 +57,11 @@ class MovableObject extends DrawableObject {
             this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
             this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom
     }
-    enemieIsNear(mo) {
-        return this.x + this.width - this.offset.right + 50 > mo.x + mo.offset.left &&
-            this.y + this.height - this.offset.bottom + 50 > mo.y + mo.offset.top &&
-            this.x + this.offset.left - 50 < mo.x + mo.width - mo.offset.right &&
-            this.y + this.offset.top - 50 < mo.y + mo.height - mo.offset.bottom
+    enemieIsNear(mo, range) {
+        return this.x + this.width - this.offset.right > mo.x + mo.offset.left - range &&
+            this.y + this.height - this.offset.bottom > mo.y + mo.offset.top - range &&
+            this.x + this.offset.left < mo.x + mo.width - mo.offset.right + range &&
+            this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom + range
     }
     endbossXIntroStart(mo) {
         return this.x + this.width + 180 > mo.x

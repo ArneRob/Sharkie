@@ -14,7 +14,7 @@ class World {
     backgroundAudio;
     underwaterBubble = ('../audio/underwaterBubble.mp3')
     sharkieHurtSound = new Audio('../audio/sharkieHurt.mp3')
-    electricZapShort = ('../audio/electricZapShort.mp3')
+    electricZapShort = new Audio('../audio/electricZapShort.mp3')
     bubble
     intervalIds = []
     gameOver = false;
@@ -53,11 +53,13 @@ class World {
                 if (this.backgroundAudio) {
                     this.backgroundAudio.volume = 0
                 }
+                this.electricZapShort.volume = 0
                 this.sharkieHurtSound.volume = 0
                 this.endboss[0].endbossFightSound.volume = 0
                 this.currentSound.volume = 0
                 this.volume = 0;
             } else {
+                this.electricZapShort.volume = 0.05
                 this.endboss[0].endbossFightSound.volume = 0.05
                 this.sharkieHurtSound.volume = 0.05
                 if (this.backgroundAudio) {
@@ -110,16 +112,16 @@ class World {
         if (this.character.endbossXIntroStart(this.endboss[0])) {
             this.endboss[0].endbossIntro = true;
         }
-        if (this.character.enemieIsNear(this.level.endboss[0])) {
+        if (this.character.enemieIsNear(this.level.endboss[0], this.level.endboss[0].width / 8)) {
             this.endboss[0].endbossNearCharacter()
         }
-        if (this.checkEnemiesNear) {
-            this.playSound(this.electricZapShort)
-        }
+        this.checkEnemiesNear(this.level.enemies)
     }
-    checkEnemiesNear() {
-        this.level.enemies.forEach(enemie => {
-            this.character.enemieIsNear(enemie)
+    checkEnemiesNear(enemies) {
+        enemies.forEach(enemie => {
+            if (this.character.enemieIsNear(enemie, 50)) {
+                this.electricZapShort.play()
+            }
         });
     }
     checkForItemCollisions() {

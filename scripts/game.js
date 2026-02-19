@@ -216,6 +216,7 @@ function restartGame() {
 }
 
 function resetGameVar() {
+    world.endboss[0].endbossEnergy = 100
     resetObjects()
     initLevel1()
     world = new World(canvas, keyboard)

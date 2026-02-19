@@ -135,10 +135,10 @@ class Character extends MovableObject {
                     this.slapAnimationIsOver = true;
                     this.swimAndSlap = false
                 }
-            } else if (world.keyboard.RIGHT || world.keyboard.LEFT) {
-                this.playAnimation(this.IMAGES_SWIM)
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT)
+            } else if (world.keyboard.RIGHT || world.keyboard.LEFT) {
+                this.playAnimation(this.IMAGES_SWIM)
             } else if (nowTime > passedTime) {
                 if (this.IdleCounter <= 7 && !this.idleSleep) {
                     this.playAnimation(this.IMAGES_IDLE_LONG)
@@ -197,7 +197,7 @@ class Character extends MovableObject {
     }
     slapTimePassed() {
         let nowTime = new Date().getTime()
-        return this.lastSlap + 700 < nowTime
+        return this.lastSlap + 500 < nowTime
     }
     setSlapTime() {
         this.lastSlap = new Date().getTime()

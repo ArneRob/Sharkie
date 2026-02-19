@@ -216,6 +216,7 @@ function restartGame() {
 }
 
 function resetGameVar() {
+    world.character.energy = 100
     world.endboss[0].endbossEnergy = 100
     resetObjects()
     initLevel1()

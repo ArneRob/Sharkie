@@ -230,7 +230,7 @@ class World {
             this.intervalIds.forEach(clearInterval)
             this.delayedEndScreenShowBooleanOnTrue()
             restartTheGameEventlistener()
-        } else if (this.character.energy == 0 && !this.gameOver) {
+        } else if (this.character.energy <= 0 && !this.gameOver && this.character.characterDeadAnimationIsOver) {
             this.gameOver = true;
             getGameOverScreen()
             this.playSound('audio/lose_game.mp3')

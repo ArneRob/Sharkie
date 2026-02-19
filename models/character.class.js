@@ -89,6 +89,9 @@ class Character extends MovableObject {
     keyListenerInterval = false;
     slapAnimationIsOver = true;
     finSlapSound = new Audio('../audio/finSlapSound.mp3')
+    characterDeadAnimation = false;
+    characterDeadAnimationIsOver = false;
+    intervalSpeed = 1000 / 9
     offset = {
         top: 130,
         left: 50,
@@ -116,71 +119,88 @@ class Character extends MovableObject {
 
     animate() {
         let intervalIndex = 0;
-        let interval = setInterval(() => {
-            if (this.space() && this.slapAnimationIsOver) {
-                intervalIndex = 0
-                this.slapAnimationIsOver = false;
-                this.swimAndSlap = true;
-                this.currentImage = 0;
-            }
-            if (this.space()) { this.spacePressed() }
-            let passedTime = this.idleTimer + 10000;
-            let nowTime = new Date().getTime();
-            if (this.isDead()) {
-                this.playAnimation(this.IMAGES_DEAD)
-            } else if (this.swimAndSlap && intervalIndex <= 5) {
-                this.playAnimation(this.IMAGES_SLAP)
-                this.finSlapSound.play()
-                this.setTimer()
-                this.ifJellyFishCollisionAndSlap()
-                this.subtractLivePointEndboss()
-                if (intervalIndex == 5) {
-                    this.slapAnimationIsOver = true;
-                    this.swimAndSlap = false
+        if (!this.characterDeadAnimation) {
+            let interval = setInterval(() => {
+                if (this.isDead() && !this.characterDeadAnimation && !world.gameOver) {
+                    intervalIndex = 0
+                    clearInterval(interval)
+                    this.intervalSpeed = 1000 / 5
+                    this.animate()
+                    this.currentImage = 0
+                    this.characterDeadAnimation = true;
                 }
-            } else if (this.isHurt()) {
-                this.playAnimation(this.IMAGES_HURT)
-            } else if (world.keyboard.RIGHT || world.keyboard.LEFT) {
-                this.playAnimation(this.IMAGES_SWIM)
-            } else if (nowTime > passedTime) {
-                if (this.IdleCounter <= 7 && !this.idleSleep) {
-                    this.playAnimation(this.IMAGES_IDLE_LONG)
-                } else {
-                    this.idleSleep = true
-                    this.playAnimation(this.IMAGES_IDLE_SLEEP)
-                    this.dropYCoordinate()
+                if (this.space() && this.slapAnimationIsOver) {
+                    intervalIndex = 0
+                    this.slapAnimationIsOver = false;
+                    this.swimAndSlap = true;
+                    this.currentImage = 0;
                 }
-                this.IdleCounter++
-                if (this.IdleCounter >= 13) { this.IdleCounter == 0 }
-            } else if (!this.stayAndSlap && !this.swimAndSlap) {
-                this.playAnimation(this.IMAGES_SWIMMING)
-            }
-            this.pushIntervalids(interval, "characterAnimationInterval", world)
-            intervalIndex++
-        }, 1000 / 9);
-        let keyListenerInterval = setInterval(() => {
+                if (this.space()) { this.spacePressed() }
+                let passedTime = this.idleTimer + 10000;
+                let nowTime = new Date().getTime();
+                if (this.characterDeadAnimation && this.isDead()) {
+                    this.playAnimation(this.IMAGES_DEAD)
+                    if (intervalIndex >= 4) {
+                        this.characterDeadAnimation = false;
+                        this.characterDeadAnimationIsOver = true;
+                        world.stopRequestAnimationFrame = true;
+                    }
+                } else if (this.swimAndSlap && intervalIndex <= 5 && !this.characterDeadAnimationIsOver) {
+                    this.playAnimation(this.IMAGES_SLAP)
+                    this.finSlapSound.play()
+                    this.setTimer()
+                    this.ifJellyFishCollisionAndSlap()
+                    this.subtractLivePointEndboss()
+                    if (intervalIndex == 5) {
+                        this.slapAnimationIsOver = true;
+                        this.swimAndSlap = false
+                    }
+                } else if (this.isHurt() && !this.characterDeadAnimationIsOver) {
+                    this.playAnimation(this.IMAGES_HURT)
+                } else if (world.keyboard.RIGHT || world.keyboard.LEFT && !this.characterDeadAnimationIsOver) {
+                    this.playAnimation(this.IMAGES_SWIM)
+                } else if (nowTime > passedTime && !this.characterDeadAnimationIsOver) {
+                    if (this.IdleCounter <= 7 && !this.idleSleep) {
+                        this.playAnimation(this.IMAGES_IDLE_LONG)
+                    } else if (!this.characterDeadAnimationIsOver) {
+                        this.idleSleep = true
+                        this.playAnimation(this.IMAGES_IDLE_SLEEP)
+                        this.dropYCoordinate()
+                    }
+                    this.IdleCounter++
+                    if (this.IdleCounter >= 13) { this.IdleCounter == 0 }
+                } else if (!this.stayAndSlap && !this.swimAndSlap && !this.characterDeadAnimationIsOver) {
+                    this.playAnimation(this.IMAGES_SWIMMING)
+                }
+                this.pushIntervalids(interval, "characterAnimationInterval", world)
+                intervalIndex++
+            }, this.intervalSpeed);
+            if (!this.keyListenerInterval) {
+                let keyListenerInterval = setInterval(() => {
 
-            if (world.keyboard.RIGHT && this.x < world.level.level_end_x && !this.isDead()) {
-                this.x += this.speed * 20;
-                this.otherDirection = false;
-                this.setTimer()
+                    if (world.keyboard.RIGHT && this.x < world.level.level_end_x && !this.isDead()) {
+                        this.x += this.speed * 20;
+                        this.otherDirection = false;
+                        this.setTimer()
+                    }
+                    if (world.keyboard.LEFT && this.x > 0 && !this.isDead()) {
+                        this.x -= this.speed * 20;
+                        this.otherDirection = true;
+                        this.setTimer()
+                    } // minus 100 is the offset of the character
+                    if (world.keyboard.UP && !this.isDead() && this.y > 0 - 100) {
+                        this.y -= this.speed * 10;
+                        this.setTimer()
+                    }
+                    if (world.keyboard.DOWN && !this.isDead() && this.y < world.level.level_end_y) {
+                        this.y += this.speed * 10;
+                        this.setTimer()
+                    }
+                    world.camera_x = -this.x + 50
+                    this.pushIntervalids(keyListenerInterval, "keyListenerInterval", world)
+                }, 1000 / 60);
             }
-            if (world.keyboard.LEFT && this.x > 0 && !this.isDead()) {
-                this.x -= this.speed * 20;
-                this.otherDirection = true;
-                this.setTimer()
-            } // minus 100 is the offset of the character
-            if (world.keyboard.UP && !this.isDead() && this.y > 0 - 100) {
-                this.y -= this.speed * 10;
-                this.setTimer()
-            }
-            if (world.keyboard.DOWN && !this.isDead() && this.y < world.level.level_end_y) {
-                this.y += this.speed * 10;
-                this.setTimer()
-            }
-            world.camera_x = -this.x + 50
-            this.pushIntervalids(keyListenerInterval, "keyListenerInterval", world)
-        }, 1000 / 60);
+        }
     }
     dropYCoordinate() {
         if (this.y < world.level.level_end_y - 50) {

@@ -119,7 +119,7 @@ class World {
     }
     checkEnemiesNear(enemies) {
         for (let index = 3; index < enemies.length; index++) {
-           if (this.character.enemieIsNear(enemies[index], 50)) {
+            if (this.character.enemieIsNear(enemies[index], 50)) {
                 this.electricZapShort.play()
             }
         }
@@ -221,7 +221,7 @@ class World {
         };
     }
     checkGameOverCondition() {
-        if (this.level.endboss[0].endbossEnergy == 0 && !this.gameOver && !this.resetGameIsSet) {
+        if (this.level.endboss[0].endbossEnergy <= 0 && !this.gameOver && !this.resetGameIsSet && this.level.endboss[0].endbossDeadAnimationIsOver) {
             this.gameOver = true;
             getGameWonScreen()
             this.playSound('audio/winning_game.mp3')

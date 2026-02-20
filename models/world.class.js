@@ -97,9 +97,7 @@ class World {
     }
     checkCollisions() {
         if (this.character.isColliding(this.level.endboss[0]) && this.endboss[0].endbossEnergy > 0) {
-            this.character.hit();
-            this.sharkieHurtSound.play()
-            this.statusBar.setPercentage(this.character.energy);
+            this.character.hurtSharkie()
         }
     }
     checkIfEnemieIsNear() {

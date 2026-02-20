@@ -196,7 +196,14 @@ class Character extends MovableObject {
                         this.y += this.speed * 10;
                         this.setTimer()
                     }
-                    world.camera_x = -this.x + 50
+                    if (this.x <= 200) {
+                        world.camera_x = 0
+                    } else if(this.x >= 1700) {
+                        world.camera_x = -1500
+                    } else if(!this.x <= 200){
+                        world.camera_x = -this.x + 200
+                    }
+
                     this.pushIntervalids(keyListenerInterval, "keyListenerInterval", world)
                 }, 1000 / 60);
             }

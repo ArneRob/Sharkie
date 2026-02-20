@@ -2,10 +2,10 @@ let level1;
 function initLevel1() {
     level1 = new Level(
         [
-            // new JellyFish(),
-            // new JellyFish(),
-            // new JellyFish(),
-            // new JellyFish(),
+            new JellyFish(),
+            new JellyFish(),
+            new JellyFish(),
+            new JellyFish(),
             new JellyFishFlashing(),
             new JellyFishFlashing(),
             new JellyFishFlashing(),

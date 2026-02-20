@@ -1,13 +1,18 @@
 @keyframes pulse-animation {
-  0% {
-    transform: scale(1); /* Originalgröße */
-  }
-  50% {
-    transform: scale(1.1); /* 10% größer */
-  }
-  100% {
-    transform: scale(1); /* Zurück zur Originalgröße */
-  }
+    0% {
+        transform: scale(1);
+        /* Originalgröße */
+    }
+
+    50% {
+        transform: scale(1.1);
+        /* 10% größer */
+    }
+
+    100% {
+        transform: scale(1);
+        /* Zurück zur Originalgröße */
+    }
 }
 
 .splashScreen {
@@ -21,6 +26,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    z-index: 1;
 }
 
 .endScreen {
@@ -38,10 +44,20 @@
 
 .splashScreenSettingIcons {
     width: 80px;
+    z-index: 2;
 }
 
 .gearIcon {
     transition: all 0.5s;
+}
+
+.homeIcon {
+    transition: all 0.2s;
+}
+
+.homeIcon:hover {
+    transform: scale(1.1);
+    cursor: pointer;
 }
 
 .gearIcon:hover {
@@ -105,13 +121,17 @@
     width: 100%;
     justify-content: flex-end;
     gap: 8px;
+    z-index: 3;
 }
 
 .settingsImgDivInGame {
+    display: flex;
+    justify-content: flex-end;
     position: relative;
-    left: 270px;
+    left: 220px;
     top: 310px;
-
+    width: 250px;
+    z-index: 3;
 }
 
 .selector {

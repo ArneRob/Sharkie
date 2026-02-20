@@ -50,26 +50,34 @@ class World {
         }
         let soundCheckInterval = setInterval(() => {
             if (getLocalStorageItem("mute")) {
-                if (this.backgroundAudio) {
-                    this.backgroundAudio.volume = 0
-                }
-                this.character.finSlapSound.volume = 0;
-                this.electricZapShort.volume = 0
-                this.sharkieHurtSound.volume = 0
-                this.endboss[0].endbossFightSound.volume = 0
-                this.currentSound.volume = 0
-                this.volume = 0;
+                this.muteSounds()
             } else {
-                this.character.finSlapSound.volume = 0.1;
-                this.electricZapShort.volume = 0.05
-                this.endboss[0].endbossFightSound.volume = 0.05
-                this.sharkieHurtSound.volume = 0.05
-                if (this.backgroundAudio) {
-                    this.backgroundAudio.volume = 0.05
-                }
-                this.volume = 0.05
+                this.soundsOn()
             }
         }, 100);
+    }
+    muteSounds() {
+        if (this.backgroundAudio) {
+            this.backgroundAudio.volume = 0
+        }
+        this.character.sharkieSnoreSound.volume = 0;
+        this.character.finSlapSound.volume = 0;
+        this.electricZapShort.volume = 0
+        this.sharkieHurtSound.volume = 0
+        this.endboss[0].endbossFightSound.volume = 0
+        this.currentSound.volume = 0
+        this.volume = 0;
+    }
+    soundsOn() {
+        this.character.sharkieSnoreSound.volume = 0.5;
+        this.character.finSlapSound.volume = 0.1;
+        this.electricZapShort.volume = 0.05
+        this.endboss[0].endbossFightSound.volume = 0.05
+        this.sharkieHurtSound.volume = 0.05
+        if (this.backgroundAudio) {
+            this.backgroundAudio.volume = 0.05
+        }
+        this.volume = 0.05
     }
     run() {
         let run1Interval = setInterval(() => {
@@ -86,7 +94,7 @@ class World {
     }
     checkThrowObjects() {
         if (this.keyboard.F && this.character.collectedPoisenBottle > 0) {
-            let x = this.character.x 
+            let x = this.character.x
             if (this.character.otherDirection) {
                 x -= 200
             }

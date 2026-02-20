@@ -89,6 +89,7 @@ class Character extends MovableObject {
     keyListenerInterval = false;
     slapAnimationIsOver = true;
     finSlapSound = new Audio('../audio/finSlapSound.mp3')
+    sharkieSnoreSound = new Audio("../audio/snoreSoundSharkie.mp3")
     characterDeadAnimation = false;
     characterDeadAnimationIsOver = false;
     intervalSpeed = 1000 / 9
@@ -163,6 +164,7 @@ class Character extends MovableObject {
                         this.playAnimation(this.IMAGES_IDLE_LONG)
                     } else if (!this.characterDeadAnimationIsOver) {
                         this.idleSleep = true
+                        this.sharkieSnoreSound.play()
                         this.playAnimation(this.IMAGES_IDLE_SLEEP)
                         this.dropYCoordinate()
                     }

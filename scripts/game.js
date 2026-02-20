@@ -5,6 +5,7 @@ let keyboard = new Keyboard();
 
 function init() {
     showMainMenue()
+    localStorage.removeItem("fullScreen")
     window.addEventListener("keydown", checkIfRIghtKey)
 }
 
@@ -132,7 +133,11 @@ function showIngameSettingMenue() {
     instructionsContainer.classList.toggle('mb-top-50')
     checkLocalStorageSettings()
     let fullScreenIcon = document.getElementById('fullScreenIcon')
-    fullScreenIcon.addEventListener("click", getFullScreen)
+    if (getLocalStorageItem("fullScreen")) {
+        fullScreenIcon.addEventListener("click", exitFullscreen)
+    } else {
+        fullScreenIcon.addEventListener("click", getFullScreen)
+    }
 }
 
 function openCloseGameMenue() {
@@ -140,6 +145,16 @@ function openCloseGameMenue() {
     splashScreen.classList.toggle('d_none')
     let canvas = document.getElementById('canvas')
     canvas.classList.toggle('d_none')
+}
+
+function showSecondHomeMenue() {
+    let homeIcon = document.getElementById('homeIcon')
+    homeIcon.classList.add('d_none')
+    let endScreen = document.getElementById('endScreen')
+    endScreen.style.backgroundImage = "url('./img/3.Background/Mesa de trabajo 1.png')";
+    endScreen.innerHTML = "";
+    endScreen.innerHTML += getSecondMainMenueTemplate()
+
 }
 
 function getLocalStorageItem(key) {
@@ -173,7 +188,7 @@ function enterFullscreen(element) {
         element.msRequestFullscreen();
     } else if (element.webkitRequestFullscreen) {  // iOS Safari
         element.webkitRequestFullscreen();
-    }
+    } setItemToLocalStorage("fullScreen")
     let fullScreenIcon = document.getElementById('fullScreenIcon')
     fullScreenIcon.addEventListener("click", exitFullscreen)
 }
@@ -183,12 +198,14 @@ function exitFullscreen() {
         document.exitFullscreen();
     } else if (document.webkitExitFullscreen) {
         document.webkitExitFullscreen();
-    }
+    } removeItemFromLocalStorage("fullScreen")
     let fullScreenIcon = document.getElementById('fullScreenIcon')
     fullScreenIcon.addEventListener("click", exitFullscreen)
 }
 
 function getGameOverScreen() {
+    let homeIcon = document.getElementById('homeIcon')
+    homeIcon.classList.remove('d_none')
     let endScreen = document.getElementById('endScreen')
     endScreen.classList.remove('d_none')
     endScreen.style.backgroundImage = "url('img/6.Botones/Tittles/Game Over/Recurso 10.png')";
@@ -196,6 +213,8 @@ function getGameOverScreen() {
 }
 
 function getGameWonScreen() {
+    let homeIcon = document.getElementById('homeIcon')
+    homeIcon.classList.remove('d_none')
     let endScreen = document.getElementById('endScreen')
     endScreen.classList.remove('d_none')
     endScreen.style.backgroundImage = "url('./img/6.Botones/Try again/Mesa de trabajo 1.png')";
@@ -216,10 +235,13 @@ function restartGame() {
 }
 
 function resetGameVar() {
+    let homeIcon = document.getElementById('homeIcon')
+    homeIcon.classList.add('d_none')
     world.character.energy = 100
     world.endboss[0].endbossEnergy = 100
     resetObjects()
     initLevel1()
+    canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard)
 }
 

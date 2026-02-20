@@ -180,28 +180,45 @@ class Character extends MovableObject {
                 let keyListenerInterval = setInterval(() => {
 
                     if (world.keyboard.RIGHT && this.x < world.level.level_end_x && !this.isDead()) {
-                        this.x += this.speed * 20;
+                        if (isSafari) {
+                            this.x += this.speed * 35;
+                        } else {
+                            this.x += this.speed * 20;
+                        }
                         this.otherDirection = false;
                         this.setTimer()
                     }
                     if (world.keyboard.LEFT && this.x > 0 && !this.isDead()) {
-                        this.x -= this.speed * 20;
+                        if (isSafari) {
+                            this.x -= this.speed * 35;
+                        } else {
+                            this.x -= this.speed * 20;
+                        }
                         this.otherDirection = true;
                         this.setTimer()
                     } // minus 100 is the offset of the character
                     if (world.keyboard.UP && !this.isDead() && this.y > 0 - 100) {
-                        this.y -= this.speed * 10;
+                        
+                        if (isSafari) {
+                            this.y -= this.speed * 15;
+                        } else {
+                            this.y -= this.speed * 10;
+                        }
                         this.setTimer()
                     }
                     if (world.keyboard.DOWN && !this.isDead() && this.y < world.level.level_end_y) {
-                        this.y += this.speed * 10;
+                        if (isSafari) {
+                            this.y += this.speed * 15;
+                        } else {
+                            this.y += this.speed * 10;
+                        }
                         this.setTimer()
                     }
                     if (this.x <= 200) {
                         world.camera_x = 0
-                    } else if(this.x >= 1700) {
+                    } else if (this.x >= 1700) {
                         world.camera_x = -1500
-                    } else if(!this.x <= 200){
+                    } else if (!this.x <= 200) {
                         world.camera_x = -this.x + 200
                     }
 

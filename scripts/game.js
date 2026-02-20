@@ -2,6 +2,7 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
 function init() {
     showMainMenue()
@@ -36,6 +37,9 @@ window.addEventListener('keydown', (event) => {
     }
     if (event.which == 70) {
         keyboard.F = true
+    }
+    if (event.which === 32 && event.target === document.body) {
+        event.preventDefault();
     }
 });
 

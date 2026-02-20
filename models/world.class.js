@@ -86,7 +86,11 @@ class World {
     }
     checkThrowObjects() {
         if (this.keyboard.F && this.character.collectedPoisenBottle > 0) {
-            this.bubble = new ThrowableObject(this.character.x, this.character.y)
+            let x = this.character.x 
+            if (this.character.otherDirection) {
+                x -= 200
+            }
+            this.bubble = new ThrowableObject(x, this.character.y)
             this.throwableObjects.push(this.bubble);
             this.character.collectedPoisenBottle -= 20
             this.poisenStatusBar.setPercentage(this.character.collectedPoisenBottle);
@@ -146,10 +150,6 @@ class World {
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.light);
-
-
-
-
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.endboss);
         this.ctx.translate(-this.camera_x, 0);

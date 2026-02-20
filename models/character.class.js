@@ -149,7 +149,6 @@ class Character extends MovableObject {
                     this.playAnimation(this.IMAGES_SLAP)
                     this.finSlapSound.play()
                     this.setTimer()
-                    this.ifJellyFishCollisionAndSlap()
                     this.subtractLivePointEndboss()
                     if (intervalIndex == 5) {
                         this.slapAnimationIsOver = true;
@@ -245,16 +244,6 @@ class Character extends MovableObject {
         this.idleTimer = new Date().getTime();
         this.idleSleep = false
         this.IdleCounter = 0;
-    }
-
-    ifJellyFishCollisionAndSlap() {
-        for (let index = 0; index < world.level.enemies.length; index++) {
-            if (this.isColliding(world.level.enemies[index]) && this.swimAndSlap) {
-                setTimeout(() => {
-                    // world.level.enemies.splice(index, 1)
-                }, 100);
-            }
-        }
     }
 
     hurtSharkie() {

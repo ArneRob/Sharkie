@@ -7,7 +7,7 @@
 @font-face {
     font-family: "bigBlue";
     src:
-        url("fonts/BigPartyC2-Blue.ttf") format("truetype")
+        url("fonts/BigPartyC2-Blue.woff") format("woff")
 }
 
 .d_none {
@@ -40,6 +40,7 @@ h1 {
     top: 200px;
     margin-bottom: 10px;
     text-shadow: -200px 1000px 8px rgba(0, 0, 0, 0.5);
+    font-weight: 500;
 }
 
 canvas {

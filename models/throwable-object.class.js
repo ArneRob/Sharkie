@@ -5,7 +5,7 @@ class ThrowableObject extends MovableObject {
         right: 0,
         bottom: 0,
     };
-    bubbleBurstSound = new Audio('../audio/bubbleBurstSound.mp3')
+    bubbleBurstSound = '../audio/bubblePlupSound.mp3'
     soundWasPlayed = false;
     constructor(x, y) {
         super().loadImage('img/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble (for whale).png')
@@ -34,7 +34,7 @@ class ThrowableObject extends MovableObject {
                     this.x = 4000
                     if (!this.soundWasPlayed) {
                         this.soundWasPlayed = true;
-                        this.bubbleBurstSound.play()
+                        world.playSound(this.bubbleBurstSound)
                     }
                 }, 100);
             }

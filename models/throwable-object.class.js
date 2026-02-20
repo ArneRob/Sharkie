@@ -22,6 +22,9 @@ class ThrowableObject extends MovableObject {
     checkIntervals() {
         setInterval(() => {
             this.checkEnemiesBubbleHit(world.level.enemies)
+            if (this.isColliding(world.endboss[0])) {
+                this.bubbleCharacter(true)
+            }
         }, 100);
     }
 
@@ -29,15 +32,19 @@ class ThrowableObject extends MovableObject {
         for (let index = 0; index < enemies.length; index++) {
             if (this.isColliding(enemies[index])) {
                 world.enemies[index].deadThroughBubble = true
-
-                setTimeout(() => {
-                    this.x = 4000
-                    if (!this.soundWasPlayed) {
-                        this.soundWasPlayed = true;
-                        world.playSound(this.bubbleBurstSound)
-                    }
-                }, 100);
+                this.bubbleCharacter()
             }
         }
+    }
+
+    bubbleCharacter(endboss) {
+        setTimeout(() => {
+            this.x = 4000
+            if (!this.soundWasPlayed) {
+                this.soundWasPlayed = true;
+                world.playSound(this.bubbleBurstSound)
+                if (endboss) { world.character.setEnergyOfEndboss() }
+            }
+        }, 100);
     }
 }

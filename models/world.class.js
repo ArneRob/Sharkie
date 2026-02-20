@@ -94,9 +94,6 @@ class World {
             this.throwableObjects.push(this.bubble);
             this.character.collectedPoisenBottle -= 20
             this.poisenStatusBar.setPercentage(this.character.collectedPoisenBottle);
-            if (this.bubble.isColliding(this.level.endboss[0])) {
-                console.log("orcaSchaden");
-            }
         }
     }
     checkCollisions() {

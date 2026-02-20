@@ -157,15 +157,17 @@ class World {
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.light);
 
+
+
+
+        this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.level.endboss);
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar)
         this.addToMap(this.endbossStatusBar)
         this.addToMap(this.coinStatusBar)
         this.addToMap(this.poisenStatusBar)
         this.ctx.translate(this.camera_x, 0);
-
-        this.addObjectsToMap(this.level.enemies);
-        this.addObjectsToMap(this.level.endboss);
         this.addObjectsToMap(this.level.coin);
         this.addObjectsToMap(this.level.poisenBottle);
         this.addObjectsToMap(this.throwableObjects)

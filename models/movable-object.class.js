@@ -37,18 +37,10 @@ class MovableObject extends DrawableObject {
     }
 
     playAnimation(images) {
-        if (images[0] == "../img/1.Sharkie/3.Swim/1.png") {
-            // console.log(this.currentImage % images.length);
             let i = this.currentImage % images.length;
             let path = images[i];
             this.img = this.imageCache[path];
             this.currentImage++;
-        } else {
-            let i = this.currentImage % images.length;
-            let path = images[i];
-            this.img = this.imageCache[path];
-            this.currentImage++;
-        }
     }
 
     isColliding(mo) {

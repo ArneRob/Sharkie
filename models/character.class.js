@@ -244,9 +244,15 @@ class Character extends MovableObject {
         for (let index = 0; index < world.level.enemies.length; index++) {
             if (this.isColliding(world.level.enemies[index]) && this.swimAndSlap) {
                 setTimeout(() => {
-                    world.level.enemies.splice(index, 1)
+                    // world.level.enemies.splice(index, 1)
                 }, 100);
             }
         }
+    }
+
+    hurtSharkie() {
+        this.hit();
+        world.sharkieHurtSound.play()
+        world.statusBar.setPercentage(this.energy);
     }
 }

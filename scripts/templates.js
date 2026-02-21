@@ -9,7 +9,7 @@ function getMainMenueTemplate() {
             <img class="splashScreenStartButton selector " src="./img/6.Botones/Start/3.png" alt="" onclick="startGame()">
             <img class="splashScreenSpaceBarIcon selector " src="./img/6.Botones/Key/Space Bar key.png" alt="">
         </div>
-         <div class="impressumContainer" onclick="showImpressum()">
+         <div class="impressumContainer" onclick="showImpressum('splashScreen')">
             <p>§</p>
             <h4>Impressum</h4>
         </div>
@@ -78,7 +78,7 @@ function getSecondMainMenueTemplate() {
                 <img class="splashScreenStartButton selector " src="./img/6.Botones/Start/3.png" alt="" onclick="world.restartWithMouseClick()">
                 <img class="splashScreenSpaceBarIcon selector " src="./img/6.Botones/Key/Space Bar key.png" alt="">
             </div>
-            <div class="impressumContainer" onclick="showImpressum()">
+            <div class="impressumContainer" onclick="showImpressum('endScreen')">
                 <p>§</p>
                 <h4>Impressum</h4>
             </div>

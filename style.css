@@ -9,6 +9,8 @@ body {
     align-items: center;
     margin: 0;
     background-image: url('./img/backgroundWater.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 

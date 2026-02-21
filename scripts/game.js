@@ -260,12 +260,18 @@ function restartTheGameEventlistener() {
     splashScreenStartButton.addEventListener('click', world.restartWithMouseClick);
 }
 
-function showImpressum() {
-    let splashScreen = document.getElementById('splashScreen')
-    splashScreen.innerHTML = "";
-    splashScreen.innerHTML += getImpressumTemplate()
+function showImpressum(elementName) {
+    let screen = document.getElementById(`${elementName}`)
+    screen.innerHTML = "";
+    screen.innerHTML += getImpressumTemplate()
     let impressumSection = document.getElementById('impressumSection')
-    impressumSection.innerHTML += getSettingIconsImpressumTemplate()
+
+    if ("endScreen" == elementName) {
+        removeD_None("homeIcon")
+    } else {
+        impressumSection.innerHTML += getSettingIconsImpressumTemplate()
+    }
+    checkLocalStorageSettings()
 }
 
 function hideSplashScreen() {

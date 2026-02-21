@@ -259,6 +259,7 @@ class World {
         if (this.gameOver) {
             this.initRestartGame()
             restartGame()
+            removeD_None('homeIcon')
         }
     }
     initRestartGame() {

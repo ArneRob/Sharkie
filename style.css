@@ -32,6 +32,7 @@ body {
     height: clamp(100vh, 1000px, 1270px);
     font-family: bigBlue, Arial, Helvetica, sans-serif;
     overflow: hidden;
+    position: relative;
 }
 
 canvas {
@@ -51,7 +52,7 @@ h1 {
     position: absolute;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(55 25 244 / 0.95);;
+    background-color: rgba(55 25 244 / 0.95);
     z-index: 5;
     justify-content: center;
     align-items: center;
@@ -65,52 +66,4 @@ h1 {
     padding: 20px;
     border-radius: 20px;
     font-size: 25px;
-}
-
-@media (orientation: portrait) {
-    #canvas {
-        display: none;
-    }
-    .fullScreen {
-        display: none;
-    }
-
-    .settingsImgDiv {
-        display: none !important;
-    }
-
-    .warning-message {
-        display: flex !important;
-    }
-}
-
-@media only screen and (max-width: 1000px) {
-    body {
-        overflow: hidden;
-    }
-    .fullScreen {
-       justify-content: center;
-    }
-    .h1SharkieHeading {
-        display: none;
-    }
-}
-
-@media only screen and (max-width: 740px) {
-    canvas {
-        width: 100%;
-    }
-    .h1SharkieHeading {
-        display: none;
-    }
-}
-
-@media only screen and (max-height: 480px) {
-    canvas {
-        height: 100vh;
-    }
-
-    .splashScreen {
-        height: 100vh;
-    }
 }

@@ -152,13 +152,15 @@ function openCloseGameMenue() {
 }
 
 function showSecondHomeMenue() {
+    world.intervalIds.forEach(clearInterval)
+    world.gameOver = true;
     let homeIcon = document.getElementById('homeIcon')
     homeIcon.classList.add('d_none')
     let endScreen = document.getElementById('endScreen')
+    endScreen.classList.remove('d_none')
     endScreen.style.backgroundImage = "url('./img/3.Background/Mesa de trabajo 1.png')";
     endScreen.innerHTML = "";
     endScreen.innerHTML += getSecondMainMenueTemplate()
-
 }
 
 function getLocalStorageItem(key) {
@@ -181,8 +183,13 @@ function checkLocalStorageSettings() {
 }
 
 function getFullScreen() {
-    let fullScreen = document.getElementById('fullScreen')
+    let fullScreen = document.getElementById('body')
     enterFullscreen(fullScreen)
+}
+
+function removeD_None(elementName) {
+    let element = document.getElementById(`${elementName}`)
+    element.classList.remove('d_none')
 }
 
 function enterFullscreen(element) {

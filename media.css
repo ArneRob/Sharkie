@@ -1,0 +1,116 @@
+@media (orientation: portrait) {
+    #canvas {
+        display: none;
+    }
+
+    .fullScreen {
+        display: none;
+    }
+
+    .settingsImgDiv {
+        display: none !important;
+    }
+
+    .warning-message {
+        display: flex !important;
+    }
+}
+
+@media (orientation: landscape) {
+    .fullScreen {
+        height: 100%;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .fullScreenIcon {
+        display: none;
+    }
+
+    .splashScreenSpaceBarIcon {
+        display: none;
+    }
+
+    .splashScreenStartButton {
+        animation: pulse-animation 1.5s infinite ease-in-out;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    body {
+        overflow: hidden;
+    }
+
+    .fullScreen {
+        justify-content: center;
+    }
+
+    .h1SharkieHeading {
+        display: none;
+    }
+
+    .instructionsImg {
+        display: none;
+    }
+
+    .controllerMobile {
+        display: block;
+        width: 250px;
+    }
+    .settingsImgDivInGame {
+        right: 2vw;
+        top: 2vh;
+    }
+    .splashScreenSettingIcons {
+        width: 70px;
+    }
+}
+
+@media only screen and (max-width: 740px) {
+    canvas {
+        width: 100%;
+    }
+
+    .h1SharkieHeading {
+        display: none;
+    }
+}
+
+@media only screen and (max-height: 480px) {
+    canvas {
+        height: 100vh;
+    }
+
+    body {
+        height: 100vh;
+    }
+
+    .splashScreen {
+        height: 350px;
+        width: 550px;
+    }
+
+    .instructionsImg {
+        width: 400px;
+    }
+
+    .fullScreenIcon {
+        width: 200px;
+    }
+
+    .startButtonContainer {
+        margin-top: 70px;
+        margin-bottom: 100px;
+    }
+
+}
+
+@media only screen and (max-height: 420px) {
+    .controllerMobile {
+        display: block;
+        width: 160px;
+    }
+    .splashScreenSettingIcons {
+        width: 60px;
+    }
+}

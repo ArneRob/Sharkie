@@ -3,6 +3,14 @@
     margin: 0;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    background-image: url('./img/backgroundWater.jpg');
+}
+
 
 @font-face {
     font-family: "bigBlue";
@@ -15,11 +23,9 @@
 }
 
 .fullScreen {
-    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-image: url('./img/backgroundWater.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -29,13 +35,11 @@
 }
 
 canvas {
-    position: absolute;
     display: block;
-    top: 300px;
+    background-color: black;
 }
 
 h1 {
-    position: absolute;
     font-size: 85px;
     top: 200px;
     margin-bottom: 10px;
@@ -43,18 +47,70 @@ h1 {
     font-weight: 500;
 }
 
-canvas {
-    background-color: black;
+.warning-message {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(55 25 244 / 0.95);;
+    z-index: 5;
+    justify-content: center;
+    align-items: center;
+    display: none;
 }
 
-@media only screen and (max-width: 720px) {
+.warning-message h3 {
+    background-color: black;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 20px;
+    border-radius: 20px;
+    font-size: 25px;
+}
+
+@media (orientation: portrait) {
+    #canvas {
+        display: none;
+    }
+    .fullScreen {
+        display: none;
+    }
+
+    .settingsImgDiv {
+        display: none !important;
+    }
+
+    .warning-message {
+        display: flex !important;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    body {
+        overflow: hidden;
+    }
+    .fullScreen {
+       justify-content: center;
+    }
+    .h1SharkieHeading {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 740px) {
     canvas {
         width: 100%;
+    }
+    .h1SharkieHeading {
+        display: none;
     }
 }
 
 @media only screen and (max-height: 480px) {
     canvas {
+        height: 100vh;
+    }
+
+    .splashScreen {
         height: 100vh;
     }
 }

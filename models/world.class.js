@@ -45,7 +45,7 @@ class World {
 
     runSounds() {
         if (!getLocalStorageItem("backgroundBubble")) {
-            this.createAudio(this.underwaterBubble)
+            this.createBackgroundAudio(this.underwaterBubble)
             setItemToLocalStorage("backgroundBubble")
         }
         let soundCheckInterval = setInterval(() => {
@@ -267,7 +267,7 @@ class World {
         this.stopRequestAnimationFrame = true;
     }
 
-    createAudio(audioSrc) {
+    createBackgroundAudio(audioSrc) {
         this.backgroundAudio = document.createElement("AUDIO")
         this.backgroundAudio.id = "audio"
         this.backgroundAudio.src = audioSrc

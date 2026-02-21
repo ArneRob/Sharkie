@@ -235,7 +235,6 @@ function restartGame() {
     resetGameVar()
     gameOverScreenOff()
     canvasOn()
-    console.log("reset");
 }
 
 function resetGameVar() {

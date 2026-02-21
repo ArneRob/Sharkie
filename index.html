@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./startMenue.css">
+    <link rel="stylesheet" href="./media.css">
     <link rel="icon" type="image/x-icon" href="img/sharkieFavicon.png">
     <script src="./scripts/templates.js"></script>
     <script src="./scripts/db.js"></script>
@@ -32,16 +33,20 @@
 
     <title>Sharkie</title>
 </head>
+
 <body onload="init(), removeItemFromLocalStorage(`backgroundBubble`)">
     <div class="fullScreen" id="fullScreen">
-        <h1>Sharkie</h1>
+        <h1 class="h1SharkieHeading">Sharkie</h1>
         <div class="splashScreen" id="splashScreen">
         </div>
-        <canvas id="canvas" width="720" height="480" class="d_none">
+        <canvas id="canvas" width="720" height="480" class="canvas d_none">
         </canvas>
         <div class="endScreen d_none" id="endScreen">
 
         </div>
+    </div>
+    <div class="warning-message">
+        <h3>Please turn youre Device</h3>
     </div>
 </body>
 

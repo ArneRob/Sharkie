@@ -171,3 +171,41 @@
     transform: scale(1.1);
     cursor: pointer;
 }
+
+.impressumContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    padding: 10px;
+    transition: all 0.2s;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: 5px;
+}
+
+.impressumContainer p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    width: 40px;
+    height: 40px;
+    background-color: rgb(70, 190, 239);
+    border: solid orange;
+    font-size: 25px;
+}
+
+.impressumContainer:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.impressumContainer h4 {
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}

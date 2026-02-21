@@ -34,6 +34,19 @@
     .splashScreenStartButton {
         animation: pulse-animation 1.5s infinite ease-in-out;
     }
+
+    .instructionsContainer {
+        flex-direction: row;
+    }
+
+    .controllerMobile {
+        display: block;
+        width: 200px;
+    }
+
+    .instructionsImg {
+        width: 450px;
+    }
 }
 
 @media only screen and (max-width: 1000px) {
@@ -53,16 +66,22 @@
         display: none;
     }
 
-    .controllerMobile {
-        display: block;
-        width: 250px;
-    }
     .settingsImgDivInGame {
         right: 2vw;
-        top: 2vh;
+        /* top: 5vh; */
     }
+
     .splashScreenSettingIcons {
         width: 70px;
+    }
+
+    .endScreen {
+        top: 0%;
+        width: 100%;
+    }
+
+    .endScreenButtonContainer {
+        bottom: 40%;
     }
 }
 
@@ -110,6 +129,7 @@
         display: block;
         width: 160px;
     }
+
     .splashScreenSettingIcons {
         width: 60px;
     }

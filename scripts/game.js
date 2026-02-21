@@ -259,3 +259,21 @@ function restartTheGameEventlistener() {
     let splashScreenStartButton = document.getElementById('splashScreenStartButton')
     splashScreenStartButton.addEventListener('click', world.restartWithMouseClick);
 }
+
+function showImpressum() {
+    let splashScreen = document.getElementById('splashScreen')
+    splashScreen.innerHTML = "";
+    splashScreen.innerHTML += getImpressumTemplate()
+    let impressumSection = document.getElementById('impressumSection')
+    impressumSection.innerHTML += getSettingIconsImpressumTemplate()
+}
+
+function hideSplashScreen() {
+    let splashScreen = document.getElementById('splashScreen')
+    splashScreen.classList.add('d_none')
+}
+
+function showSplashScreen() {
+    let splashScreen = document.getElementById('splashScreen')
+    splashScreen.classList.remove('d_none')
+}

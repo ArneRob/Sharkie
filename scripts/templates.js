@@ -26,7 +26,6 @@ function getSettingMenueTemplate() {
         <div class="instructionsContainer">
             <img class="controllerMobile selector " src="./img/controllerMobile.png">
             <img class="instructionsImg selector " src="./img/6.Botones/Instructions 2.png">
-            <img id="fullScreenIcon" class="fullScreenIcon selector " src="./img/6.Botones/Full Screen/Mesa de trabajo 7.png">
         </div>
     `
 }
@@ -36,7 +35,6 @@ function getIngameSettingMenueTemplate() {
         <div id="instructionsContainer" class="instructionsContainer">
             <img class="controllerMobile selector " src="./img/controllerMobile.png">
             <img class="instructionsImg selector " src="./img/6.Botones/Instructions 2.png">
-            <img id="fullScreenIcon" class="fullScreenIcon selector " src="./img/6.Botones/Full Screen/Mesa de trabajo 7.png">
         </div>
     `
 }

@@ -28,7 +28,8 @@
 }
 
 .endScreen {
-    top: 18%;
+    top: 0;
+    position: absolute;
     width: 720px;
     height: 480px;
     background-image: url('./img/6.Botones/Try again/Mesa de trabajo 1.png');

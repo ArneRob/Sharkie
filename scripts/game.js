@@ -6,7 +6,6 @@ let isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
 function init() {
     showMainMenue()
-    localStorage.removeItem("fullScreen")
     window.addEventListener("keydown", checkIfRIghtKey)
 }
 
@@ -124,8 +123,6 @@ function showSettingMenue() {
     splashScreen.innerHTML = "";
     splashScreen.innerHTML += getSettingMenueTemplate();
     checkLocalStorageSettings()
-    let fullScreenIcon = document.getElementById('fullScreenIcon')
-    fullScreenIcon.addEventListener("click", getFullScreen)
 }
 
 function showIngameSettingMenue() {
@@ -136,12 +133,6 @@ function showIngameSettingMenue() {
     let instructionsContainer = document.getElementById('instructionsContainer')
     instructionsContainer.classList.toggle('mb-top-50')
     checkLocalStorageSettings()
-    let fullScreenIcon = document.getElementById('fullScreenIcon')
-    if (getLocalStorageItem("fullScreen")) {
-        fullScreenIcon.addEventListener("click", exitFullscreen)
-    } else {
-        fullScreenIcon.addEventListener("click", getFullScreen)
-    }
 }
 
 function openCloseGameMenue() {
@@ -152,7 +143,6 @@ function openCloseGameMenue() {
 }
 
 function showSecondHomeMenue() {
-    addD_None("canvas")
     world.intervalIds.forEach(clearInterval)
     world.gameOver = true;
     let homeIcon = document.getElementById('homeIcon')
@@ -183,11 +173,6 @@ function checkLocalStorageSettings() {
     }
 }
 
-function getFullScreen() {
-    let fullScreen = document.getElementById('body')
-    enterFullscreen(fullScreen)
-}
-
 function removeD_None(elementName) {
     let element = document.getElementById(`${elementName}`)
     element.classList.remove('d_none')
@@ -196,30 +181,9 @@ function addD_None(elementName) {
     let element = document.getElementById(`${elementName}`)
     element.classList.add('d_none')
 }
-function enterFullscreen(element) {
-    if (element.requestFullscreen) {
-        element.requestFullscreen();
-    } else if (element.msRequestFullscreen) {      // for IE11 (remove June 15, 2022)
-        element.msRequestFullscreen();
-    } else if (element.webkitRequestFullscreen) {  // iOS Safari
-        element.webkitRequestFullscreen();
-    } setItemToLocalStorage("fullScreen")
-    let fullScreenIcon = document.getElementById('fullScreenIcon')
-    fullScreenIcon.addEventListener("click", exitFullscreen)
-}
-
-function exitFullscreen() {
-    if (document.exitFullscreen) {
-        document.exitFullscreen();
-    } else if (document.webkitExitFullscreen) {
-        document.webkitExitFullscreen();
-    } removeItemFromLocalStorage("fullScreen")
-    let fullScreenIcon = document.getElementById('fullScreenIcon')
-    fullScreenIcon.addEventListener("click", exitFullscreen)
-}
 
 function getGameOverScreen() {
-     addD_None("canvas")
+    // addD_None("canvas")
     let homeIcon = document.getElementById('homeIcon')
     homeIcon.classList.remove('d_none')
     let endScreen = document.getElementById('endScreen')
@@ -229,6 +193,7 @@ function getGameOverScreen() {
 }
 
 function getGameWonScreen() {
+    // addD_None("canvas")
     let homeIcon = document.getElementById('homeIcon')
     homeIcon.classList.remove('d_none')
     let endScreen = document.getElementById('endScreen')

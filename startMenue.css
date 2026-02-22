@@ -16,7 +16,6 @@
 }
 
 .splashScreen {
-    top: 300px;
     width: 720px;
     height: 480px;
     background-image: url('./img/3.Background/Mesa de trabajo 1.png');
@@ -29,7 +28,6 @@
 }
 
 .endScreen {
-    position: absolute;
     top: 18%;
     width: 720px;
     height: 480px;
@@ -128,8 +126,8 @@
     justify-content: flex-end;
     position: absolute;
     gap: 4px;
-    right: 2vw;
-    top: 20%;
+    right: 10px;
+    top: 10px;
     width: 250px;
     z-index: 4;
 }

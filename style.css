@@ -37,6 +37,10 @@ body {
     position: relative;
 }
 
+.canvasDiv {
+    position: relative;
+}
+
 canvas {
     display: block;
     background-color: black;

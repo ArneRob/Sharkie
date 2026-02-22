@@ -1,4 +1,4 @@
-@media (orientation: portrait) {
+ @media (orientation: portrait) {
     #canvas {
         display: none;
     }
@@ -66,12 +66,7 @@
         display: none;
     }
 
-    .settingsImgDivInGame {
-        right: 2vw;
-        /* top: 5vh; */
-    }
-
-    .splashScreenSettingIcons {
+     .splashScreenSettingIcons {
         width: 70px;
     }
 
@@ -133,4 +128,4 @@
     .splashScreenSettingIcons {
         width: 60px;
     }
-}
+} 

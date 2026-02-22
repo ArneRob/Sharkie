@@ -71,10 +71,10 @@ function checkIfRIghtKey(event) {
 }
 
 function getSettingIconsInGame() {
-    let fullScreen = document.getElementById('fullScreen')
+    let canvasDiv = document.getElementById('canvasDiv')
     let settingsDiv = document.getElementById('settingsDiv')
     settingsDiv.remove()
-    fullScreen.innerHTML += getSettingIconsTemplate()
+    canvasDiv.innerHTML += getSettingIconsTemplate()
     checkLocalStorageSettings()
 }
 
@@ -152,6 +152,7 @@ function openCloseGameMenue() {
 }
 
 function showSecondHomeMenue() {
+    addD_None("canvas")
     world.intervalIds.forEach(clearInterval)
     world.gameOver = true;
     let homeIcon = document.getElementById('homeIcon')
@@ -191,7 +192,10 @@ function removeD_None(elementName) {
     let element = document.getElementById(`${elementName}`)
     element.classList.remove('d_none')
 }
-
+function addD_None(elementName) {
+    let element = document.getElementById(`${elementName}`)
+    element.classList.add('d_none')
+}
 function enterFullscreen(element) {
     if (element.requestFullscreen) {
         element.requestFullscreen();
@@ -215,6 +219,7 @@ function exitFullscreen() {
 }
 
 function getGameOverScreen() {
+     addD_None("canvas")
     let homeIcon = document.getElementById('homeIcon')
     homeIcon.classList.remove('d_none')
     let endScreen = document.getElementById('endScreen')

@@ -7,19 +7,23 @@ class PoisenStatusBar extends DrawableObject {
         '../img/4.Marcadores/green/poisoned bubbles/80_ copia 2.png',
         '../img/4.Marcadores/green/poisoned bubbles/100_ copia 3.png',
     ];
-
     percentage = 0;
-
     constructor() {
         super();
-        this.loadImages(this.IMAGES_POISENBAR)
+        this.loadImages(this.IMAGES_POISENBAR);
+
         this.x = 20;
         this.y = -10;
-        this.width = 200
+        this.width = 200;
         this.height = 60;
-        this.setPercentage(0)
+
+        this.setPercentage(0);
     }
 
+    /**
+     * Sets the poison percentage and updates the displayed image.
+     * @param {number} percentage - Poison percentage (0–100).
+     */
     setPercentage(percentage) {
         this.percentage = percentage;
 
@@ -27,20 +31,23 @@ class PoisenStatusBar extends DrawableObject {
         this.img = this.imageCache[path];
     }
 
-
+    /**
+     * Resolves the correct image index based on poison percentage.
+     * @returns {number} Index of the poison bar image.
+     */
     resolveImageIndex() {
         if (this.percentage == 100) {
             return 5;
         } else if (this.percentage == 80) {
-            return 4
+            return 4;
         } else if (this.percentage == 60) {
-            return 3
+            return 3;
         } else if (this.percentage == 40) {
-            return 2
+            return 2;
         } else if (this.percentage == 20) {
-            return 1
+            return 1;
         } else {
-            return 0
+            return 0;
         }
     }
 }

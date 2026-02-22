@@ -38,10 +38,17 @@ class JellyFishFlashing extends MovableObject {
         this.getNewYCoordinate(jFishFlashObj, "y")
     }
 
+    /**
+ * Animiert die Qualle.
+ * Prüft Kollisionen mit dem Charakter, löst Schaden aus,
+ * startet die Todesanimation und spielt je nach Zustand
+ * Schwimm- oder Todesanimationen ab.
+ * Das Intervall läuft mit 8 FPS.
+ */
     animate() {
         let intervalIndex = 0;
         let interval = setInterval(() => {
-            if (this.isColliding(world.character) && world.keyboard.SPACE || this.deadThroughBubble &&  !this.playDeadAnimation) {
+            if (this.isColliding(world.character) && world.keyboard.SPACE || this.deadThroughBubble && !this.playDeadAnimation) {
                 this.playDeadAnimation = true
                 intervalIndex = 0;
                 this.currentImage = 0;

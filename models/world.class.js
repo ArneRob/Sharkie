@@ -1,7 +1,3 @@
-/**
- * Represents the main game world.
- * Handles rendering, collisions, sounds, game logic and game state.
- */
 class World {
     character = new Character();
     canvas;
@@ -45,11 +41,6 @@ class World {
     backgroundObjects = level1.backgroundObjects;
     light = level1.light;
 
-    /**
-     * Creates the game world.
-     * @param {HTMLCanvasElement} canvas - The game canvas.
-     * @param {Object} keyboard - Keyboard input handler.
-     */
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;

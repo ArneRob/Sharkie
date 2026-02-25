@@ -306,29 +306,10 @@ class World {
      * Checks win/lose conditions.
      */
     checkGameOverCondition() {
-        if (
-            this.level.endboss[0].endbossEnergy <= 0 &&
-            !this.gameOver &&
-            !this.resetGameIsSet &&
-            this.level.endboss[0].endbossDeadAnimationIsOver
-        ) {
-            this.gameOver = true;
-            getGameWonScreen();
-            this.playSound('audio/winning_game.mp3');
-            this.intervalIds.forEach(clearInterval);
-            this.delayedEndScreenShowBooleanOnTrue();
-            restartTheGameEventlistener();
-        } else if (
-            this.character.energy <= 0 &&
-            !this.gameOver &&
-            this.character.characterDeadAnimationIsOver
-        ) {
-            this.gameOver = true;
-            getGameOverScreen();
-            this.playSound('audio/lose_game.mp3');
-            this.intervalIds.forEach(clearInterval);
-            this.delayedEndScreenShowBooleanOnTrue();
-            restartTheGameEventlistener();
+        if (this.level.endboss[0].endbossEnergy <= 0 && !this.gameOver && !this.resetGameIsSet && this.level.endboss[0].endbossDeadAnimationIsOver) {
+            this.getGameWonActions()
+        } else if (this.character.energy <= 0 && !this.gameOver && this.character.characterDeadAnimationIsOver) {
+            this.getGameOverActions()
         }
 
         if (!this.resetGameInterval) {
@@ -337,6 +318,22 @@ class World {
         }
     }
 
+    getGameWonActions() {
+        this.gameOver = true;
+        getGameWonScreen();
+        this.playSound('audio/winning_game.mp3');
+        this.intervalIds.forEach(clearInterval);
+        this.delayedEndScreenShowBooleanOnTrue();
+        restartTheGameEventlistener();
+    }
+    getGameOverActions() {
+        this.gameOver = true;
+        getGameOverScreen();
+        this.playSound('audio/lose_game.mp3');
+        this.intervalIds.forEach(clearInterval);
+        this.delayedEndScreenShowBooleanOnTrue();
+        restartTheGameEventlistener();
+    }
     /**
      * Checks restart input after game over.
      */

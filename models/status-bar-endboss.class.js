@@ -75,7 +75,7 @@ class EndbossStatusBar extends DrawableObject {
     /**
      * Makes the endboss status bar visible on screen.
      */
-    showEndbossStatusBar() {
-        this.y = 70;
-    }
+    // showEndbossStatusBar() {
+    //     this.y = 70;
+    // }
 }

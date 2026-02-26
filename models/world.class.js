@@ -232,11 +232,11 @@ class World {
         this.ctx.translate(-this.camera_x, 0);
 
         this.addToMap(this.statusBar);
-        this.addToMap(this.endbossStatusBar);
         this.addToMap(this.coinStatusBar);
         this.addToMap(this.poisenStatusBar);
 
         this.ctx.translate(this.camera_x, 0);
+        this.addToMap(this.endbossStatusBar);
         this.addObjectsToMap(this.level.coin);
         this.addObjectsToMap(this.level.poisenBottle);
         this.addObjectsToMap(this.throwableObjects);

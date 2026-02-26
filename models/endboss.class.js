@@ -158,6 +158,10 @@ class Endboss extends MovableObject {
                     this.otherDirection = false;
                 }
             }
+            if (this.introWasPlayed) {
+                world.endbossStatusBar.x = this.x + 70
+                world.endbossStatusBar.y = this.y + 120
+            }
             this.pushIntervalids(interval, "endbossTurnArroundInterval", world)
         }, 100);
     }

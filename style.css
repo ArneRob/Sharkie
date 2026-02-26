@@ -73,3 +73,10 @@ h1 {
     border-radius: 20px;
     font-size: 25px;
 }
+
+.touchButtonsLeft {
+    display: none;
+}
+ .touchButtonsRight {
+    display: none;
+ }

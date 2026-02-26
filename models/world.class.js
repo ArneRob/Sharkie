@@ -78,7 +78,7 @@ class World {
      */
     muteSounds() {
         if (this.backgroundAudio) {
-
+            this.backgroundAudio.volume = 0;
         }
         this.character.sharkieSnoreSound.volume = 0;
         this.character.finSlapSound.volume = 0;

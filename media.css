@@ -86,6 +86,16 @@
      .h1SharkieHeading {
          display: none;
      }
+
+     .splashScreenStartButton {
+         width: 200px;
+     }
+ }
+
+ @media only screen and (max-width: 330px) {
+     .warning-message h3 {
+         font-size: 20px;
+     }
  }
 
  @media only screen and (max-height: 480px) {
@@ -117,6 +127,62 @@
 
  }
 
+ /* pointer: coarse in the end of modeling*/
+ @media (pointer: coarse) {
+     .touchButtonsLeft {
+         display: flex;
+         width: 50px;
+         height: 50px;
+         position: absolute;
+         bottom: 80px;
+         left: 50px;
+         flex-direction: row;
+         gap: 25px;
+     }
+
+     .touchButtonsRight {
+         display: flex;
+         width: 50px;
+         height: 50px;
+         position: absolute;
+         bottom: 80px;
+         right: 120px;
+         flex-direction: row;
+         gap: 25px;
+     }
+
+     .touchButtonsWidth {
+         width: 57px;
+         height: 50px;
+         border-radius: 15px;
+     }
+
+     .buttonsUpDown {
+         display: flex;
+         flex-direction: column;
+         gap: 25px
+     }
+
+     .buttonsLeftRight {
+         display: flex;
+         flex-direction: column;
+         gap: 25px
+     }
+
+     .buttonDown {
+         transform: rotate(180deg);
+     }
+
+     .buttonLeft {
+         transform: rotate(270deg);
+     }
+
+     .buttonRight {
+         transform: rotate(90deg);
+     }
+ }
+
+
  @media only screen and (max-height: 420px) {
      .controllerMobile {
          display: block;
@@ -125,5 +191,20 @@
 
      .splashScreenSettingIcons {
          width: 60px;
+     }
+
+     .touchButtonsWidth {
+         width: 40px;
+         height: 33px;
+         border-radius: 15px;
+     }
+     .touchButtonsLeft {
+         bottom: 60px;
+         left: 25px;
+     }
+
+     .touchButtonsRight {
+         bottom: 60px;
+         right: 80px;
      }
  }

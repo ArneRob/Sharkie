@@ -63,7 +63,9 @@ class World {
         }
 
         setInterval(() => {
-            if (getLocalStorageItem("mute")) {
+            if (this.gameOver) {
+                this.backgroundAudio.volume = 0;
+            } else if (getLocalStorageItem("mute")) {
                 this.muteSounds();
             } else {
                 this.soundsOn();
@@ -75,8 +77,9 @@ class World {
      * Mutes all game sounds.
      */
     muteSounds() {
-        if (this.backgroundAudio) this.backgroundAudio.volume = 0;
+        if (this.backgroundAudio) {
 
+        }
         this.character.sharkieSnoreSound.volume = 0;
         this.character.finSlapSound.volume = 0;
         this.electricZapShort.volume = 0;
@@ -97,8 +100,9 @@ class World {
         this.endboss[0].endbossFightSound.volume = 0.05;
         this.sharkieHurtSound.volume = 0.05;
 
-        if (this.backgroundAudio) this.backgroundAudio.volume = 0.05;
-
+        if (this.backgroundAudio) {
+            this.backgroundAudio.volume = 0.05;
+        }
         this.volume = 0.05;
     }
 
@@ -339,12 +343,7 @@ class World {
      */
     checkResetGame() {
         let interval = setInterval(() => {
-            if (
-                this.gameOver &&
-                this.keyboard.SPACE &&
-                this.endScreenShownTwoSeconds &&
-                !this.resetGameIsSet
-            ) {
+            if (this.gameOver && this.keyboard.SPACE && this.endScreenShownTwoSeconds && !this.resetGameIsSet) {
                 this.initRestartGame();
                 clearInterval(interval);
                 restartGame();
@@ -376,6 +375,7 @@ class World {
      * Initializes restart state.
      */
     initRestartGame() {
+        removeItemFromLocalStorage('backgroundBubble')
         this.resetGameIsSet = true;
         this.currentSound.volume = 0;
         this.stopRequestAnimationFrame = true;

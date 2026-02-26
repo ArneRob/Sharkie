@@ -54,7 +54,6 @@ function getSettingIconsImpressumTemplate() {
     return `
      <div class="settingsImgDivInGame">
             <img class="splashScreenSettingIcons homeIcon selector" id="homeIcon" src="./img/homeImage.png" alt="" onclick="showMainMenue()">
-            <img class="splashScreenSettingIcons gearIcon selector" id="gearIcon" src="./img/gear-1077563_640.png" alt="" onclick="showIngameSettingMenue()">
             <img class="splashScreenSettingIcons soundIcon selector " id="soundIcon" src="./img/volume-on.png" alt="" onclick="soundIconSwitch()">
             <img class="splashScreenSettingIcons soundIcon d_none selector " id="muteSoundIcon" src="./img/volume-off.png" alt="" onclick="soundIconSwitch()">
         </div>

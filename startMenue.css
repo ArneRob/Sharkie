@@ -16,6 +16,7 @@
 }
 
 .splashScreen {
+    position: absolute;
     width: 720px;
     height: 480px;
     background-image: url('./img/3.Background/Mesa de trabajo 1.png');

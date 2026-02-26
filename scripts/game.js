@@ -138,8 +138,6 @@ function showIngameSettingMenue() {
 function openCloseGameMenue() {
     let splashScreen = document.getElementById('splashScreen')
     splashScreen.classList.toggle('d_none')
-    let canvas = document.getElementById('canvas')
-    canvas.classList.toggle('d_none')
 }
 
 function showSecondHomeMenue() {
@@ -147,6 +145,7 @@ function showSecondHomeMenue() {
     world.gameOver = true;
     let homeIcon = document.getElementById('homeIcon')
     homeIcon.classList.add('d_none')
+    removeD_None('gearIcon')
     let endScreen = document.getElementById('endScreen')
     endScreen.classList.remove('d_none')
     endScreen.style.backgroundImage = "url('./img/3.Background/Mesa de trabajo 1.png')";
@@ -238,6 +237,7 @@ function showImpressum(elementName) {
 
     if ("endScreen" == elementName) {
         removeD_None("homeIcon")
+        addD_None('gearIcon')
     } else {
         impressumSection.innerHTML += getSettingIconsImpressumTemplate()
     }

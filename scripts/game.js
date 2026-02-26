@@ -146,6 +146,7 @@ function showSecondHomeMenue() {
     let homeIcon = document.getElementById('homeIcon')
     homeIcon.classList.add('d_none')
     removeD_None('gearIcon')
+    addD_None('splashScreen')
     let endScreen = document.getElementById('endScreen')
     endScreen.classList.remove('d_none')
     endScreen.style.backgroundImage = "url('./img/3.Background/Mesa de trabajo 1.png')";

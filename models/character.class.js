@@ -81,6 +81,8 @@ class Character extends MovableObject {
     lastSlap = 0;
     idleTimer = 0;
     IdleCounter = 0;
+    nowTime = 0;
+    passedTime = 0;
     idleSleep;
     slapCounter = 0;
     stayAndSlap = false;
@@ -92,7 +94,9 @@ class Character extends MovableObject {
     sharkieSnoreSound = new Audio("../audio/snoreSoundSharkie.mp3")
     characterDeadAnimation = false;
     characterDeadAnimationIsOver = false;
+    interval;
     intervalSpeed = 1000 / 9
+    intervalIndex = 0;
     offset = {
         top: 130,
         left: 50,
@@ -110,6 +114,7 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_IDLE_LONG)
         this.loadImages(this.IMAGES_IDLE_SLEEP)
         this.animate();
+        this.startKeyListener()
         this.setTimer()
         this.width = 250
         this.height = 250
@@ -119,113 +124,163 @@ class Character extends MovableObject {
     }
 
     animate() {
-        let intervalIndex = 0;
+        this.intervalIndex = 0;
         if (!this.characterDeadAnimation) {
-            let interval = setInterval(() => {
+            this.interval = setInterval(() => {
                 if (this.isDead() && !this.characterDeadAnimation && !world.gameOver) {
-                    intervalIndex = 0
-                    clearInterval(interval)
-                    this.intervalSpeed = 1000 / 5
-                    this.animate()
-                    this.currentImage = 0
-                    this.characterDeadAnimation = true;
+                    this.playSlowerDeadAnimation()
                 }
                 if (this.space() && this.slapAnimationIsOver) {
-                    intervalIndex = 0
-                    this.slapAnimationIsOver = false;
-                    this.swimAndSlap = true;
-                    this.currentImage = 0;
+                    this.preparSlapAnimation()
                 }
                 if (this.space()) { this.spacePressed() }
-                let passedTime = this.idleTimer + 10000;
-                let nowTime = new Date().getTime();
+                this.setTimeForSleep()
                 if (this.characterDeadAnimation && this.isDead()) {
-                    this.playAnimation(this.IMAGES_DEAD)
-                    if (intervalIndex >= 4) {
-                        this.characterDeadAnimation = false;
-                        this.characterDeadAnimationIsOver = true;
-                        world.stopRequestAnimationFrame = true;
-                    }
-                } else if (this.swimAndSlap && intervalIndex <= 5 && !this.characterDeadAnimationIsOver) {
-                    this.playAnimation(this.IMAGES_SLAP)
-                    this.finSlapSound.play()
-                    this.setTimer()
-                    this.subtractLivePointEndboss()
-                    if (intervalIndex == 5) {
-                        this.slapAnimationIsOver = true;
-                        this.swimAndSlap = false
-                    }
+                    this.playDeadAnimationAndResetBooleans()
+                } else if (this.canSlap()) {
+                    this.executeCharacterSlap()
                 } else if (this.isHurt() && !this.characterDeadAnimationIsOver) {
                     this.playAnimation(this.IMAGES_HURT)
-                } else if (world.keyboard.RIGHT || world.keyboard.LEFT && !this.characterDeadAnimationIsOver) {
+                } else if (this.canSwim()) {
                     this.playAnimation(this.IMAGES_SWIM)
-                } else if (nowTime > passedTime && !this.characterDeadAnimationIsOver) {
-                    if (this.IdleCounter <= 7 && !this.idleSleep) {
-                        this.playAnimation(this.IMAGES_IDLE_LONG)
-                    } else if (!this.characterDeadAnimationIsOver) {
-                        this.idleSleep = true
-                        this.sharkieSnoreSound.play()
-                        this.playAnimation(this.IMAGES_IDLE_SLEEP)
-                        this.dropYCoordinate()
-                    }
-                    this.IdleCounter++
-                    if (this.IdleCounter >= 13) { this.IdleCounter == 0 }
-                } else if (!this.stayAndSlap && !this.swimAndSlap && !this.characterDeadAnimationIsOver) {
+                } else if (this.canSleep()) {
+                    this.executeCharacterSleep()
+                } else if (this.canIdle()) {
                     this.playAnimation(this.IMAGES_SWIMMING)
                 }
-                this.pushIntervalids(interval, "characterAnimationInterval", world)
-                intervalIndex++
+                this.pushIntervalids(this.interval, "characterAnimationInterval", world)
+                this.intervalIndex++
             }, this.intervalSpeed);
+        }
+    }
+
+    startKeyListener() {
+        if (!this.characterDeadAnimation) {
             if (!this.keyListenerInterval) {
                 let keyListenerInterval = setInterval(() => {
 
-                    if (world.keyboard.RIGHT && this.x < world.level.level_end_x && !this.isDead()) {
-                        if (isSafari) {
-                            this.x += this.speed * 35;
-                        } else {
-                            this.x += this.speed * 20;
-                        }
-                        this.otherDirection = false;
-                        this.setTimer()
-                    }
-                    if (world.keyboard.LEFT && this.x > 0 && !this.isDead()) {
-                        if (isSafari) {
-                            this.x -= this.speed * 35;
-                        } else {
-                            this.x -= this.speed * 20;
-                        }
-                        this.otherDirection = true;
-                        this.setTimer()
-                    } // minus 100 is the offset of the character
-                    if (world.keyboard.UP && !this.isDead() && this.y > 0 - 100) {
-                        
-                        if (isSafari) {
-                            this.y -= this.speed * 15;
-                        } else {
-                            this.y -= this.speed * 10;
-                        }
-                        this.setTimer()
-                    }
-                    if (world.keyboard.DOWN && !this.isDead() && this.y < world.level.level_end_y) {
-                        if (isSafari) {
-                            this.y += this.speed * 15;
-                        } else {
-                            this.y += this.speed * 10;
-                        }
-                        this.setTimer()
-                    }
-                    if (this.x <= 200) {
-                        world.camera_x = 0
-                    } else if (this.x >= 1700) {
-                        world.camera_x = -1500
-                    } else if (!this.x <= 200) {
-                        world.camera_x = -this.x + 200
-                    }
+                    this.charMoveRight()
+                    this.charMoveLeft()
+                    this.charMoveUp()
+                    this.charMoveDown()
+                    this.moveCameraXY()
 
                     this.pushIntervalids(keyListenerInterval, "keyListenerInterval", world)
                 }, 1000 / 60);
             }
         }
+    }
+    moveCameraXY() {
+        if (this.x <= 200) {
+            world.camera_x = 0
+        } else if (this.x >= 1700) {
+            world.camera_x = -1500
+        } else if (!this.x <= 200) {
+            world.camera_x = -this.x + 200
+        }
+    }
+    charMoveDown() {
+        if (world.keyboard.DOWN && !this.isDead() && this.y < world.level.level_end_y) {
+            if (isSafari) {
+                this.y += this.speed * 15;
+            } else {
+                this.y += this.speed * 10;
+            }
+            this.setTimer()
+        }
+    }
+    charMoveUp() {
+        if (world.keyboard.UP && !this.isDead() && this.y > 0 - 100) {
+
+            if (isSafari) {
+                this.y -= this.speed * 15;
+            } else {
+                this.y -= this.speed * 10;
+            }
+            this.setTimer()
+        }
+    }
+    charMoveLeft() {
+        if (world.keyboard.LEFT && this.x > 0 && !this.isDead()) {
+            if (isSafari) {
+                this.x -= this.speed * 30;
+            } else {
+                this.x -= this.speed * 20;
+            }
+            this.otherDirection = true;
+            this.setTimer()
+        }
+    }
+    charMoveRight() {
+        if (world.keyboard.RIGHT && this.x < world.level.level_end_x && !this.isDead()) {
+            if (isSafari) {
+                this.x += this.speed * 30;
+            } else {
+                this.x += this.speed * 20;
+            }
+            this.otherDirection = false;
+            this.setTimer()
+        }
+    }
+    canIdle() {
+        return !this.stayAndSlap && !this.swimAndSlap && !this.characterDeadAnimationIsOver
+    }
+    executeCharacterSleep() {
+        if (this.IdleCounter <= 7 && !this.idleSleep) {
+            this.playAnimation(this.IMAGES_IDLE_LONG)
+        } else if (!this.characterDeadAnimationIsOver) {
+            this.idleSleep = true
+            this.sharkieSnoreSound.play()
+            this.playAnimation(this.IMAGES_IDLE_SLEEP)
+            this.dropYCoordinate()
+        }
+        this.IdleCounter++
+        if (this.IdleCounter >= 13) { this.IdleCounter == 0 }
+    }
+    canSleep() {
+        return this.nowTime > this.passedTime && !this.characterDeadAnimationIsOver
+    }
+    canSwim() {
+        return world.keyboard.RIGHT || world.keyboard.LEFT && !this.characterDeadAnimationIsOver
+    }
+    canSlap() {
+        return this.swimAndSlap && this.intervalIndex <= 5 && !this.characterDeadAnimationIsOver
+    }
+    executeCharacterSlap() {
+        this.playAnimation(this.IMAGES_SLAP)
+        this.finSlapSound.play()
+        this.setTimer()
+        this.subtractLivePointEndboss()
+        if (this.intervalIndex == 5) {
+            this.slapAnimationIsOver = true;
+            this.swimAndSlap = false
+        }
+    }
+    setTimeForSleep() {
+        this.nowTime = new Date().getTime();
+        this.passedTime = this.idleTimer + 10000;
+    }
+    playDeadAnimationAndResetBooleans() {
+        this.playAnimation(this.IMAGES_DEAD)
+        if (this.intervalIndex >= 5) {
+            this.characterDeadAnimation = false;
+            this.characterDeadAnimationIsOver = true;
+            world.stopRequestAnimationFrame = true;
+        }
+    }
+    preparSlapAnimation() {
+        this.intervalIndex = 0
+        this.slapAnimationIsOver = false;
+        this.swimAndSlap = true;
+        this.currentImage = 0;
+    }
+    playSlowerDeadAnimation() {
+        this.intervalIndex = 0
+        clearInterval(this.interval)
+        this.intervalSpeed = 1000 / 5
+        this.animate()
+        this.currentImage = 0
+        this.characterDeadAnimation = true;
     }
     dropYCoordinate() {
         if (this.y < world.level.level_end_y - 50) {

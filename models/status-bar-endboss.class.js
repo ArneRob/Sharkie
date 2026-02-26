@@ -40,10 +40,6 @@ class EndbossStatusBar extends DrawableObject {
      */
     checkIntroOver() {
         let interval = setInterval(() => {
-            if (world.endboss[0].introWasPlayed) {
-                this.showEndbossStatusBar();
-            }
-
             this.pushIntervalids(
                 interval,
                 "checkIntroEndbossInterval",
@@ -71,11 +67,4 @@ class EndbossStatusBar extends DrawableObject {
             return 0;
         }
     }
-
-    /**
-     * Makes the endboss status bar visible on screen.
-     */
-    // showEndbossStatusBar() {
-    //     this.y = 70;
-    // }
 }

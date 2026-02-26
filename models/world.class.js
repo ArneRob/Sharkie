@@ -347,8 +347,20 @@ class World {
                 this.initRestartGame();
                 clearInterval(interval);
                 restartGame();
+                removeD_None('homeIcon');
             }
         }, 200);
+    }
+
+    /**
+    * Restarts game via mouse click.
+    */
+    restartWithMouseClick() {
+        if (this.gameOver) {
+            this.initRestartGame();
+            restartGame();
+            removeD_None('homeIcon');
+        }
     }
 
     /**
@@ -358,17 +370,6 @@ class World {
         setTimeout(() => {
             this.endScreenShownTwoSeconds = true;
         }, 2000);
-    }
-
-    /**
-     * Restarts game via mouse click.
-     */
-    restartWithMouseClick() {
-        if (this.gameOver) {
-            this.initRestartGame();
-            restartGame();
-            removeD_None('homeIcon');
-        }
     }
 
     /**

@@ -141,6 +141,7 @@ function openCloseGameMenue() {
 }
 
 function showSecondHomeMenue() {
+    world.endScreenShownTwoSeconds = true;
     world.intervalIds.forEach(clearInterval)
     world.gameOver = true;
     let homeIcon = document.getElementById('homeIcon')

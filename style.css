@@ -11,6 +11,7 @@ body {
     background-image: url('./img/backgroundWater.jpg');
     background-size: cover;
     background-repeat: no-repeat;
+    height: 100vh;
 }
 
 
@@ -31,7 +32,6 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    height: clamp(100vh, 1000px, 1270px);
     font-family: bigBlue, Arial, Helvetica, sans-serif;
     overflow: hidden;
     position: relative;

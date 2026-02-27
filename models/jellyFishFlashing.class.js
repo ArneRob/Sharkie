@@ -22,6 +22,8 @@ class JellyFishFlashing extends MovableObject {
     jellyFishAnimationInterval = false;
     jellyFishFlashingIsDead = false;
     deadThroughBubble = false;
+    intervalIndex
+    interval
 
     constructor() {
         super().loadImage('../img/2.Enemy/2 Jelly fish/Dead/Pink/P1.png')
@@ -46,27 +48,47 @@ class JellyFishFlashing extends MovableObject {
  * Das Intervall läuft mit 8 FPS.
  */
     animate() {
-        let intervalIndex = 0;
-        let interval = setInterval(() => {
-            if (this.isColliding(world.character) && world.keyboard.SPACE || this.deadThroughBubble && !this.playDeadAnimation) {
-                this.playDeadAnimation = true
-                intervalIndex = 0;
-                this.currentImage = 0;
+        this.intervalIndex = 0;
+        this.interval = setInterval(() => {
+            if (this.canInitDeadAnimation()) {
+                this.initPlayDeadAnimation()
             }
-            if (this.isColliding(world.character) && !this.playDeadAnimation && world.endboss[0].endbossEnergy > 0) {
+            if (this.canHurtSharkie()) {
                 world.character.hurtSharkie()
             }
-            if (this.playDeadAnimation && intervalIndex <= 12) {
-                this.playAnimation(this.IMAGES_DEAD)
-                if (intervalIndex >= 12) {
-                    this.jellyFishFlashingIsDead = true;
-                    this.x = 4000
-                }
+            if (this.canExecutePlayDeadAnimation()) {
+                this.executePlayDeadAnimation()
             } else if (!this.jellyFishFlashingIsDead) {
                 this.playAnimation(this.IMAGES_SWIMMING)
             }
-            this.pushIntervalids(interval, "jellyFishAnimationInterval", world)
-            intervalIndex++
+            this.pushIntervalids(this.interval, "jellyFishAnimationInterval", world)
+            this.intervalIndex++
         }, 1000 / 8);
+    }
+
+    executePlayDeadAnimation() {
+        this.playAnimation(this.IMAGES_DEAD)
+        if (this.intervalIndex >= 12) {
+            this.jellyFishFlashingIsDead = true;
+            this.x = 4000
+        }
+    }
+
+    canExecutePlayDeadAnimation() {
+        return this.playDeadAnimation && this.intervalIndex <= 12
+    }
+
+    canHurtSharkie() {
+        return this.isColliding(world.character) && !this.playDeadAnimation && world.endboss[0].endbossEnergy > 0
+    }
+
+    initPlayDeadAnimation() {
+        this.playDeadAnimation = true
+        this.intervalIndex = 0;
+        this.currentImage = 0;
+    }
+
+    canInitDeadAnimation() {
+        return this.isColliding(world.character) && world.keyboard.SPACE || this.deadThroughBubble && !this.playDeadAnimation
     }
 }

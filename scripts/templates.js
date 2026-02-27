@@ -24,7 +24,36 @@ function getSettingMenueTemplate() {
             <img class="splashScreenSettingIcons soundIcon d_none selector " id="muteSoundIcon" src="./img/volume-off.png" alt="" onclick="soundIconSwitch()">
         </div>
         <div class="instructionsContainer">
-            <img class="controllerMobile selector " src="./img/controllerMobile.png">
+              <div class="mobileButtonsImgsDiv">
+                <div class="mobileDirectionsButtons">
+                    <div>
+                        <img class="touchButtonsWidth" src="./img/everyDirection.png" alt="">
+                        <p>Up</p>
+                    </div>
+                    <div>
+                        <img class="touchButtonsWidth buttonDown" src="./img/everyDirection.png" alt="">
+                        <p>Down</p>
+                    </div>
+                    <div>
+                        <img class="touchButtonsWidth buttonLeft" src="./img/everyDirection.png" alt="">
+                        <p>Left</p>
+                    </div>
+                    <div>
+                        <img class="touchButtonsWidth buttonRight" src="./img/everyDirection.png" alt="">
+                        <p>Right</p>
+                    </div>
+                </div>
+                <div class="mobileSpecialButtons">
+                    <div>
+                        <img class="touchButtonsWidth" src="./img/attackButtonImg.png" alt="">
+                        <p>SlapAttack</p>
+                    </div>
+                     <div>
+                        <img class="touchButtonsWidth" src="./img/poisenButtonNew.png" alt="">
+                        <p>PoisenAttack</p>
+                    </div>
+                </div>
+            </div>
             <img class="instructionsImg selector " src="./img/6.Botones/Instructions 2.png">
         </div>
     `
@@ -33,7 +62,36 @@ function getSettingMenueTemplate() {
 function getIngameSettingMenueTemplate() {
     return `
         <div id="instructionsContainer" class="instructionsContainer">
-            <img class="controllerMobile selector " src="./img/controllerMobile.png">
+            <div class="mobileButtonsImgsDiv">
+                <div class="mobileDirectionsButtons">
+                    <div>
+                        <img class="touchButtonsWidth" src="./img/everyDirection.png" alt="">
+                        <p>Up</p>
+                    </div>
+                    <div>
+                        <img class="touchButtonsWidth buttonDown" src="./img/everyDirection.png" alt="">
+                        <p>Down</p>
+                    </div>
+                    <div>
+                        <img class="touchButtonsWidth buttonLeft" src="./img/everyDirection.png" alt="">
+                        <p>Left</p>
+                    </div>
+                    <div>
+                        <img class="touchButtonsWidth buttonRight" src="./img/everyDirection.png" alt="">
+                        <p>Right</p>
+                    </div>
+                </div>
+                <div class="mobileSpecialButtons">
+                    <div>
+                        <img class="touchButtonsWidth" src="./img/attackButtonImg.png" alt="">
+                        <p>SlapAttack</p>
+                    </div>
+                     <div>
+                        <img class="touchButtonsWidth" src="./img/poisenButtonNew.png" alt="">
+                        <p>PoisenAttack</p>
+                    </div>
+                </div>
+            </div>
             <img class="instructionsImg selector " src="./img/6.Botones/Instructions 2.png">
         </div>
     `

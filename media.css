@@ -37,11 +37,6 @@
          flex-direction: row;
      }
 
-     .controllerMobile {
-         display: block;
-         width: 200px;
-     }
-
      .instructionsImg {
          width: 450px;
      }
@@ -129,65 +124,12 @@
 
  /* pointer: coarse in the end of modeling*/
  @media (pointer: coarse) {
-     .touchButtonsLeft {
+     .mobileButtonsImgsDiv {
          display: flex;
-         width: 50px;
-         height: 50px;
-         position: absolute;
-         bottom: 80px;
-         left: 50px;
-         flex-direction: row;
-         gap: 25px;
-     }
-
-     .touchButtonsRight {
-         display: flex;
-         width: 50px;
-         height: 50px;
-         position: absolute;
-         bottom: 80px;
-         right: 120px;
-         flex-direction: row;
-         gap: 25px;
-     }
-
-     .touchButtonsWidth {
-         width: 57px;
-         height: 50px;
-         border-radius: 15px;
-     }
-
-     .buttonsUpDown {
-         display: flex;
-         flex-direction: column;
-         gap: 25px
-     }
-
-     .buttonsLeftRight {
-         display: flex;
-         flex-direction: column;
-         gap: 25px
-     }
-
-     .buttonDown {
-         transform: rotate(180deg);
-     }
-
-     .buttonLeft {
-         transform: rotate(270deg);
-     }
-
-     .buttonRight {
-         transform: rotate(90deg);
      }
  }
 
-
  @media only screen and (max-height: 420px) {
-     .controllerMobile {
-         display: block;
-         width: 160px;
-     }
 
      .splashScreenSettingIcons {
          width: 60px;
@@ -198,6 +140,7 @@
          height: 33px;
          border-radius: 15px;
      }
+
      .touchButtonsLeft {
          bottom: 60px;
          left: 25px;

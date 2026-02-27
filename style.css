@@ -77,6 +77,103 @@ h1 {
 .touchButtonsLeft {
     display: none;
 }
- .touchButtonsRight {
+
+.touchButtonsRight {
     display: none;
- }
+}
+
+.mobileButtonsImgsDiv {
+    display: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 15px;
+    border-radius: 20px;
+    gap: 8px;
+}
+
+.mobileDirectionsButtons {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.mobileDirectionsButtons div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    gap: 5px;
+}
+
+.mobileSpecialButtons {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.mobileSpecialButtons div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    gap: 5px;
+}
+
+.touchButtonsLeft {
+    display: flex;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    bottom: 80px;
+    left: 50px;
+    flex-direction: row;
+    gap: 25px;
+    z-index: 1;
+}
+
+.touchButtonsRight {
+    display: flex;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    bottom: 80px;
+    right: 120px;
+    flex-direction: row;
+    gap: 25px;
+}
+
+.touchButtonsWidth {
+    width: 57px;
+    height: 50px;
+    border-radius: 15px;
+}
+
+.buttonsUpDown {
+    display: flex;
+    flex-direction: column;
+    gap: 25px
+}
+
+.buttonsLeftRight {
+    display: flex;
+    flex-direction: column;
+    gap: 25px
+}
+
+.buttonDown {
+    transform: rotate(180deg);
+}
+
+.buttonLeft {
+    transform: rotate(270deg);
+}
+
+.buttonRight {
+    transform: rotate(90deg);
+}

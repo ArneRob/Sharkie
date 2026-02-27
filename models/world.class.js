@@ -267,7 +267,8 @@ class World {
         if (mo.otherDirection) this.changeImgDirection(mo);
 
         mo.draw(this.ctx);
-        mo.drawFrame(this.ctx);
+        //if collision frame needed, just activate
+        // mo.drawFrame(this.ctx);
 
         if (mo.otherDirection) this.changeBackImgDirection(mo);
     }

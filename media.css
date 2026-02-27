@@ -55,10 +55,6 @@
          display: none;
      }
 
-     .instructionsImg {
-         display: none;
-     }
-
      .splashScreenSettingIcons {
          width: 70px;
      }
@@ -72,12 +68,33 @@
      .endScreenButtonContainer {
          bottom: 40%;
      }
+
+     .impressumtext h2 {
+         font-size: 20px;
+     }
+
+     .impressumtext p {
+         font-size: 15px;
+     }
+
+     .splashScreenStartButton {
+         width: 220px;
+     }
+
+     .touchButtonsWidth {
+        width: 50px;
+        height: 43px;
+     }
  }
 
 
  @media only screen and (max-width: 900px) {
      .splashScreenStartButton {
          width: 200px;
+     }
+
+     .impressumContainer h4 {
+         font-size: 15px;
      }
  }
 
@@ -91,7 +108,7 @@
      }
 
      .splashScreenStartButton {
-         width: 200px;
+         width: 160px;
      }
  }
 
@@ -142,6 +159,10 @@
 
      .touchButtonsRight {
          display: flex !important;
+     }
+
+     .instructionsImg {
+         display: none;
      }
  }
 

@@ -127,7 +127,7 @@ class Endboss extends MovableObject {
         this.playAnimation(this.IMAGES_FIGHT)
         this.endbossFightSound.play()
         this.endbossFightImageCounter++
-
+        this.followCharacter()
         if (this.endbossFightImageCounter >= 6) {
             this.endbossFightImageCounter = 0;
         }

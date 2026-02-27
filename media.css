@@ -73,6 +73,13 @@
      }
  }
 
+
+ @media only screen and (max-width: 900px) {
+     .splashScreenStartButton {
+         width: 200px;
+     }
+ }
+
  @media only screen and (max-width: 740px) {
      canvas {
          width: 100%;
@@ -126,6 +133,14 @@
  @media (pointer: coarse) {
      .mobileButtonsImgsDiv {
          display: flex;
+     }
+
+     .touchButtonsLeft {
+         display: flex !important;
+     }
+
+     .touchButtonsRight {
+         display: flex !important;
      }
  }
 

@@ -64,7 +64,8 @@ class Endboss extends MovableObject {
     endbossDeadAnimation = false;
     endbossDeadAnimationIsOver = false;
     intervalSpeed = 1000 / 10
-
+    intervalIndex = 0
+    endbossAnimationInterval
     constructor() {
         super().loadImage(this.IMAGES_HIDDEN_ENDBOSS[0])
         this.loadImages(this.IMAGES_SWIMMING);
@@ -82,53 +83,103 @@ class Endboss extends MovableObject {
     }
 
     animate() {
-        let intervalIndex = 0
+        this.intervalIndex = 0
         if (!this.endbossDeadAnimation) {
-            let endbossAnimationInterval = setInterval(() => {
-                if (this.endbossEnergy <= 0 && !this.endbossDeadAnimation && !world.gameOver) {
-                    intervalIndex = 0
-                    clearInterval(endbossAnimationInterval)
-                    this.intervalSpeed = 1000 / 5
-                    this.animate()
-                    this.currentImage = 0
-                    this.endbossDeadAnimation = true;
+            this.endbossAnimationInterval = setInterval(() => {
+                if (this.canExeSlowerDeathAnimation()) {
+                    this.slowerDeathAnimation()
                 }
-                if (this.endbossEnergy <= 0 && this.endbossDeadAnimation) {
-                    this.playAnimation(this.IMAGES_DEAD)
-                    if (intervalIndex >= 3) {
-                        this.endbossDeadAnimation = false;
-                        this.endbossDeadAnimationIsOver = true;
-                        world.stopRequestAnimationFrame = true;
-                    }
+                if (this.canPlayDeadAnimation()) {
+                    this.executeEndbossDeath()
                 } else {
-                    if (this.endbossIntro && !this.introWasPlayed) {
-                        intervalIndex = 0
-                        this.introWasPlayed = true;
-                        this.currentImage = 0;
+                    if (this.canInitEndbossIntro()) {
+                        this.executeInitEndbossIntro()
                     }
-                    if (this.endbossIntro && intervalIndex < 10 && !this.endbossDeadAnimationIsOver) {
-                        this.playAnimation(this.IMAGES_INTRO_ANIMATION)
-                        if (intervalIndex == 10) { this.endbossIntro = false; }
+                    if (this.canPlayEndbossIntro()) {
+                        this.executeEndbossIntro()
                     } else if (this.checkLastNearEndbossTime() && !this.endbossDeadAnimationIsOver) {
-                        this.currentImage = this.endbossFightImageCounter
-                        this.playAnimation(this.IMAGES_FIGHT)
-                        this.endbossFightSound.play()
-                        this.endbossFightImageCounter++
-
-                        if (this.endbossFightImageCounter >= 6) {
-                            this.endbossFightImageCounter = 0;
-                        }
-                    } else if (this.introWasPlayed && intervalIndex >= 10 && !this.checkLastNearEndbossTime() && !this.endbossDeadAnimationIsOver) {
-                        this.playAnimation(this.IMAGES_SWIMMING)
-                        this.followCharacter()
-                    } else if (!this.endbossDeadAnimationIsOver) {
+                        this.executeFightAnimation()
+                    } else if (this.canPlayAnimationSwim()) {
+                        this.executeEndbossSwim()
+                    } else if (this.canHideEndboss()) {
                         this.playAnimation(this.IMAGES_HIDDEN_ENDBOSS)
                     }
-                } this.pushIntervalids(endbossAnimationInterval, "endbossAnimationIntervalIsPushed", world)
-                intervalIndex++
+                } this.pushIntervalids(this.endbossAnimationInterval, "endbossAnimationIntervalIsPushed", world)
+                this.intervalIndex++
             }, this.intervalSpeed);
         }
     }
+    canHideEndboss() {
+        return !this.endbossDeadAnimationIsOver
+    }
+
+    executeEndbossSwim() {
+        this.playAnimation(this.IMAGES_SWIMMING)
+        this.followCharacter()
+    }
+
+    canPlayAnimationSwim() {
+        return this.introWasPlayed && this.intervalIndex >= 10 && !this.checkLastNearEndbossTime() && !this.endbossDeadAnimationIsOver
+    }
+
+    executeFightAnimation() {
+        this.currentImage = this.endbossFightImageCounter
+        this.playAnimation(this.IMAGES_FIGHT)
+        this.endbossFightSound.play()
+        this.endbossFightImageCounter++
+
+        if (this.endbossFightImageCounter >= 6) {
+            this.endbossFightImageCounter = 0;
+        }
+    }
+
+    executeInitEndbossIntro() {
+        this.intervalIndex = 0
+        this.introWasPlayed = true;
+        this.currentImage = 0;
+    }
+
+    executeEndbossIntro() {
+        this.playAnimation(this.IMAGES_INTRO_ANIMATION)
+        if (this.intervalIndex == 10) {
+            this.endbossIntro = false;
+        }
+    }
+
+    canPlayEndbossIntro() {
+        return this.endbossIntro && this.intervalIndex < 10 && !this.endbossDeadAnimationIsOver
+    }
+
+    canInitEndbossIntro() {
+        return this.endbossIntro && !this.introWasPlayed
+    }
+
+    executeEndbossDeath() {
+        this.playAnimation(this.IMAGES_DEAD)
+        if (this.intervalIndex >= 3) {
+            this.endbossDeadAnimation = false;
+            this.endbossDeadAnimationIsOver = true;
+            world.stopRequestAnimationFrame = true;
+        }
+    }
+
+    canPlayDeadAnimation() {
+        return this.endbossEnergy <= 0 && this.endbossDeadAnimation
+    }
+
+    canExeSlowerDeathAnimation() {
+        return this.endbossEnergy <= 0 && !this.endbossDeadAnimation && !world.gameOver
+    }
+
+    slowerDeathAnimation() {
+        this.intervalIndex = 0
+        clearInterval(this.endbossAnimationInterval)
+        this.intervalSpeed = 1000 / 5
+        this.animate()
+        this.currentImage = 0
+        this.endbossDeadAnimation = true;
+    }
+
     followCharacter() {
         if (!this.endbossFollowInterVal) {
             this.endbossFollowInterVal = true;
@@ -149,6 +200,7 @@ class Endboss extends MovableObject {
         }
 
     }
+
     check() {
         let interval = setInterval(() => {
             if (world) {
@@ -169,6 +221,7 @@ class Endboss extends MovableObject {
     characterX() {
         return world.character.x
     }
+
     characterY() {
         let offset = world.character.y - 100
         return offset

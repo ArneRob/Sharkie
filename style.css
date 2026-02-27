@@ -75,15 +75,15 @@ h1 {
 }
 
 .touchButtonsLeft {
-    display: none;
+    display: none !important;
 }
 
 .touchButtonsRight {
-    display: none;
+    display: none !important;
 }
 
 .mobileButtonsImgsDiv {
-    display: none;
+    display: flex;
     background-color: rgba(0, 0, 0, 0.5);
     padding: 15px;
     border-radius: 20px;
@@ -91,7 +91,7 @@ h1 {
 }
 
 .mobileDirectionsButtons {
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: flex-start;
     flex-direction: column;

@@ -20,6 +20,8 @@ class JellyFish extends MovableObject {
     };
     jellyFishAnimationInterval = false;
     deadThroughBubble = false;
+    intervalIndex = 0;
+    interval
 
     constructor() {
         super().loadImage('../img/2.Enemy/2 Jelly fish/Regular damage/Lila 1.png')
@@ -36,27 +38,47 @@ class JellyFish extends MovableObject {
 
     animate() {
         this.moveLeft()
-        let intervalIndex = 0;
-        let interval = setInterval(() => {
-            if (this.isColliding(world.character) && world.keyboard.SPACE || this.deadThroughBubble && !this.playDeadAnimation) {
-                this.playDeadAnimation = true
-                intervalIndex = 0;
-                this.currentImage = 0;
+        this.intervalIndex = 0;
+        this.interval = setInterval(() => {
+            if (this.canPlayDeadAnimation()) {
+                this.initDeadAnimation()
             }
-            if (this.isColliding(world.character) && !this.playDeadAnimation && world.endboss[0].endbossEnergy > 0) {
+            if (this.canHurtSharkie()) {
                 world.character.hurtSharkie()
             }
-            if (this.playDeadAnimation && intervalIndex <= 12) {
-                this.playAnimation(this.IMAGES_DEAD)
-                if (intervalIndex >= 12) {
-                    this.jellyFishFlashingIsDead = true;
-                    this.x = 4000
-                }
+            if (this.canExecuteDeath()) {
+                this.jellyFishExecuteDeath()
             } else if (!this.jellyFishFlashingIsDead) {
                 this.playAnimation(this.IMAGES_SWIMMING)
             }
-            this.pushIntervalids(interval, "jellyFishAnimationInterval", world)
-            intervalIndex++
+            this.pushIntervalids(this.interval, "jellyFishAnimationInterval", world)
+            this.intervalIndex++
         }, 1000 / 8);
+    }
+    
+    jellyFishExecuteDeath() {
+        this.playAnimation(this.IMAGES_DEAD)
+        if (this.intervalIndex >= 12) {
+            this.jellyFishFlashingIsDead = true;
+            this.x = 4000
+        }
+    }
+
+    canExecuteDeath() {
+        return this.playDeadAnimation && this.intervalIndex <= 12
+    }
+
+    canHurtSharkie() {
+        return this.isColliding(world.character) && !this.playDeadAnimation && world.endboss[0].endbossEnergy > 0
+    }
+
+    initDeadAnimation() {
+        this.playDeadAnimation = true
+        this.intervalIndex = 0;
+        this.currentImage = 0;
+    }
+
+    canPlayDeadAnimation() {
+        return this.isColliding(world.character) && world.keyboard.SPACE || this.deadThroughBubble && !this.playDeadAnimation
     }
 }

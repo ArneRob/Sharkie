@@ -83,7 +83,7 @@ h1 {
 }
 
 .mobileButtonsImgsDiv {
-    display: flex;
+    display: none;
     background-color: rgba(0, 0, 0, 0.5);
     padding: 15px;
     border-radius: 20px;
@@ -91,7 +91,7 @@ h1 {
 }
 
 .mobileDirectionsButtons {
-    display: none;
+    display: flex;
     justify-content: center;
     align-items: flex-start;
     flex-direction: column;

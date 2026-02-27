@@ -1,8 +1,7 @@
 class World {
-    character = new Character();
     canvas;
     ctx;
-    keyboard;
+    character = new Character();
     camera_x = 0;
 
     statusBar = new StatusBar();
@@ -41,10 +40,10 @@ class World {
     backgroundObjects = level1.backgroundObjects;
     light = level1.light;
 
-    constructor(canvas, keyboard) {
+    constructor(canvas) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
-        this.keyboard = keyboard;
+        this.keyboard = new Keyboard();
 
         this.draw();
         this.checkCollisions();

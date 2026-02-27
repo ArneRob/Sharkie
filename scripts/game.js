@@ -1,7 +1,6 @@
 
 let canvas;
 let world;
-let keyboard = new Keyboard();
 let isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
 function init() {
@@ -15,53 +14,8 @@ function startGame() {
     getSettingIconsInGame()
     canvas = document.getElementById('canvas');
     initLevel1()
-    world = new World(canvas, keyboard);
+    world = new World(canvas);
 }
-
-window.addEventListener('keydown', (event) => {
-    if (event.which == 87 || event.which == 38) {
-        keyboard.UP = true
-    }
-    if (event.which == 83 || event.which == 40) {
-        keyboard.DOWN = true
-    }
-    if (event.which == 65 || event.which == 37) {
-        keyboard.LEFT = true
-    }
-    if (event.which == 68 || event.which == 39) {
-        keyboard.RIGHT = true
-    }
-    if (event.which == 32) {
-        keyboard.SPACE = true
-    }
-    if (event.which == 70) {
-        keyboard.F = true
-    }
-    if (event.which === 32 && event.target === document.body) {
-        event.preventDefault();
-    }
-});
-
-window.addEventListener('keyup', (event) => {
-    if (event.which == 87 || event.which == 38) {
-        keyboard.UP = false
-    }
-    if (event.which == 83 || event.which == 40) {
-        keyboard.DOWN = false
-    }
-    if (event.which == 65 || event.which == 37) {
-        keyboard.LEFT = false
-    }
-    if (event.which == 68 || event.which == 39) {
-        keyboard.RIGHT = false
-    }
-    if (event.which == 32) {
-        keyboard.SPACE = false
-    }
-    if (event.which == 70) {
-        keyboard.F = false;
-    }
-});
 
 function checkIfRIghtKey(event) {
     if (event.which == 32 && canvas == undefined) {
@@ -223,7 +177,7 @@ function resetGameVar() {
     resetObjects()
     initLevel1()
     canvas = document.getElementById('canvas');
-    world = new World(canvas, keyboard)
+    world = new World(canvas)
 }
 
 function restartTheGameEventlistener() {

@@ -10,7 +10,12 @@ class Keyboard {
         this.bindKeyPressEvents()
         this.bindBtsPressEvents()
     }
-
+    /**
+    * Binds touchstart and touchend event listeners to specific HTML button elements.
+    * Updates the movement and action states based on user interaction with the mobile controls.
+    *
+    * @returns {void}
+    */
     bindBtsPressEvents() {
         document.getElementById('buttonUp').addEventListener('touchstart', (e) => {
             e.preventDefault();
@@ -36,7 +41,6 @@ class Keyboard {
             e.preventDefault();
             this.F = true
         });
-
         document.getElementById('buttonUp').addEventListener('touchend', (e) => {
             e.preventDefault();
             this.UP = false
@@ -62,7 +66,12 @@ class Keyboard {
             this.F = false
         });
     }
-
+    /**
+    * Binds keydown and keyup event listeners to the window object.
+    * Maps physical key codes (WASD, Arrows, Space, F) to the internal control states.
+    *
+    * @returns {void}
+    */
     bindKeyPressEvents() {
         window.addEventListener('keydown', (event) => {
             if (event.which == 87 || event.which == 38) {
@@ -87,7 +96,6 @@ class Keyboard {
                 event.preventDefault();
             }
         });
-
         window.addEventListener('keyup', (event) => {
             if (event.which == 87 || event.which == 38) {
                 this.UP = false

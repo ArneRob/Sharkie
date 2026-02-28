@@ -20,6 +20,12 @@ class CoinStatusBar extends DrawableObject {
         this.setPercentage(0)
     }
 
+    /**
+    * Sets the percentage value of the bar and updates the corresponding image.
+    *
+    * @param {number} percentage - The percentage value (e.g., 0, 20, 40, 60, 80, 100).
+    * @returns {void}
+    */
     setPercentage(percentage) {
         this.percentage = percentage;
         
@@ -28,6 +34,11 @@ class CoinStatusBar extends DrawableObject {
     }
 
 
+    /**
+    * Resolves the image array index based on the current percentage value.
+    *
+    * @returns {number} The index (0-5) corresponding to the image in the coin bar array.
+    */
     resolveImageIndex() {
         if (this.percentage == 100) {
             return 5;

@@ -9,6 +9,9 @@ let jFishFlashObj = {
     jFishMultiplikator: 1,
 }
 
+/**
+ * resets enemieObjects/JFishObjects
+ */
 function resetObjects() {
     jFishObj = {
         jellyFlashCounter: 0,

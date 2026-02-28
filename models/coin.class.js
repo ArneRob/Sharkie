@@ -23,7 +23,10 @@ class Coin extends DrawableObject {
 
         this.animate()
     }
-
+     /**
+     * Animates the Coin.
+     * The interval runs at 6 FPS.
+     */
     animate() {
         let interval = setInterval(() => {
             let i = this.currentImage % this.IMAGES_COINS.length

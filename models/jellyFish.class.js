@@ -36,6 +36,12 @@ class JellyFish extends MovableObject {
         this.animate()
     }
 
+    /**
+     * Animates the jellyfish.
+     * Moves it to the left, checks collisions with the character,
+     * applies damage, and handles swimming or death animations.
+     * The interval runs at 8 FPS.
+     */
     animate() {
         this.moveLeft()
         this.intervalIndex = 0;
@@ -56,6 +62,9 @@ class JellyFish extends MovableObject {
         }, 1000 / 8);
     }
     
+    /**
+     * Executes the jellyfish death animation.
+     */
     jellyFishExecuteDeath() {
         this.playAnimation(this.IMAGES_DEAD)
         if (this.intervalIndex >= 12) {
@@ -64,20 +73,35 @@ class JellyFish extends MovableObject {
         }
     }
 
+    /**
+     * Checks whether the death animation should be executed.
+     * @returns {boolean}
+     */
     canExecuteDeath() {
         return this.playDeadAnimation && this.intervalIndex <= 12
     }
 
+    /**
+     * Checks whether the jellyfish can hurt the character.
+     * @returns {boolean}
+     */
     canHurtSharkie() {
         return this.isColliding(world.character) && !this.playDeadAnimation && world.endboss[0].endbossEnergy > 0
     }
 
+    /**
+     * Initializes the death animation.
+     */
     initDeadAnimation() {
         this.playDeadAnimation = true
         this.intervalIndex = 0;
         this.currentImage = 0;
     }
 
+    /**
+     * Checks whether the death animation should be started.
+     * @returns {boolean}
+     */
     canPlayDeadAnimation() {
         return this.isColliding(world.character) && world.keyboard.SPACE || this.deadThroughBubble && !this.playDeadAnimation
     }

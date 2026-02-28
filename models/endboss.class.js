@@ -82,6 +82,11 @@ class Endboss extends MovableObject {
         this.check()
     }
 
+    /**
+    * Animates the endboss.
+    * Controls intro, fight, swim, hidden, and death animations,
+    * including slower death handling and interval management.
+    */
     animate() {
         this.intervalIndex = 0
         if (!this.endbossDeadAnimation) {
@@ -104,24 +109,40 @@ class Endboss extends MovableObject {
                     } else if (this.canHideEndboss()) {
                         this.playAnimation(this.IMAGES_HIDDEN_ENDBOSS)
                     }
-                } this.pushIntervalids(this.endbossAnimationInterval, "endbossAnimationIntervalIsPushed", world)
+                }
+                this.pushIntervalids(this.endbossAnimationInterval, "endbossAnimationIntervalIsPushed", world)
                 this.intervalIndex++
             }, this.intervalSpeed);
         }
     }
+
+    /**
+     * Checks whether the endboss can be hidden.
+     * @returns {boolean}
+     */
     canHideEndboss() {
         return !this.endbossDeadAnimationIsOver
     }
 
+    /**
+     * Executes the swimming animation and follows the character.
+     */
     executeEndbossSwim() {
         this.playAnimation(this.IMAGES_SWIMMING)
         this.followCharacter()
     }
 
+    /**
+     * Checks whether the swim animation can be played.
+     * @returns {boolean}
+     */
     canPlayAnimationSwim() {
         return this.introWasPlayed && this.intervalIndex >= 10 && !this.checkLastNearEndbossTime() && !this.endbossDeadAnimationIsOver
     }
 
+    /**
+     * Executes the fight animation sequence.
+     */
     executeFightAnimation() {
         this.currentImage = this.endbossFightImageCounter
         this.playAnimation(this.IMAGES_FIGHT)
@@ -133,12 +154,18 @@ class Endboss extends MovableObject {
         }
     }
 
+    /**
+     * Initializes the endboss intro animation.
+     */
     executeInitEndbossIntro() {
         this.intervalIndex = 0
         this.introWasPlayed = true;
         this.currentImage = 0;
     }
 
+    /**
+     * Plays the endboss intro animation.
+     */
     executeEndbossIntro() {
         this.playAnimation(this.IMAGES_INTRO_ANIMATION)
         if (this.intervalIndex == 10) {
@@ -146,14 +173,25 @@ class Endboss extends MovableObject {
         }
     }
 
+    /**
+     * Checks whether the intro animation can be played.
+     * @returns {boolean}
+     */
     canPlayEndbossIntro() {
         return this.endbossIntro && this.intervalIndex < 10 && !this.endbossDeadAnimationIsOver
     }
 
+    /**
+     * Checks whether the intro animation should be initialized.
+     * @returns {boolean}
+     */
     canInitEndbossIntro() {
         return this.endbossIntro && !this.introWasPlayed
     }
 
+    /**
+     * Executes the endboss death animation.
+     */
     executeEndbossDeath() {
         this.playAnimation(this.IMAGES_DEAD)
         if (this.intervalIndex >= 3) {
@@ -163,14 +201,25 @@ class Endboss extends MovableObject {
         }
     }
 
+    /**
+     * Checks whether the death animation can be played.
+     * @returns {boolean}
+     */
     canPlayDeadAnimation() {
         return this.endbossEnergy <= 0 && this.endbossDeadAnimation
     }
 
+    /**
+     * Checks whether the slower death animation should be executed.
+     * @returns {boolean}
+     */
     canExeSlowerDeathAnimation() {
         return this.endbossEnergy <= 0 && !this.endbossDeadAnimation && !world.gameOver
     }
 
+    /**
+     * Executes a slower version of the death animation.
+     */
     slowerDeathAnimation() {
         this.intervalIndex = 0
         clearInterval(this.endbossAnimationInterval)
@@ -180,6 +229,9 @@ class Endboss extends MovableObject {
         this.endbossDeadAnimation = true;
     }
 
+    /**
+     * Makes the endboss follow the character.
+     */
     followCharacter() {
         if (!this.endbossFollowInterVal) {
             this.endbossFollowInterVal = true;
@@ -198,9 +250,11 @@ class Endboss extends MovableObject {
                 this.pushIntervalids(interval, "endbossFollowIntervalIsPushed", world)
             }, 1000 / 10);
         }
-
     }
 
+    /**
+     * Checks direction and updates status bar position.
+     */
     check() {
         let interval = setInterval(() => {
             if (world) {
@@ -218,10 +272,18 @@ class Endboss extends MovableObject {
         }, 100);
     }
 
+    /**
+     * Returns the character's current X position.
+     * @returns {number}
+     */
     characterX() {
         return world.character.x
     }
 
+    /**
+     * Returns the character's adjusted Y position.
+     * @returns {number}
+     */
     characterY() {
         let offset = world.character.y - 100
         return offset

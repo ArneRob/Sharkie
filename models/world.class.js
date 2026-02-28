@@ -369,7 +369,7 @@ class World {
     delayedEndScreenShowBooleanOnTrue() {
         setTimeout(() => {
             this.endScreenShownTwoSeconds = true;
-        }, 2000);
+        }, 1000);
     }
 
     /**

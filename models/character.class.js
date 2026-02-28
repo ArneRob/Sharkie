@@ -122,7 +122,9 @@ class Character extends MovableObject {
         this.x = 0
         this.y = 50
     }
-
+    /**
+     * Starts the main animation loop for the character.
+     */
     animate() {
         this.intervalIndex = 0;
         if (!this.characterDeadAnimation) {
@@ -154,6 +156,9 @@ class Character extends MovableObject {
         }
     }
 
+    /**
+     * Starts the key listener interval for character movement.
+     */
     startKeyListener() {
         if (!this.characterDeadAnimation) {
             if (!this.keyListenerInterval) {
@@ -170,6 +175,10 @@ class Character extends MovableObject {
             }
         }
     }
+
+    /**
+     * Updates the camera position based on the character's X coordinate.
+     */
     moveCameraXY() {
         if (this.x <= 200) {
             world.camera_x = 0
@@ -179,6 +188,10 @@ class Character extends MovableObject {
             world.camera_x = -this.x + 200
         }
     }
+
+    /**
+     * Moves the character downward if allowed.
+     */
     charMoveDown() {
         if (world.keyboard.DOWN && !this.isDead() && this.y < world.level.level_end_y) {
             if (isSafari) {
@@ -189,6 +202,10 @@ class Character extends MovableObject {
             this.setTimer()
         }
     }
+
+    /**
+     * Moves the character upward if allowed.
+     */
     charMoveUp() {
         if (world.keyboard.UP && !this.isDead() && this.y > 0 - 100) {
 
@@ -200,6 +217,10 @@ class Character extends MovableObject {
             this.setTimer()
         }
     }
+
+    /**
+     * Moves the character to the left if allowed.
+     */
     charMoveLeft() {
         if (world.keyboard.LEFT && this.x > 0 && !this.isDead()) {
             if (isSafari) {
@@ -211,6 +232,10 @@ class Character extends MovableObject {
             this.setTimer()
         }
     }
+
+    /**
+     * Moves the character to the right if allowed.
+     */
     charMoveRight() {
         if (world.keyboard.RIGHT && this.x < world.level.level_end_x && !this.isDead()) {
             if (isSafari) {
@@ -222,9 +247,17 @@ class Character extends MovableObject {
             this.setTimer()
         }
     }
+
+    /**
+     * Checks whether the character can play the idle animation.
+     */
     canIdle() {
         return !this.stayAndSlap && !this.swimAndSlap && !this.characterDeadAnimationIsOver
     }
+
+    /**
+     * Executes the character's sleep animation sequence.
+     */
     executeCharacterSleep() {
         if (this.IdleCounter <= 7 && !this.idleSleep) {
             this.playAnimation(this.IMAGES_IDLE_LONG)
@@ -237,15 +270,31 @@ class Character extends MovableObject {
         this.IdleCounter++
         if (this.IdleCounter >= 13) { this.IdleCounter == 0 }
     }
+
+    /**
+     * Checks whether the character can enter sleep state.
+     */
     canSleep() {
         return this.nowTime > this.passedTime && !this.characterDeadAnimationIsOver
     }
+
+    /**
+     * Checks whether the character can swim.
+     */
     canSwim() {
         return world.keyboard.RIGHT || world.keyboard.LEFT && !this.characterDeadAnimationIsOver
     }
+
+    /**
+     * Checks whether the character can perform a slap.
+     */
     canSlap() {
         return this.swimAndSlap && this.intervalIndex <= 5 && !this.characterDeadAnimationIsOver
     }
+
+    /**
+     * Executes the character slap action.
+     */
     executeCharacterSlap() {
         this.playAnimation(this.IMAGES_SLAP)
         this.finSlapSound.play()
@@ -256,10 +305,18 @@ class Character extends MovableObject {
             this.swimAndSlap = false
         }
     }
+
+    /**
+     * Updates the time reference for sleep detection.
+     */
     setTimeForSleep() {
         this.nowTime = new Date().getTime();
         this.passedTime = this.idleTimer + 10000;
     }
+
+    /**
+     * Plays the dead animation and resets related flags.
+     */
     playDeadAnimationAndResetBooleans() {
         this.playAnimation(this.IMAGES_DEAD)
         if (this.intervalIndex >= 5) {
@@ -268,12 +325,20 @@ class Character extends MovableObject {
             world.stopRequestAnimationFrame = true;
         }
     }
+
+    /**
+     * Prepares the slap animation state.
+     */
     preparSlapAnimation() {
         this.intervalIndex = 0
         this.slapAnimationIsOver = false;
         this.swimAndSlap = true;
         this.currentImage = 0;
     }
+
+    /**
+     * Plays the slower dead animation.
+     */
     playSlowerDeadAnimation() {
         this.intervalIndex = 0
         clearInterval(this.interval)
@@ -282,44 +347,86 @@ class Character extends MovableObject {
         this.currentImage = 0
         this.characterDeadAnimation = true;
     }
+
+    /**
+     * Slightly drops the character's Y coordinate.
+     */
     dropYCoordinate() {
         if (this.y < world.level.level_end_y - 50) {
             this.y += 10
         }
     }
+
+    /**
+     * Stores the timestamp when space was pressed.
+     */
     spacePressed() {
         this.spaceWasPressed = new Date().getTime()
     }
+
+    /**
+     * Checks whether space was pressed within a specific time range.
+     * @returns {boolean}
+     */
     checkIfSpaceWasPressedInRange() {
         let nowTime = new Date().getTime()
         return this.spaceWasPressed + 500 > nowTime
     }
+
+    /**
+     * Reduces the endboss energy and updates its status bar.
+     */
     setEnergyOfEndboss() {
         world.endboss[0].endbossEnergy -= 20
         world.endbossStatusBar.setPercentage(world.endboss[0].endbossEnergy)
     }
+
+    /**
+     * Checks whether enough time has passed since the last slap.
+     * @returns {boolean}
+     */
     slapTimePassed() {
         let nowTime = new Date().getTime()
         return this.lastSlap + 500 < nowTime
     }
+
+    /**
+     * Stores the current time as the last slap time.
+     */
     setSlapTime() {
         this.lastSlap = new Date().getTime()
     }
+
+    /**
+     * Checks whether the space key is currently pressed.
+     * @returns {boolean}
+     */
     space() {
         return world.keyboard.SPACE
     }
+
+    /**
+     * Subtracts a life point from the endboss if collision conditions are met.
+     */
     subtractLivePointEndboss() {
         if (this.lastSlap == 0 && this.isColliding(world.endboss[0]) || this.slapTimePassed() && this.isColliding(world.endboss[0])) {
             this.setEnergyOfEndboss()
             this.setSlapTime()
         }
     }
+
+    /**
+     * Resets the idle timer and related sleep states.
+     */
     setTimer() {
         this.idleTimer = new Date().getTime();
         this.idleSleep = false
         this.IdleCounter = 0;
     }
 
+    /**
+     * Handles the character being hurt.
+     */
     hurtSharkie() {
         this.hit();
         world.sharkieHurtSound.play()

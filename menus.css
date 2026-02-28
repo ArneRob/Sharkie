@@ -24,7 +24,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     z-index: 3;
 }
 
@@ -38,7 +38,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     z-index: 2;
 }
 
@@ -82,9 +82,9 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
-    margin-top: 100px;
     align-items: center;
-    margin-bottom: 150px;
+    justify-content: center;
+    margin-top: 150px;
 }
 
 .splashScreenStartButton {
@@ -111,8 +111,7 @@
     flex-direction: column;
     gap: 8px;
     align-items: center;
-    position: absolute;
-    bottom: 100px;
+    margin-top: 150px;
 }
 
 .settingsImgDiv {
@@ -121,14 +120,17 @@
     width: 100%;
     justify-content: flex-end;
     gap: 8px;
-    z-index: 3;
+    z-index: 4;
+    position: absolute;
+    right: 10px;
+    top: 10px;
 }
 
 .settingsImgDivInGame {
     display: flex;
     justify-content: flex-end;
     position: absolute;
-    gap: 4px;
+    gap: 8px;
     right: 10px;
     top: 10px;
     width: 250px;
@@ -147,8 +149,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: absolute;
-    top: 50px;
 }
 
 .mb-top-50 {
@@ -157,6 +157,8 @@
 
 .instructionsImg {
     width: 500px;
+    background-color: rgb(77 22 89 / 0.5);
+    border-radius: 20px;
 }
 
 .fullScreenIcon {
@@ -216,7 +218,6 @@
     padding: 20px;
     border-radius: 20px;
     font-family: Arial, Helvetica, sans-serif;
-    margin-top: 15vh;
 }
 
 .impressumtext {

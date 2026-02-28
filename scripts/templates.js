@@ -23,7 +23,7 @@ function getSettingMenueTemplate() {
             <img class="splashScreenSettingIcons soundIcon selector " id="soundIcon" src="./img/volume-on.png" alt="" onclick="soundIconSwitch()">
             <img class="splashScreenSettingIcons soundIcon d_none selector " id="muteSoundIcon" src="./img/volume-off.png" alt="" onclick="soundIconSwitch()">
         </div>
-        <div class="instructionsContainer">
+        <div class="instructionsContainer mb-top-50">
               <div class="mobileButtonsImgsDiv">
                 <div class="mobileDirectionsButtons">
                     <div>
@@ -55,7 +55,8 @@ function getSettingMenueTemplate() {
                 </div>
             </div>
             <img class="instructionsImg selector " src="./img/6.Botones/Instructions 2.png">
-        </div>
+            </div>
+            <div style="height: 10%"></div>
     `
 }
 
@@ -93,7 +94,8 @@ function getIngameSettingMenueTemplate() {
                 </div>
             </div>
             <img class="instructionsImg selector " src="./img/6.Botones/Instructions 2.png">
-        </div>
+            </div>
+            <div style="height: 10%"></div>
     `
 }
 

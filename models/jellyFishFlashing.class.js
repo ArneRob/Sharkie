@@ -41,12 +41,12 @@ class JellyFishFlashing extends MovableObject {
     }
 
     /**
- * Animiert die Qualle.
- * Prüft Kollisionen mit dem Charakter, löst Schaden aus,
- * startet die Todesanimation und spielt je nach Zustand
- * Schwimm- oder Todesanimationen ab.
- * Das Intervall läuft mit 8 FPS.
- */
+     * Animates the jellyfish.
+     * Checks collisions with the character, applies damage,
+     * starts the death animation and plays either swimming
+     * or death animations depending on the current state.
+     * The interval runs at 8 FPS.
+     */
     animate() {
         this.intervalIndex = 0;
         this.interval = setInterval(() => {
@@ -66,6 +66,9 @@ class JellyFishFlashing extends MovableObject {
         }, 1000 / 8);
     }
 
+    /**
+     * Executes the jellyfish death animation.
+     */
     executePlayDeadAnimation() {
         this.playAnimation(this.IMAGES_DEAD)
         if (this.intervalIndex >= 12) {
@@ -74,20 +77,35 @@ class JellyFishFlashing extends MovableObject {
         }
     }
 
+    /**
+     * Checks whether the death animation should be executed.
+     * @returns {boolean}
+     */
     canExecutePlayDeadAnimation() {
         return this.playDeadAnimation && this.intervalIndex <= 12
     }
 
+    /**
+     * Checks whether the jellyfish can hurt the character.
+     * @returns {boolean}
+     */
     canHurtSharkie() {
         return this.isColliding(world.character) && !this.playDeadAnimation && world.endboss[0].endbossEnergy > 0
     }
 
+    /**
+     * Initializes the death animation.
+     */
     initPlayDeadAnimation() {
         this.playDeadAnimation = true
         this.intervalIndex = 0;
         this.currentImage = 0;
     }
 
+    /**
+     * Checks whether the death animation should be initialized.
+     * @returns {boolean}
+     */
     canInitDeadAnimation() {
         return this.isColliding(world.character) && world.keyboard.SPACE || this.deadThroughBubble && !this.playDeadAnimation
     }

@@ -186,14 +186,14 @@ class Endboss extends MovableObject {
 
             let interval = setInterval(() => {
                 if (this.characterX() < this.x) {
-                    this.x -= this.speed * 13
+                    this.x -= this.speed * 18
                 } else if (this.characterX() > this.x) {
-                    this.x += this.speed * 13
+                    this.x += this.speed * 18
                 }
                 if (this.characterY() > this.y) {
-                    this.y += this.speed * 13
+                    this.y += this.speed * 10
                 } else if (this.characterY() < this.y) {
-                    this.y -= this.speed * 13
+                    this.y -= this.speed * 10
                 }
                 this.pushIntervalids(interval, "endbossFollowIntervalIsPushed", world)
             }, 1000 / 10);

@@ -6,6 +6,13 @@ let isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 function init() {
     showMainMenue()
     window.addEventListener("keydown", checkIfRIghtKey)
+    preventTouchContextMenu()
+}
+
+function preventTouchContextMenu() {
+    document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+    }, false);
 }
 
 function startGame() {

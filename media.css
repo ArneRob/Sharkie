@@ -25,10 +25,6 @@
          display: none;
      }
 
-     .splashScreenSpaceBarIcon {
-         display: none;
-     }
-
      .splashScreenStartButton {
          animation: pulse-animation 1.5s infinite ease-in-out;
      }
@@ -162,6 +158,9 @@
      }
 
      .instructionsImg {
+         display: none;
+     }
+     .splashScreenSpaceBarIcon {
          display: none;
      }
  }

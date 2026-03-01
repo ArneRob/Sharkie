@@ -13,6 +13,11 @@ class Coin extends DrawableObject {
         bottom: 0,
     };
     coinAnimationInterval = false;
+
+    /**
+    * Creates a coin at a specific position.
+    * Loads animation frames and starts animation.
+    */
     constructor(x, y) {
         super().loadImage('../img/4.Marcadores/1. Coins/1.png')
         this.loadImages(this.IMAGES_COINS);

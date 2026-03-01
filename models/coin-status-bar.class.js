@@ -10,6 +10,10 @@ class CoinStatusBar extends DrawableObject {
 
     percentage = 0;
 
+    /**
+    * Creates the coin status bar.
+    * Sets position, size, and initializes percentage to 0.
+    */
     constructor() {
         super();
         this.loadImages(this.IMAGES_COINBAR)

@@ -100,10 +100,15 @@ class Character extends MovableObject {
     offset = {
         top: 130,
         left: 50,
-        right: 60,
+        right: 50,
         bottom: 70,
     };
 
+    /**
+    * Creates the main character (Sharkie).
+    * Loads all animation states, initializes controls,
+    * sets size and starting position, and starts animation logic.
+    */
     constructor() {
         super().loadImage('../img/1.Sharkie/3.Swim/1.png')
         this.loadImages(this.IMAGES_SWIMMING);

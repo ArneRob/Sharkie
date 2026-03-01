@@ -10,6 +10,13 @@ class EndbossStatusBar extends DrawableObject {
     world;
     percentage = 100;
     checkIntroEndbossInterval = false;
+
+    /**
+    * Creates the boss health (life) status bar.
+    * Positions it in the top-right area of the screen,
+    * initializes it with 100% health,
+    * and checks whether the intro animation has finished.
+    */
     constructor() {
         super();
         this.loadImages(this.IMAGES_LIVE);

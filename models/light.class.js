@@ -3,6 +3,10 @@ class Light extends MovableObject {
     width = 1440;
     height = 480;
 
+    /**
+    * Creates a light background layer.
+    * Positions it at ground level.
+    */
     constructor() {
         super().loadImage('../img/3.Background/Layers/1. Light/COMPLETO.png')
 

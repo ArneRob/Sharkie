@@ -7,6 +7,12 @@ class ThrowableObject extends MovableObject {
     };
     bubbleBurstSound = '../audio/bubblePlupSound.mp3';
     soundWasPlayed = false;
+
+    /**
+    * Creates a poison bubble.
+    * Offsets its position relative to the character
+    * and initializes throw behavior.
+    */
     constructor(x, y) {
         super().loadImage('img/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble (for whale).png');
 

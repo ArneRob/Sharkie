@@ -6,6 +6,9 @@ class Keyboard {
     SPACE;
     D;
 
+    /**
+    * Initializes keyboard and button event bindings.
+    */
     constructor() {
         this.bindKeyPressEvents()
         this.bindBtsPressEvents()

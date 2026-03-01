@@ -8,6 +8,11 @@ class Level {
     level_end_x = 2000;
     level_end_y = 280;
 
+    /**
+    * Creates a level configuration.
+    * Stores enemies, boss, lighting, background,
+    * coins, and poison bottles.
+    */
     constructor(enemies, endboss, light, backgroundObjects, coin, poisenBottle) {
         this.enemies = enemies;
         this.endboss = endboss

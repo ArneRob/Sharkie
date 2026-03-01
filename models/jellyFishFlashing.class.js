@@ -14,9 +14,9 @@ class JellyFishFlashing extends MovableObject {
     ];
     offset = {
         top: 10,
-        left: 15,
-        right: 15,
-        bottom: 20,
+        left: 10,
+        right: 10,
+        bottom: 14,
     };
     playDeadAnimation = false;
     jellyFishAnimationInterval = false;
@@ -25,6 +25,13 @@ class JellyFishFlashing extends MovableObject {
     intervalIndex
     interval
 
+    /**
+     * Creates a new flashing jellyfish instance.
+     * Loads default, swimming, and dead images,
+     * sets initial position, size, and speed,
+     * starts the animation loop,
+     * and assigns randomized axis coordinates.
+     */
     constructor() {
         super().loadImage('../img/2.Enemy/2 Jelly fish/Dead/Pink/P1.png')
         this.loadImages(this.IMAGES_SWIMMING);

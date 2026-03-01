@@ -8,6 +8,11 @@ class PoisenStatusBar extends DrawableObject {
         '../img/4.Marcadores/green/poisoned bubbles/100_ copia 3.png',
     ];
     percentage = 0;
+
+    /**
+    * Creates the poison status bar.
+    * Initializes position, size, and percentage.
+    */
     constructor() {
         super();
         this.loadImages(this.IMAGES_POISENBAR);

@@ -13,16 +13,24 @@ class JellyFish extends MovableObject {
         '../img/2.Enemy/2 Jelly fish/Dead/Lila/L4.png',
     ];
     offset = {
-        top: 12,
-        left: 15,
-        right: 15,
-        bottom: 15,
+        top: 10,
+        left: 10,
+        right: 10,
+        bottom: 14,
     };
     jellyFishAnimationInterval = false;
     deadThroughBubble = false;
     intervalIndex = 0;
     interval
 
+    /**
+     * Creates a new regular jellyfish instance.
+     * Loads default, swimming, and dead images,
+     * sets randomized vertical position and speed,
+     * defines size and horizontal position,
+     * assigns a new X axis coordinate,
+     * and starts the animation loop.
+     */
     constructor() {
         super().loadImage('../img/2.Enemy/2 Jelly fish/Regular damage/Lila 1.png')
         this.loadImages(this.IMAGES_SWIMMING);
@@ -61,7 +69,7 @@ class JellyFish extends MovableObject {
             this.intervalIndex++
         }, 1000 / 8);
     }
-    
+
     /**
      * Executes the jellyfish death animation.
      */

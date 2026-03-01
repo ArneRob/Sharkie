@@ -66,6 +66,12 @@ class Endboss extends MovableObject {
     intervalSpeed = 1000 / 10
     intervalIndex = 0
     endbossAnimationInterval
+
+    /**
+    * Creates the end boss.
+    * Loads all animation states and initializes
+    * position, size, and behavior checks.
+    */
     constructor() {
         super().loadImage(this.IMAGES_HIDDEN_ENDBOSS[0])
         this.loadImages(this.IMAGES_SWIMMING);

@@ -8,6 +8,11 @@ class StatusBar extends DrawableObject {
         '../img/4.Marcadores/green/Life/100_copia_2.png',
     ];
     percentage = 100;
+
+    /**
+    * Creates the health (life) status bar.
+    * Initializes with 100% health.
+    */
     constructor() {
         super();
         this.loadImages(this.IMAGES_LIVE);

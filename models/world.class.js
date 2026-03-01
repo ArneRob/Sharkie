@@ -40,6 +40,12 @@ class World {
     backgroundObjects = level1.backgroundObjects;
     light = level1.light;
 
+
+    /**
+    * Creates the main world object.
+    * Initializes canvas, keyboard, rendering,
+    * collision detection, game loop, and sounds.
+    */
     constructor(canvas) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;

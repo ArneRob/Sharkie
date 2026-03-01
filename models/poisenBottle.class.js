@@ -12,6 +12,11 @@ class PoisenBottle extends DrawableObject {
         bottom: 0,
     };
     poisenBottleAnimateInterval = false;
+
+    /**
+    * Creates a poison bottle.
+    * Randomizes horizontal position and starts animation.
+    */
     constructor() {
         super().loadImage('../img/4.Marcadores/Posión/Animada/1.png');
 

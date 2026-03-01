@@ -40,6 +40,7 @@ class World {
     backgroundObjects = level1.backgroundObjects;
     light = level1.light;
 
+    throwObjTimer = 0;
 
     /**
     * Creates the main world object.
@@ -120,7 +121,7 @@ class World {
             this.checkThrowObjects();
             this.checkIfEnemieIsNear();
             this.checkGameOverCondition();
-        }, 200);
+        }, 50);
 
         let run2Interval = setInterval(() => {
             this.checkForItemCollisions();
@@ -133,7 +134,7 @@ class World {
      * Checks if throwable objects should be created.
      */
     checkThrowObjects() {
-        if (this.keyboard.F && this.character.collectedPoisenBottle > 0) {
+        if (this.keyboard.F && this.character.collectedPoisenBottle > 0 && this.checkThrowTime()) {
             let x = this.character.x;
 
             if (this.character.otherDirection) x -= 200;
@@ -143,7 +144,21 @@ class World {
 
             this.character.collectedPoisenBottle -= 20;
             this.poisenStatusBar.setPercentage(this.character.collectedPoisenBottle);
+            this.setThrowObjectTimer()
         }
+    }
+    checkThrowTime() {
+        let value
+        if (this.throwObjTimer == 0) {
+            value = true;
+        } else {
+            let nowTime = new Date().getTime();
+            value = nowTime >= this.throwObjTimer + 1000
+        }
+        return value
+    }
+    setThrowObjectTimer() {
+        this.throwObjTimer = new Date().getTime();
     }
 
     /**
@@ -328,6 +343,13 @@ class World {
         }
     }
 
+    /**
+    * Executes all actions required when the player wins the game.
+    * Stops the game loop, shows the winning screen,
+    * plays the victory sound, clears all intervals,
+    * enables delayed end screen logic,
+    * and activates the restart event listener.
+    */
     getGameWonActions() {
         this.gameOver = true;
         getGameWonScreen();
@@ -336,6 +358,14 @@ class World {
         this.delayedEndScreenShowBooleanOnTrue();
         restartTheGameEventlistener();
     }
+
+    /**
+    * Executes all actions required when the player loses the game.
+    * Stops the game loop, shows the game over screen,
+    * plays the losing sound, clears all intervals,
+    * enables delayed end screen logic,
+    * and activates the restart event listener.
+    */
     getGameOverActions() {
         this.gameOver = true;
         getGameOverScreen();

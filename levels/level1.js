@@ -1,3 +1,16 @@
+
+/**
+ * Initializes Level 1.
+ * 
+ * Creates:
+ * - Regular enemies (JellyFish)
+ * - Special enemies (Flashing JellyFish)
+ * - The Endboss
+ * - Light layer
+ * - Parallax background layers
+ * - Coins
+ * - Poison bottles
+ */
 let level1;
 function initLevel1() {
     level1 = new Level(

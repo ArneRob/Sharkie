@@ -100,10 +100,11 @@ class MovableObject extends DrawableObject {
 
     /**
      * Reduces energy when hit, including hit cooldown.
+     * if endboss Collision with character then less cooldown
      */
     hit() {
-        let timePassed = this.lastHitDate + 300;
-
+        let timePassed = this.lastHitDate + 700;
+        if (world.endbossCollision) { timePassed = this.lastHitDate + 400 }
         if (this.lastHit > timePassed || this.lastHit === 0) {
             this.energy -= 20;
             this.lastHit = new Date().getTime();

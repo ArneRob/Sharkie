@@ -41,6 +41,7 @@ class World {
     light = level1.light;
 
     throwObjTimer = 0;
+    endbossCollision = false;
 
     /**
     * Creates the main world object.
@@ -178,13 +179,15 @@ class World {
      * Checks collision between character and endboss.
      */
     checkCollisions() {
-        if (
-            this.character.isColliding(this.level.endboss[0]) &&
-            this.endboss[0].endbossEnergy > 0
-        ) {
+        if (this.character.isColliding(this.level.endboss[0]) && this.endboss[0].endbossEnergy > 0) {
+            this.endbossCollision = true;
             this.character.hurtSharkie();
+        } else {
+            this.endbossCollision = false;
         }
     }
+
+
 
     /**
      * Checks proximity between character and enemies.

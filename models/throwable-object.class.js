@@ -27,8 +27,15 @@ class ThrowableObject extends MovableObject {
      * Initializes the throw movement and gravity.
      */
     throw() {
-        this.speedY = 0;
+        this.speedY = 1;
         this.applyGravity();
+        setInterval(() => {
+            if (!world.character.otherDirection) {
+                  this.x += 5
+            } else {
+                this.x -= 5
+            }
+        }, 25);
     }
 
     /**

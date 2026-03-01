@@ -13,10 +13,10 @@ class JellyFishFlashing extends MovableObject {
         '../img/2.Enemy/2 Jelly fish/Dead/green/g4.png',
     ];
     offset = {
-        top: 10,
-        left: 10,
-        right: 10,
-        bottom: 14,
+        top: 5,
+        left: 13,
+        right: 13,
+        bottom: 18,
     };
     playDeadAnimation = false;
     jellyFishAnimationInterval = false;

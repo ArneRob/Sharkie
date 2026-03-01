@@ -71,8 +71,6 @@ function initLevel1() {
             new PoisenBottle(10, 20),
             new PoisenBottle(10, 20),
             new PoisenBottle(10, 20),
-            new PoisenBottle(10, 20),
-            new PoisenBottle(10, 20),
         ],
 
     );

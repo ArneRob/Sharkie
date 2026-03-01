@@ -249,9 +249,9 @@ class Endboss extends MovableObject {
                     this.x += this.speed * 60
                 }
                 if (this.characterY() > this.y) {
-                    this.y += this.speed * 10
+                    this.y += this.speed * 20
                 } else if (this.characterY() < this.y) {
-                    this.y -= this.speed * 10
+                    this.y -= this.speed * 20
                 }
                 this.pushIntervalids(interval, "endbossFollowIntervalIsPushed", world)
             }, 1000 / 10);

@@ -102,7 +102,7 @@ class MovableObject extends DrawableObject {
      * Reduces energy when hit, including hit cooldown.
      */
     hit() {
-        let timePassed = this.lastHitDate + 700;
+        let timePassed = this.lastHitDate + 300;
 
         if (this.lastHit > timePassed || this.lastHit === 0) {
             this.energy -= 20;

@@ -12,6 +12,9 @@ class MovableObject extends DrawableObject {
     lastHitDate = 0;
     applyGravityInterval = false;
     moveLeftInterval = false;
+    throwableObjects = [];
+    bubble;
+    throwObjTimer = 0;
 
     offset = {
         top: 0,
@@ -178,5 +181,49 @@ class MovableObject extends DrawableObject {
         let timePassed = new Date().getTime() - this.lastHit;
         timePassed = timePassed / 1000;
         return timePassed < 1;
+    }
+
+    /**
+    * Checks if throwable objects should be created.
+    */
+    checkThrowObjects() {
+        if (world.keyboard.F && this.collectedPoisenBottle > 0 && this.checkThrowTime()) {
+            let x = this.x;
+
+            if (this.otherDirection) x -= 200;
+
+            this.bubble = new ThrowableObject(x, this.y);
+            this.throwableObjects.push(this.bubble);
+
+            this.collectedPoisenBottle -= 20;
+            world.poisenStatusBar.setPercentage(this.collectedPoisenBottle);
+            this.setThrowObjectTimer()
+        }
+    }
+
+    /**
+* Checks whether enough time has passed to throw a new object.
+* 
+* Returns true if:
+* - No object has been thrown yet (timer is 0), or
+* - At least 1000ms (1 second) have passed since the last throw.
+*/
+    checkThrowTime() {
+        let value
+        if (this.throwObjTimer == 0) {
+            value = true;
+        } else {
+            let nowTime = new Date().getTime();
+            value = nowTime >= this.throwObjTimer + 1000
+        }
+        return value
+    }
+
+
+    /**
+     * Stores the current time as the last throw timestamp.
+     */
+    setThrowObjectTimer() {
+        this.throwObjTimer = new Date().getTime();
     }
 }

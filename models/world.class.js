@@ -9,8 +9,6 @@ class World {
     coinStatusBar = new CoinStatusBar();
     poisenStatusBar = new PoisenStatusBar();
 
-    throwableObjects = [];
-
     coinSound = '../audio/coinSound.mp3';
     poisenBottleSound = '../audio/poisenBottleSound.mp3';
 
@@ -20,7 +18,6 @@ class World {
     sharkieHurtSound = new Audio('../audio/sharkieHurt.mp3');
     electricZapShort = new Audio('../audio/electricZapShort.mp3');
 
-    bubble;
     intervalIds = [];
     gameOver = false;
 
@@ -40,7 +37,6 @@ class World {
     backgroundObjects = level1.backgroundObjects;
     light = level1.light;
 
-    throwObjTimer = 0;
     endbossCollision = false;
 
     /**
@@ -119,7 +115,7 @@ class World {
     run() {
         let run1Interval = setInterval(() => {
             this.checkCollisions();
-            this.checkThrowObjects();
+            this.character.checkThrowObjects();
             this.checkIfEnemieIsNear();
             this.checkGameOverCondition();
         }, 50);
@@ -129,50 +125,6 @@ class World {
         }, 200);
 
         this.intervalIds.push(run1Interval, run2Interval);
-    }
-
-    /**
-     * Checks if throwable objects should be created.
-     */
-    checkThrowObjects() {
-        if (this.keyboard.F && this.character.collectedPoisenBottle > 0 && this.checkThrowTime()) {
-            let x = this.character.x;
-
-            if (this.character.otherDirection) x -= 200;
-
-            this.bubble = new ThrowableObject(x, this.character.y);
-            this.throwableObjects.push(this.bubble);
-
-            this.character.collectedPoisenBottle -= 20;
-            this.poisenStatusBar.setPercentage(this.character.collectedPoisenBottle);
-            this.setThrowObjectTimer()
-        }
-    }
-
-    /**
-    * Checks whether enough time has passed to throw a new object.
-    * 
-    * Returns true if:
-    * - No object has been thrown yet (timer is 0), or
-    * - At least 1000ms (1 second) have passed since the last throw.
-    */
-    checkThrowTime() {
-        let value
-        if (this.throwObjTimer == 0) {
-            value = true;
-        } else {
-            let nowTime = new Date().getTime();
-            value = nowTime >= this.throwObjTimer + 1000
-        }
-        return value
-    }
-
-
-    /**
-     * Stores the current time as the last throw timestamp.
-     */
-    setThrowObjectTimer() {
-        this.throwObjTimer = new Date().getTime();
     }
 
     /**
@@ -279,7 +231,7 @@ class World {
         this.addToMap(this.endbossStatusBar);
         this.addObjectsToMap(this.level.coin);
         this.addObjectsToMap(this.level.poisenBottle);
-        this.addObjectsToMap(this.throwableObjects);
+        this.addObjectsToMap(this.character.throwableObjects);
         this.addToMap(this.character);
         this.ctx.translate(-this.camera_x, 0);
 

@@ -140,10 +140,13 @@ class Character extends MovableObject {
                 if (this.space() && this.slapAnimationIsOver) {
                     this.preparSlapAnimation()
                 }
+                // if (this.)
                 if (this.space()) { this.spacePressed() }
                 this.setTimeForSleep()
                 if (this.characterDeadAnimation && this.isDead()) {
                     this.playDeadAnimationAndResetBooleans()
+                } else if (this.canMakeBubble()) {
+                    this.executeCharacterMakeBubble()
                 } else if (this.canSlap()) {
                     this.executeCharacterSlap()
                 } else if (this.isHurt() && !this.characterDeadAnimationIsOver) {
@@ -161,6 +164,13 @@ class Character extends MovableObject {
         }
     }
 
+    executeCharacterMakeBubble() {
+
+    }
+
+    canMakeBubble() {
+
+    }
     /**
      * Starts the key listener interval for character movement.
      */

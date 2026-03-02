@@ -7,7 +7,6 @@ class ThrowableObject extends MovableObject {
     };
     bubbleBurstSound = '../audio/bubblePlupSound.mp3';
     soundWasPlayed = false;
-
     /**
     * Creates a poison bubble.
     * Offsets its position relative to the character
@@ -31,7 +30,7 @@ class ThrowableObject extends MovableObject {
         this.applyGravity();
         setInterval(() => {
             if (!world.character.otherDirection) {
-                  this.x += 5
+                this.x += 5
             } else {
                 this.x -= 5
             }

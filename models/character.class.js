@@ -78,6 +78,16 @@ class Character extends MovableObject {
         '../img/1.Sharkie/2.Long_IDLE/I13.png',
         '../img/1.Sharkie/2.Long_IDLE/I14.png',
     ];
+
+    IMAGES_MAKE_BUBBLE = [
+        '../img/1.Sharkie/4.Attack/Bubble trap/Op2 (Without Bubbles)/1.png',
+        '../img/1.Sharkie/4.Attack/Bubble trap/Op2 (Without Bubbles)/2.png',
+        '../img/1.Sharkie/4.Attack/Bubble trap/Op2 (Without Bubbles)/3.png',
+        '../img/1.Sharkie/4.Attack/Bubble trap/Op2 (Without Bubbles)/4.png',
+        '../img/1.Sharkie/4.Attack/Bubble trap/Op2 (Without Bubbles)/5.png',
+        '../img/1.Sharkie/4.Attack/Bubble trap/Op2 (Without Bubbles)/6.png',
+        '../img/1.Sharkie/4.Attack/Bubble trap/Op2 (Without Bubbles)/7.png',
+    ];
     lastSlap = 0;
     idleTimer = 0;
     IdleCounter = 0;
@@ -118,6 +128,7 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_IDLE_LONG)
         this.loadImages(this.IMAGES_IDLE_SLEEP)
+        this.loadImages(this.IMAGES_MAKE_BUBBLE)
         this.animate();
         this.startKeyListener()
         this.setTimer()
@@ -140,7 +151,9 @@ class Character extends MovableObject {
                 if (this.space() && this.slapAnimationIsOver) {
                     this.preparSlapAnimation()
                 }
-                // if (this.)
+                if (this.canPrepairBubble()) {
+                    this.prepareBubbleAnimation()
+                }
                 if (this.space()) { this.spacePressed() }
                 this.setTimeForSleep()
                 if (this.characterDeadAnimation && this.isDead()) {
@@ -163,13 +176,27 @@ class Character extends MovableObject {
             }, this.intervalSpeed);
         }
     }
-
-    executeCharacterMakeBubble() {
-
+    prepareBubbleAnimation() {
+        this.intervalIndex = 0
+        this.bubbleAnimationIsRunning = true;
+        this.currentImage = 0;
+        this.swimAndSlap = false
     }
 
     canMakeBubble() {
+        return this.bubbleAnimationIsRunning
+    }
 
+    executeCharacterMakeBubble() {
+        this.playAnimation(this.IMAGES_MAKE_BUBBLE)
+        if (this.intervalIndex == 7) {
+            this.bubbleAnimationIsRunning = false;
+            this.checkThrowObjects()
+        }
+    }
+
+    canPrepairBubble() {
+        return world.keyboard.F && this.collectedPoisenBottle > 0 && this.checkThrowTime() && !this.characterDeadAnimationIsOver
     }
     /**
      * Starts the key listener interval for character movement.

@@ -187,18 +187,16 @@ class MovableObject extends DrawableObject {
     * Checks if throwable objects should be created.
     */
     checkThrowObjects() {
-        if (world.keyboard.F && this.collectedPoisenBottle > 0 && this.checkThrowTime()) {
-            let x = this.x;
+        let x = this.x;
 
-            if (this.otherDirection) x -= 200;
+        if (this.otherDirection) x -= 200;
 
-            this.bubble = new ThrowableObject(x, this.y);
-            this.throwableObjects.push(this.bubble);
+        this.bubble = new ThrowableObject(x, this.y);
+        this.throwableObjects.push(this.bubble);
 
-            this.collectedPoisenBottle -= 20;
-            world.poisenStatusBar.setPercentage(this.collectedPoisenBottle);
-            this.setThrowObjectTimer()
-        }
+        this.collectedPoisenBottle -= 20;
+        world.poisenStatusBar.setPercentage(this.collectedPoisenBottle);
+        this.setThrowObjectTimer()
     }
 
     /**

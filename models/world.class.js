@@ -115,7 +115,6 @@ class World {
     run() {
         let run1Interval = setInterval(() => {
             this.checkCollisions();
-            this.character.checkThrowObjects();
             this.checkIfEnemieIsNear();
             this.checkGameOverCondition();
         }, 50);

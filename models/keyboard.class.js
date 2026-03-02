@@ -13,62 +13,41 @@ class Keyboard {
         this.bindKeyPressEvents()
         this.bindBtsPressEvents()
     }
+
     /**
-    * Binds touchstart and touchend event listeners to specific HTML button elements.
-    * Updates the movement and action states based on user interaction with the mobile controls.
-    *
-    * @returns {void}
-    */
+     * Binds touch events to the control buttons
+     * and sets the corresponding movement flags.
+     * 
+     * touchstart → sets the flag to true
+     * touchend   → sets the flag to false
+     * 
+     * Uses an internal helper function
+     * to avoid duplicated code.
+     */
     bindBtsPressEvents() {
-        document.getElementById('buttonUp').addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            this.UP = true
-        });
-        document.getElementById('buttonDown').addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            this.DOWN = true
-        });
-        document.getElementById('buttonLeft').addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            this.LEFT = true
-        });
-        document.getElementById('buttonRight').addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            this.RIGHT = true
-        });
-        document.getElementById('buttonAttack').addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            this.SPACE = true
-        });
-        document.getElementById('buttonPoisen').addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            this.F = true
-        });
-        document.getElementById('buttonUp').addEventListener('touchend', (e) => {
-            e.preventDefault();
-            this.UP = false
-        });
-        document.getElementById('buttonDown').addEventListener('touchend', (e) => {
-            e.preventDefault();
-            this.DOWN = false
-        });
-        document.getElementById('buttonLeft').addEventListener('touchend', (e) => {
-            e.preventDefault();
-            this.LEFT = false
-        });
-        document.getElementById('buttonRight').addEventListener('touchend', (e) => {
-            e.preventDefault();
-            this.RIGHT = false
-        });
-        document.getElementById('buttonAttack').addEventListener('touchend', (e) => {
-            e.preventDefault();
-            this.SPACE = false
-        });
-        document.getElementById('buttonPoisen').addEventListener('touchend', (e) => {
-            e.preventDefault();
-            this.F = false
-        });
+
+        const bind = (id, key) => {
+            const btn = document.getElementById(id);
+
+            btn.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                this[key] = true;
+            });
+
+            btn.addEventListener('touchend', (e) => {
+                e.preventDefault();
+                this[key] = false;
+            });
+        };
+
+        bind('buttonUp', 'UP');
+        bind('buttonDown', 'DOWN');
+        bind('buttonLeft', 'LEFT');
+        bind('buttonRight', 'RIGHT');
+        bind('buttonAttack', 'SPACE');
+        bind('buttonPoisen', 'F');
     }
+
     /**
     * Binds keydown and keyup event listeners to the window object.
     * Maps physical key codes (WASD, Arrows, Space, F) to the internal control states.

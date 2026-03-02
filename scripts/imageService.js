@@ -160,3 +160,14 @@ function returnIMAGES_Endboss_DEAD() {
         "../img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 10.png",
     ];
 }
+
+function returnIMAGES_COINBAR() {
+    return [
+        '../img/4.Marcadores/green/Coin/0_copia4.png',
+        '../img/4.Marcadores/green/Coin/20_copia2.png',
+        '../img/4.Marcadores/green/Coin/40_copia4.png',
+        '../img/4.Marcadores/green/Coin/60_copia4.png',
+        '../img/4.Marcadores/green/Coin/80_copia4.png',
+        '../img/4.Marcadores/green/Coin/100_copia4.png',
+    ];
+}

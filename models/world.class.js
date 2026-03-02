@@ -220,6 +220,7 @@ class World {
         this.addObjectsToMap(this.light);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.endboss);
+        this.addObjectsToMap(this.character.throwableObjects);
         this.ctx.translate(-this.camera_x, 0);
 
         this.addToMap(this.statusBar);
@@ -230,9 +231,9 @@ class World {
         this.addToMap(this.endbossStatusBar);
         this.addObjectsToMap(this.level.coin);
         this.addObjectsToMap(this.level.poisenBottle);
-        this.addObjectsToMap(this.character.throwableObjects);
         this.addToMap(this.character);
         this.ctx.translate(-this.camera_x, 0);
+
 
         if (!this.stopRequestAnimationFrame) {
             requestAnimationFrame(() => this.draw());

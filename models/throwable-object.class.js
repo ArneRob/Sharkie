@@ -65,9 +65,9 @@ class ThrowableObject extends MovableObject {
 
     /**
      * Handles bubble burst logic.
-     * @param {boolean} [endboss=false] - Indicates if endboss was hit.
+     * @param {boolean} [endboss] - Indicates if endboss was hit.
      */
-    bubbleCharacter(endboss = false) {
+    bubbleCharacter(endboss) {
         setTimeout(() => {
             this.x = 4000;
 

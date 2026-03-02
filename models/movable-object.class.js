@@ -15,6 +15,8 @@ class MovableObject extends DrawableObject {
     throwableObjects = [];
     bubble;
     throwObjTimer = 0;
+    bubbleX = 0;
+    bubbleY = 0;
 
     offset = {
         top: 0,
@@ -187,17 +189,19 @@ class MovableObject extends DrawableObject {
     * Checks if throwable objects should be created.
     */
     checkThrowObjects() {
-        let x = this.x;
+        this.bubbleX = this.x
+        this.bubbleY = this.y
 
-        if (this.otherDirection) x -= 200;
+        if (this.otherDirection) this.bubbleX -= 200;
 
-        this.bubble = new ThrowableObject(x, this.y);
+        this.bubble = new ThrowableObject(this.bubbleX, this.bubbleY);
         this.throwableObjects.push(this.bubble);
 
         this.collectedPoisenBottle -= 20;
         world.poisenStatusBar.setPercentage(this.collectedPoisenBottle);
         this.setThrowObjectTimer()
     }
+
 
     /**
 * Checks whether enough time has passed to throw a new object.

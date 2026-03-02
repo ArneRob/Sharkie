@@ -1,93 +1,5 @@
 class Character extends MovableObject {
 
-    IMAGES_SWIMMING = [
-        '../img/1.Sharkie/1.IDLE/1.png',
-        '../img/1.Sharkie/1.IDLE/2.png',
-        '../img/1.Sharkie/1.IDLE/3.png',
-        '../img/1.Sharkie/1.IDLE/4.png',
-        '../img/1.Sharkie/1.IDLE/5.png',
-        '../img/1.Sharkie/1.IDLE/6.png',
-        '../img/1.Sharkie/1.IDLE/7.png',
-        '../img/1.Sharkie/1.IDLE/8.png',
-        '../img/1.Sharkie/1.IDLE/9.png',
-        '../img/1.Sharkie/1.IDLE/10.png',
-        '../img/1.Sharkie/1.IDLE/11.png',
-        '../img/1.Sharkie/1.IDLE/12.png',
-        '../img/1.Sharkie/1.IDLE/13.png',
-        '../img/1.Sharkie/1.IDLE/14.png',
-        '../img/1.Sharkie/1.IDLE/15.png',
-        '../img/1.Sharkie/1.IDLE/16.png',
-        '../img/1.Sharkie/1.IDLE/17.png',
-        '../img/1.Sharkie/1.IDLE/18.png',
-    ];
-
-    IMAGES_SWIM = [
-        "../img/1.Sharkie/3.Swim/1.png",
-        "../img/1.Sharkie/3.Swim/2.png",
-        "../img/1.Sharkie/3.Swim/4.png",
-        "../img/1.Sharkie/3.Swim/5.png",
-    ];
-
-    IMAGES_SLAP = [
-        '../img/1.Sharkie/4.Attack/Fin slap/1.png',
-        '../img/1.Sharkie/4.Attack/Fin slap/4.png',
-        '../img/1.Sharkie/4.Attack/Fin slap/5.png',
-        '../img/1.Sharkie/4.Attack/Fin slap/6.png',
-        '../img/1.Sharkie/4.Attack/Fin slap/7.png',
-        '../img/1.Sharkie/4.Attack/Fin slap/8.png',
-    ];
-    IMAGES_DEAD = [
-        '../img/1.Sharkie/6.dead/1.Poisoned/1.png',
-        '../img/1.Sharkie/6.dead/1.Poisoned/2.png',
-        '../img/1.Sharkie/6.dead/1.Poisoned/3.png',
-        '../img/1.Sharkie/6.dead/1.Poisoned/4.png',
-        '../img/1.Sharkie/6.dead/1.Poisoned/5.png',
-        '../img/1.Sharkie/6.dead/1.Poisoned/6.png',
-        '../img/1.Sharkie/6.dead/1.Poisoned/7.png',
-        '../img/1.Sharkie/6.dead/1.Poisoned/8.png',
-        '../img/1.Sharkie/6.dead/1.Poisoned/9.png',
-        '../img/1.Sharkie/6.dead/1.Poisoned/10.png',
-        '../img/1.Sharkie/6.dead/1.Poisoned/11.png',
-        '../img/1.Sharkie/6.dead/1.Poisoned/12.png',
-    ];
-    IMAGES_HURT = [
-        '../img/1.Sharkie/5.Hurt/1.Poisoned/1.png',
-        '../img/1.Sharkie/5.Hurt/1.Poisoned/2.png',
-        '../img/1.Sharkie/5.Hurt/1.Poisoned/3.png',
-        '../img/1.Sharkie/5.Hurt/1.Poisoned/4.png',
-    ];
-    IMAGES_IDLE_LONG = [
-        '../img/1.Sharkie/2.Long_IDLE/i1.png',
-        '../img/1.Sharkie/2.Long_IDLE/I2.png',
-        '../img/1.Sharkie/2.Long_IDLE/I3.png',
-        '../img/1.Sharkie/2.Long_IDLE/I4.png',
-        '../img/1.Sharkie/2.Long_IDLE/I5.png',
-        '../img/1.Sharkie/2.Long_IDLE/I6.png',
-        '../img/1.Sharkie/2.Long_IDLE/I7.png',
-        '../img/1.Sharkie/2.Long_IDLE/I8.png',
-        '../img/1.Sharkie/2.Long_IDLE/I9.png',
-        '../img/1.Sharkie/2.Long_IDLE/I10.png',
-        '../img/1.Sharkie/2.Long_IDLE/I11.png',
-        '../img/1.Sharkie/2.Long_IDLE/I12.png',
-        '../img/1.Sharkie/2.Long_IDLE/I13.png',
-        '../img/1.Sharkie/2.Long_IDLE/I14.png',
-    ];
-    IMAGES_IDLE_SLEEP = [
-        '../img/1.Sharkie/2.Long_IDLE/I11.png',
-        '../img/1.Sharkie/2.Long_IDLE/I12.png',
-        '../img/1.Sharkie/2.Long_IDLE/I13.png',
-        '../img/1.Sharkie/2.Long_IDLE/I14.png',
-    ];
-
-    IMAGES_MAKE_BUBBLE = [
-        '../img/1.Sharkie/4.Attack/Bubble trap/Op2 (Without Bubbles)/1.png',
-        '../img/1.Sharkie/4.Attack/Bubble trap/Op2 (Without Bubbles)/2.png',
-        '../img/1.Sharkie/4.Attack/Bubble trap/Op2 (Without Bubbles)/3.png',
-        '../img/1.Sharkie/4.Attack/Bubble trap/Op2 (Without Bubbles)/4.png',
-        '../img/1.Sharkie/4.Attack/Bubble trap/Op2 (Without Bubbles)/5.png',
-        '../img/1.Sharkie/4.Attack/Bubble trap/Op2 (Without Bubbles)/6.png',
-        '../img/1.Sharkie/4.Attack/Bubble trap/Op2 (Without Bubbles)/7.png',
-    ];
     lastSlap = 0;
     idleTimer = 0;
     IdleCounter = 0;
@@ -121,14 +33,14 @@ class Character extends MovableObject {
     */
     constructor() {
         super().loadImage('../img/1.Sharkie/3.Swim/1.png')
-        this.loadImages(this.IMAGES_SWIMMING);
-        this.loadImages(this.IMAGES_SLAP);
-        this.loadImages(this.IMAGES_SWIM);
-        this.loadImages(this.IMAGES_DEAD);
-        this.loadImages(this.IMAGES_HURT);
-        this.loadImages(this.IMAGES_IDLE_LONG)
-        this.loadImages(this.IMAGES_IDLE_SLEEP)
-        this.loadImages(this.IMAGES_MAKE_BUBBLE)
+        this.loadImages(returnImagesSwimmingSharkie());
+        this.loadImages(returnIMAGES_SLAP());
+        this.loadImages(returnIMAGES_SWIM());
+        this.loadImages(returnIMAGES_DEAD());
+        this.loadImages(returnIMAGES_HURT());
+        this.loadImages(returnIMAGES_IDLE_LONG())
+        this.loadImages(returnIMAGES_IDLE_SLEEP())
+        this.loadImages(returnIMAGES_MAKE_BUBBLE())
         this.animate();
         this.startKeyListener()
         this.setTimer()
@@ -145,35 +57,41 @@ class Character extends MovableObject {
         this.intervalIndex = 0;
         if (!this.characterDeadAnimation) {
             this.interval = setInterval(() => {
-                if (this.isDead() && !this.characterDeadAnimation && !world.gameOver) {
-                    this.playSlowerDeadAnimation()
-                }
-                if (this.space() && this.slapAnimationIsOver) {
-                    this.preparSlapAnimation()
-                }
-                if (this.canPrepairBubble()) {
-                    this.prepareBubbleAnimation()
-                }
-                if (this.space()) { this.spacePressed() }
-                this.setTimeForSleep()
-                if (this.characterDeadAnimation && this.isDead()) {
-                    this.playDeadAnimationAndResetBooleans()
-                } else if (this.canMakeBubble()) {
-                    this.executeCharacterMakeBubble()
-                } else if (this.canSlap()) {
-                    this.executeCharacterSlap()
-                } else if (this.isHurt() && !this.characterDeadAnimationIsOver) {
-                    this.playAnimation(this.IMAGES_HURT)
-                } else if (this.canSwim()) {
-                    this.playAnimation(this.IMAGES_SWIM)
-                } else if (this.canSleep()) {
-                    this.executeCharacterSleep()
-                } else if (this.canIdle()) {
-                    this.playAnimation(this.IMAGES_SWIMMING)
-                }
+                this.prepareAnimationsStates()
+                this.resolveCharacterAnimationState()
                 this.pushIntervalids(this.interval, "characterAnimationInterval", world)
                 this.intervalIndex++
             }, this.intervalSpeed);
+        }
+    }
+    prepareAnimationsStates() {
+        if (this.isDead() && !this.characterDeadAnimation && !world.gameOver) {
+            this.playSlowerDeadAnimation()
+        }
+        if (this.space() && this.slapAnimationIsOver) {
+            this.preparSlapAnimation()
+        }
+        if (this.canPrepairBubble()) {
+            this.prepareBubbleAnimation()
+        }
+        if (this.space()) { this.spacePressed() }
+        this.setTimeForSleep()
+    }
+    resolveCharacterAnimationState() {
+        if (this.characterDeadAnimation && this.isDead()) {
+            this.playDeadAnimationAndResetBooleans()
+        } else if (this.canMakeBubble()) {
+            this.executeCharacterMakeBubble()
+        } else if (this.canSlap()) {
+            this.executeCharacterSlap()
+        } else if (this.isHurt() && !this.characterDeadAnimationIsOver) {
+            this.playAnimation(returnIMAGES_HURT())
+        } else if (this.canSwim()) {
+            this.playAnimation(returnIMAGES_SWIM())
+        } else if (this.canSleep()) {
+            this.executeCharacterSleep()
+        } else if (this.canIdle()) {
+            this.playAnimation(returnImagesSwimmingSharkie())
         }
     }
     prepareBubbleAnimation() {
@@ -188,7 +106,7 @@ class Character extends MovableObject {
     }
 
     executeCharacterMakeBubble() {
-        this.playAnimation(this.IMAGES_MAKE_BUBBLE)
+        this.playAnimation(returnIMAGES_MAKE_BUBBLE())
         if (this.intervalIndex == 7) {
             this.bubbleAnimationIsRunning = false;
             this.checkThrowObjects()
@@ -302,11 +220,11 @@ class Character extends MovableObject {
      */
     executeCharacterSleep() {
         if (this.IdleCounter <= 7 && !this.idleSleep) {
-            this.playAnimation(this.IMAGES_IDLE_LONG)
+            this.playAnimation(returnIMAGES_IDLE_LONG())
         } else if (!this.characterDeadAnimationIsOver) {
             this.idleSleep = true
             this.sharkieSnoreSound.play()
-            this.playAnimation(this.IMAGES_IDLE_SLEEP)
+            this.playAnimation(returnIMAGES_IDLE_SLEEP())
             this.dropYCoordinate()
         }
         this.IdleCounter++
@@ -338,7 +256,7 @@ class Character extends MovableObject {
      * Executes the character slap action.
      */
     executeCharacterSlap() {
-        this.playAnimation(this.IMAGES_SLAP)
+        this.playAnimation(returnIMAGES_SLAP())
         this.finSlapSound.play()
         this.setTimer()
         this.subtractLivePointEndboss()
@@ -360,7 +278,7 @@ class Character extends MovableObject {
      * Plays the dead animation and resets related flags.
      */
     playDeadAnimationAndResetBooleans() {
-        this.playAnimation(this.IMAGES_DEAD)
+        this.playAnimation(returnIMAGES_DEAD())
         if (this.intervalIndex >= 5) {
             this.characterDeadAnimation = false;
             this.characterDeadAnimationIsOver = true;

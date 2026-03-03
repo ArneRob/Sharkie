@@ -65,6 +65,11 @@ class Character extends MovableObject {
         }
     }
 
+    /**
+  * Prepares all animation states before resolving which animation should be played.
+  * It checks for death, slap, bubble, space input, and sleep timing conditions
+  * and sets the required flags or triggers preparation methods.
+  */
     prepareAnimationsStates() {
         if (this.isDead() && !this.characterDeadAnimation && !world.gameOver) {
             this.playSlowerDeadAnimation()
@@ -79,6 +84,10 @@ class Character extends MovableObject {
         this.setTimeForSleep()
     }
 
+    /**
+     * Resolves and executes the correct character animation based on the current state.
+     * It prioritizes death animation, then bubble, slap, hurt, swim, sleep, and idle animations.
+     */
     resolveCharacterAnimationState() {
         if (this.characterDeadAnimation && this.isDead()) {
             this.playDeadAnimationAndResetBooleans()
@@ -97,6 +106,10 @@ class Character extends MovableObject {
         }
     }
 
+    /**
+     * Initializes and prepares the bubble animation.
+     * It resets animation counters and flags to start the bubble sequence.
+     */
     prepareBubbleAnimation() {
         this.intervalIndex = 0
         this.bubbleAnimationIsRunning = true;
@@ -104,10 +117,19 @@ class Character extends MovableObject {
         this.swimAndSlap = false
     }
 
+    /**
+     * Checks whether the bubble animation is currently active.
+     * @returns {boolean} True if the bubble animation is running.
+     */
     canMakeBubble() {
         return this.bubbleAnimationIsRunning
     }
 
+    /**
+     * Executes the bubble animation sequence.
+     * When the animation reaches the defined frame index,
+     * it stops the animation and creates the throw objects.
+     */
     executeCharacterMakeBubble() {
         this.playAnimation(returnIMAGES_MAKE_BUBBLE())
         if (this.intervalIndex == 7) {
@@ -116,10 +138,15 @@ class Character extends MovableObject {
         }
     }
 
+    /**
+     * Determines whether the bubble animation can be prepared.
+     * The player must press the F key, have at least one poison bottle,
+     * the throw cooldown must be ready, and the death animation must not be finished.
+     * @returns {boolean} True if the bubble animation can be prepared.
+     */
     canPrepareBubble() {
         return world.keyboard.F && this.collectedPoisenBottle > 0 && this.checkThrowTime() && !this.characterDeadAnimationIsOver
     }
-
     /**
      * Starts the key listener interval for character movement.
      */

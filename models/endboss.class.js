@@ -64,6 +64,13 @@ class Endboss extends MovableObject {
         }
     }
 
+    /**
+     * Resolves and executes the correct animation state for the endboss.
+     * It prioritizes the death animation first. If the endboss is not dying,
+     * it checks whether the intro sequence should start or continue.
+     * After the intro, it handles fight, swim, or hidden animations
+     * depending on the current state and conditions.
+     */
     resolveEndbossAnimationState() {
         if (this.canPlayDeadAnimation()) {
             this.executeEndbossDeath()

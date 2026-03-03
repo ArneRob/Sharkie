@@ -1,3 +1,7 @@
+/**
+ * returns requested ImgObjects with src in it
+ */
+
 function returnImagesSwimmingSharkie() {
     return IMAGES_SWIMMING = [
         '../img/1.Sharkie/1.IDLE/1.png',

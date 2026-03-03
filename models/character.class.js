@@ -64,7 +64,7 @@ class Character extends MovableObject {
             }, this.intervalSpeed);
         }
     }
-    
+
     prepareAnimationsStates() {
         if (this.isDead() && !this.characterDeadAnimation && !world.gameOver) {
             this.playSlowerDeadAnimation()
@@ -72,7 +72,7 @@ class Character extends MovableObject {
         if (this.space() && this.slapAnimationIsOver) {
             this.preparSlapAnimation()
         }
-        if (this.canPrepairBubble()) {
+        if (this.canPrepareBubble()) {
             this.prepareBubbleAnimation()
         }
         if (this.space()) { this.spacePressed() }
@@ -112,13 +112,14 @@ class Character extends MovableObject {
         this.playAnimation(returnIMAGES_MAKE_BUBBLE())
         if (this.intervalIndex == 7) {
             this.bubbleAnimationIsRunning = false;
-            this.checkThrowObjects()
+            this.createThrowObjects()
         }
     }
 
-    canPrepairBubble() {
+    canPrepareBubble() {
         return world.keyboard.F && this.collectedPoisenBottle > 0 && this.checkThrowTime() && !this.characterDeadAnimationIsOver
     }
+
     /**
      * Starts the key listener interval for character movement.
      */

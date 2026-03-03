@@ -17,6 +17,7 @@ class MovableObject extends DrawableObject {
     throwObjTimer = 0;
     bubbleX = 0;
     bubbleY = 0;
+    bubbleOtherDirection = false;
 
     offset = {
         top: 0,
@@ -142,7 +143,7 @@ class MovableObject extends DrawableObject {
 
     /**
      * Collects an item and increases the corresponding value.
-     * @param {Object} item - Collected item.
+     * @param {boolean} item - Collected item.
      */
     collect(item) {
         if (item == true) {
@@ -184,16 +185,17 @@ class MovableObject extends DrawableObject {
     }
 
     /**
-    * Checks if throwable objects should be created.
+    * create throwable object.
     */
-    checkThrowObjects() {
+    createThrowObjects() {
         this.bubbleX = this.x
         this.bubbleY = this.y
-
+        this.bubbleOtherDirection = world.character.otherDirection
         if (this.otherDirection) this.bubbleX -= 200;
 
         this.bubble = new ThrowableObject(this.bubbleX, this.bubbleY);
         this.throwableObjects.push(this.bubble);
+        this.bubbleMakeInProgress = false;
 
         this.collectedPoisenBottle -= 20;
         world.poisenStatusBar.setPercentage(this.collectedPoisenBottle);

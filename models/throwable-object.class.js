@@ -29,7 +29,7 @@ class ThrowableObject extends MovableObject {
         this.speedY = 1;
         this.applyGravity();
         setInterval(() => {
-            if (!world.character.otherDirection) {
+            if (!world.character.bubbleOtherDirection) {
                 this.x += 5
             } else {
                 this.x -= 5

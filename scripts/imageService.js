@@ -171,3 +171,59 @@ function returnIMAGES_COINBAR() {
         '../img/4.Marcadores/green/Coin/100_copia4.png',
     ];
 }
+
+function returnIMAGES_SWIMMING_JELLY_FISH() {
+    return [
+        '../img/2.Enemy/2 Jelly fish/Regular damage/Lila 1.png',
+        '../img/2.Enemy/2 Jelly fish/Regular damage/Lila 2.png',
+        '../img/2.Enemy/2 Jelly fish/Regular damage/Lila 3.png',
+        '../img/2.Enemy/2 Jelly fish/Regular damage/Lila 4.png',
+    ];
+}
+
+function returnIMAGES_JELLY_FISH_DEAD() {
+    return [
+        '../img/2.Enemy/2 Jelly fish/Dead/Lila/L1.png',
+        '../img/2.Enemy/2 Jelly fish/Dead/Lila/L2.png',
+        '../img/2.Enemy/2 Jelly fish/Dead/Lila/L3.png',
+        '../img/2.Enemy/2 Jelly fish/Dead/Lila/L4.png',
+    ];
+}
+
+
+function returnIMAGES_SWIMMING_JELLY_FLASHING_FISH() {
+    return [
+        'img/2.Enemy/2 Jelly fish/Súper dangerous/Green 1.png',
+        'img/2.Enemy/2 Jelly fish/Súper dangerous/Green 2.png',
+        'img/2.Enemy/2 Jelly fish/Súper dangerous/Green 3.png',
+        'img/2.Enemy/2 Jelly fish/Súper dangerous/Green 4.png',
+    ];
+}
+
+function returnIMAGES_JELLY_FISH_FLASHING_DEAD() {
+    return [
+        '../img/2.Enemy/2 Jelly fish/Dead/green/g1.png',
+        '../img/2.Enemy/2 Jelly fish/Dead/green/g2.png',
+        '../img/2.Enemy/2 Jelly fish/Dead/green/g3.png',
+        '../img/2.Enemy/2 Jelly fish/Dead/green/g4.png',
+    ];
+}
+
+function returnIMAGES_POISENBOTTLE() {
+    return [
+        '../img/4.Marcadores/Posión/Animada/1.png',
+        '../img/4.Marcadores/Posión/Animada/2.png',
+        '../img/4.Marcadores/Posión/Animada/3.png',
+        '../img/4.Marcadores/Posión/Animada/4.png',
+    ];
+}
+
+function returnIMAGES_COINS() {
+    return [
+        '../img/4.Marcadores/1. Coins/1.png',
+        '../img/4.Marcadores/1. Coins/2.png',
+        '../img/4.Marcadores/1. Coins/3.png',
+        '../img/4.Marcadores/1. Coins/4.png',
+    ];
+}
+ 

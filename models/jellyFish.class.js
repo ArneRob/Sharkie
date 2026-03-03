@@ -1,17 +1,5 @@
 class JellyFish extends MovableObject {
 
-    IMAGES_SWIMMING = [
-        '../img/2.Enemy/2 Jelly fish/Regular damage/Lila 1.png',
-        '../img/2.Enemy/2 Jelly fish/Regular damage/Lila 2.png',
-        '../img/2.Enemy/2 Jelly fish/Regular damage/Lila 3.png',
-        '../img/2.Enemy/2 Jelly fish/Regular damage/Lila 4.png',
-    ];
-    IMAGES_DEAD = [
-        '../img/2.Enemy/2 Jelly fish/Dead/Lila/L1.png',
-        '../img/2.Enemy/2 Jelly fish/Dead/Lila/L2.png',
-        '../img/2.Enemy/2 Jelly fish/Dead/Lila/L3.png',
-        '../img/2.Enemy/2 Jelly fish/Dead/Lila/L4.png',
-    ];
     offset = {
         top: 5,
         left: 13,
@@ -33,8 +21,8 @@ class JellyFish extends MovableObject {
      */
     constructor() {
         super().loadImage('../img/2.Enemy/2 Jelly fish/Regular damage/Lila 1.png')
-        this.loadImages(this.IMAGES_SWIMMING);
-        this.loadImages(this.IMAGES_DEAD);
+        this.loadImages(returnIMAGES_SWIMMING_JELLY_FISH());
+        this.loadImages(returnIMAGES_JELLY_FISH_DEAD());
         this.x = 400
         this.y = Math.random() * 400
         this.speed = 0.15 + Math.random() * 0.25
@@ -63,7 +51,7 @@ class JellyFish extends MovableObject {
             if (this.canExecuteDeath()) {
                 this.jellyFishExecuteDeath()
             } else if (!this.jellyFishFlashingIsDead) {
-                this.playAnimation(this.IMAGES_SWIMMING)
+                this.playAnimation(returnIMAGES_SWIMMING_JELLY_FISH())
             }
             this.pushIntervalids(this.interval, "jellyFishAnimationInterval", world)
             this.intervalIndex++
@@ -74,7 +62,7 @@ class JellyFish extends MovableObject {
      * Executes the jellyfish death animation.
      */
     jellyFishExecuteDeath() {
-        this.playAnimation(this.IMAGES_DEAD)
+        this.playAnimation(returnIMAGES_JELLY_FISH_DEAD())
         if (this.intervalIndex >= 12) {
             this.jellyFishFlashingIsDead = true;
             this.x = 4000

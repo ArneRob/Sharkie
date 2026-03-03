@@ -64,6 +64,7 @@ class Character extends MovableObject {
             }, this.intervalSpeed);
         }
     }
+    
     prepareAnimationsStates() {
         if (this.isDead() && !this.characterDeadAnimation && !world.gameOver) {
             this.playSlowerDeadAnimation()
@@ -77,6 +78,7 @@ class Character extends MovableObject {
         if (this.space()) { this.spacePressed() }
         this.setTimeForSleep()
     }
+
     resolveCharacterAnimationState() {
         if (this.characterDeadAnimation && this.isDead()) {
             this.playDeadAnimationAndResetBooleans()
@@ -94,6 +96,7 @@ class Character extends MovableObject {
             this.playAnimation(returnImagesSwimmingSharkie())
         }
     }
+
     prepareBubbleAnimation() {
         this.intervalIndex = 0
         this.bubbleAnimationIsRunning = true;

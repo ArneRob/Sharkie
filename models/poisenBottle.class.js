@@ -1,10 +1,4 @@
-class PoisenBottle extends DrawableObject {
-    IMAGES_POISEN = [
-        '../img/4.Marcadores/Posión/Animada/1.png',
-        '../img/4.Marcadores/Posión/Animada/2.png',
-        '../img/4.Marcadores/Posión/Animada/3.png',
-        '../img/4.Marcadores/Posión/Animada/4.png',
-    ];
+class PoisenBottle extends MovableObject {
     offset = {
         top: 0,
         left: 0,
@@ -20,7 +14,7 @@ class PoisenBottle extends DrawableObject {
     constructor() {
         super().loadImage('../img/4.Marcadores/Posión/Animada/1.png');
 
-        this.loadImages(this.IMAGES_POISEN);
+        this.loadImages(returnIMAGES_POISENBOTTLE());
 
         this.x = 200 + Math.random() * 1000;
         this.y = 400;
@@ -35,12 +29,7 @@ class PoisenBottle extends DrawableObject {
      */
     animate() {
         let interval = setInterval(() => {
-            let i = this.currentImage % this.IMAGES_POISEN.length;
-            let path = this.IMAGES_POISEN[i];
-
-            this.img = this.imageCache[path];
-            this.currentImage++;
-
+            this.playAnimation(returnIMAGES_POISENBOTTLE())
             this.pushIntervalids(
                 interval,
                 "poisenBottleAnimateInterval",

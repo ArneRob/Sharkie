@@ -57,25 +57,29 @@ class Endboss extends MovableObject {
                 if (this.canExeSlowerDeathAnimation()) {
                     this.slowerDeathAnimation()
                 }
-                if (this.canPlayDeadAnimation()) {
-                    this.executeEndbossDeath()
-                } else {
-                    if (this.canInitEndbossIntro()) {
-                        this.executeInitEndbossIntro()
-                    }
-                    if (this.canPlayEndbossIntro()) {
-                        this.executeEndbossIntro()
-                    } else if (this.checkLastNearEndbossTime() && !this.endbossDeadAnimationIsOver) {
-                        this.executeFightAnimation()
-                    } else if (this.canPlayAnimationSwim()) {
-                        this.executeEndbossSwim()
-                    } else if (this.canHideEndboss()) {
-                        this.playAnimation(this.IMAGES_HIDDEN_ENDBOSS)
-                    }
-                }
+                this.resolveEndbossAnimationState()
                 this.pushIntervalids(this.endbossAnimationInterval, "endbossAnimationIntervalIsPushed", world)
                 this.intervalIndex++
             }, this.intervalSpeed);
+        }
+    }
+
+    resolveEndbossAnimationState() {
+        if (this.canPlayDeadAnimation()) {
+            this.executeEndbossDeath()
+        } else {
+            if (this.canInitEndbossIntro()) {
+                this.executeInitEndbossIntro()
+            }
+            if (this.canPlayEndbossIntro()) {
+                this.executeEndbossIntro()
+            } else if (this.checkLastNearEndbossTime() && !this.endbossDeadAnimationIsOver) {
+                this.executeFightAnimation()
+            } else if (this.canPlayAnimationSwim()) {
+                this.executeEndbossSwim()
+            } else if (this.canHideEndboss()) {
+                this.playAnimation(this.IMAGES_HIDDEN_ENDBOSS)
+            }
         }
     }
 

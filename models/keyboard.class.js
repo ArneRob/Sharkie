@@ -6,6 +6,15 @@ class Keyboard {
     SPACE;
     D;
 
+    keyMap = {
+        87: 'UP', 38: 'UP',
+        83: 'DOWN', 40: 'DOWN',
+        65: 'LEFT', 37: 'LEFT',
+        68: 'RIGHT', 39: 'RIGHT',
+        32: 'SPACE',
+        70: 'F'
+    };
+
     /**
     * Initializes keyboard and button event bindings.
     */
@@ -56,47 +65,17 @@ class Keyboard {
     */
     bindKeyPressEvents() {
         window.addEventListener('keydown', (event) => {
-            if (event.which == 87 || event.which == 38) {
-                this.UP = true
-            }
-            if (event.which == 83 || event.which == 40) {
-                this.DOWN = true
-            }
-            if (event.which == 65 || event.which == 37) {
-                this.LEFT = true
-            }
-            if (event.which == 68 || event.which == 39) {
-                this.RIGHT = true
-            }
-            if (event.which == 32) {
-                this.SPACE = true
-            }
-            if (event.which == 70) {
-                this.F = true
-            }
+            const key = this.keyMap[event.which];
+            if (key) this[key] = true;
+
             if (event.which === 32 && event.target === document.body) {
                 event.preventDefault();
             }
         });
+
         window.addEventListener('keyup', (event) => {
-            if (event.which == 87 || event.which == 38) {
-                this.UP = false
-            }
-            if (event.which == 83 || event.which == 40) {
-                this.DOWN = false
-            }
-            if (event.which == 65 || event.which == 37) {
-                this.LEFT = false
-            }
-            if (event.which == 68 || event.which == 39) {
-                this.RIGHT = false
-            }
-            if (event.which == 32) {
-                this.SPACE = false
-            }
-            if (event.which == 70) {
-                this.F = false;
-            }
+            const key = this.keyMap[event.which];
+            if (key) this[key] = false;
         });
     }
 }

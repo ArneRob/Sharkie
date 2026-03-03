@@ -182,13 +182,12 @@ class World {
 
     /**
      * Handles coin collisions.
-     * @param {Array} collectItem - Coin array.
      */
-    ifCoinCollision(collectItem) {
+    ifCoinCollision() {
         for (let index = 0; index < this.level.coin.length; index++) {
             if (this.character.isColliding(this.coin[index])) {
                 this.playSound(this.coinSound);
-                this.character.collect(collectItem[0]);
+                this.character.collect(true);
                 this.coin.splice(index, 1);
                 this.coinStatusBar.setPercentage(this.character.collectedCoin);
             }

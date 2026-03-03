@@ -145,9 +145,7 @@ class MovableObject extends DrawableObject {
      * @param {Object} item - Collected item.
      */
     collect(item) {
-        let key = this.returnObjectEntrieKey(item, 7);
-
-        if (key === "IMAGES_COINS") {
+        if (item == true) {
             this.collectedCoin += 20;
             if (this.collectedCoin > 100) this.collectedCoin = 100;
         } else {
